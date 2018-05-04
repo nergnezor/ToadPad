@@ -1,0 +1,505 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr User 13787 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	5500 5400 7700 5400
+Wire Wire Line
+	7700 5400 7700 6600
+Wire Wire Line
+	7700 6600 8000 6600
+Wire Wire Line
+	8000 6200 7800 6200
+Wire Wire Line
+	7800 6200 7800 5300
+Wire Wire Line
+	7800 5300 5500 5300
+Wire Wire Line
+	8000 5800 7900 5800
+Wire Wire Line
+	7900 5800 7900 5200
+Wire Wire Line
+	7900 5200 5500 5200
+Wire Wire Line
+	8000 5400 8000 5100
+Wire Wire Line
+	8000 5100 5500 5100
+Wire Wire Line
+	8000 5000 5500 5000
+Wire Wire Line
+	5500 4900 8000 4900
+Wire Wire Line
+	8000 4900 8000 4600
+Wire Wire Line
+	8000 4200 7900 4200
+Wire Wire Line
+	7900 4200 7900 4800
+Wire Wire Line
+	7900 4800 5500 4800
+Wire Wire Line
+	5500 4700 7800 4700
+Wire Wire Line
+	7800 4700 7800 3800
+Wire Wire Line
+	7800 3800 8000 3800
+Wire Wire Line
+	5500 4700 3500 4700
+Wire Wire Line
+	3500 4700 3500 5600
+Wire Wire Line
+	3500 5600 3300 5600
+Connection ~ 5500 4700
+Wire Wire Line
+	2900 2600 2900 3000
+Text Label 2900 2600 0    10   ~ 0
+VDD
+Wire Wire Line
+	3700 2700 3700 2800
+Wire Wire Line
+	4000 2800 3700 2800
+Wire Wire Line
+	4300 2900 4000 2900
+Wire Wire Line
+	4000 2900 4000 2800
+Connection ~ 3700 2800
+Text Label 3700 2700 0    10   ~ 0
+VDD
+Wire Wire Line
+	2900 3100 3200 3100
+Text Label 2900 3100 0    10   ~ 0
+GND
+Wire Wire Line
+	4100 5400 4300 5400
+Text Label 4100 5400 0    10   ~ 0
+GND
+Wire Wire Line
+	2400 5600 2300 5600
+Wire Wire Line
+	2400 5300 2300 5300
+Wire Wire Line
+	5500 3000 9100 3000
+Wire Wire Line
+	9100 3000 9100 3200
+Text Label 7300 3000 0    70   ~ 0
+A1
+Wire Wire Line
+	1500 5600 1900 5600
+Text Label 1500 5600 0    70   ~ 0
+A1
+Wire Wire Line
+	5500 4300 6900 4300
+Wire Wire Line
+	6900 4300 6900 2500
+Wire Wire Line
+	6900 2500 12400 2500
+Wire Wire Line
+	12400 2500 12400 3200
+Wire Wire Line
+	5500 4200 6800 4200
+Wire Wire Line
+	6800 4200 6800 2400
+Wire Wire Line
+	6800 2400 11800 2400
+Wire Wire Line
+	11800 2400 11800 3200
+Wire Wire Line
+	5500 3600 6200 3600
+Wire Wire Line
+	6200 3600 6200 1800
+Wire Wire Line
+	6200 1800 12700 1800
+Wire Wire Line
+	12700 1800 12700 3200
+Wire Wire Line
+	5500 3500 6100 3500
+Wire Wire Line
+	6100 3500 6100 1700
+Wire Wire Line
+	6100 1700 12100 1700
+Wire Wire Line
+	12100 1700 12100 3200
+Wire Wire Line
+	5500 3300 5900 3300
+Wire Wire Line
+	5900 3300 5900 1500
+Wire Wire Line
+	5900 1500 10900 1500
+Wire Wire Line
+	10900 1500 10900 3200
+Wire Wire Line
+	5500 3200 5800 3200
+Wire Wire Line
+	5800 3200 5800 1400
+Wire Wire Line
+	5800 1400 10300 1400
+Wire Wire Line
+	10300 1400 10300 3200
+Wire Wire Line
+	5500 3400 6000 3400
+Wire Wire Line
+	6000 3400 6000 1600
+Wire Wire Line
+	6000 1600 11500 1600
+Wire Wire Line
+	11500 1600 11500 3200
+Wire Wire Line
+	5500 3700 6300 3700
+Wire Wire Line
+	6300 3700 6300 1900
+Wire Wire Line
+	6300 1900 8800 1900
+Wire Wire Line
+	8800 1900 8800 3200
+Wire Wire Line
+	5500 3800 6400 3800
+Wire Wire Line
+	6400 3800 6400 2000
+Wire Wire Line
+	6400 2000 9400 2000
+Wire Wire Line
+	9400 2000 9400 3200
+Wire Wire Line
+	5500 4000 6600 4000
+Wire Wire Line
+	6600 4000 6600 2200
+Wire Wire Line
+	6600 2200 10600 2200
+Wire Wire Line
+	10600 2200 10600 3200
+Wire Wire Line
+	5500 3900 6500 3900
+Wire Wire Line
+	6500 3900 6500 2100
+Wire Wire Line
+	6500 2100 10000 2100
+Wire Wire Line
+	10000 2100 10000 3200
+Wire Wire Line
+	5500 4100 6700 4100
+Wire Wire Line
+	6700 4100 6700 2300
+Wire Wire Line
+	6700 2300 11200 2300
+Wire Wire Line
+	11200 2300 11200 3200
+Wire Wire Line
+	5500 4400 7000 4400
+Wire Wire Line
+	7000 4400 7000 2600
+Wire Wire Line
+	7000 2600 13000 2600
+Wire Wire Line
+	13000 2600 13000 3200
+Wire Wire Line
+	5500 3100 9700 3100
+Wire Wire Line
+	9700 3100 9700 3200
+Text Label 7300 3100 0    70   ~ 0
+A0
+Wire Wire Line
+	1900 5300 1500 5300
+Text Label 1500 5300 0    70   ~ 0
+A0
+Wire Wire Line
+	5500 2900 8500 2900
+Wire Wire Line
+	8500 2900 8500 3200
+Text Label 7300 2900 0    70   ~ 0
+A2
+Wire Wire Line
+	1900 5900 1500 5900
+Text Label 1500 5900 0    70   ~ 0
+A2
+Wire Wire Line
+	2300 5900 2400 5900
+Wire Wire Line
+	2800 5900 3000 5900
+Wire Wire Line
+	3000 5900 3000 5600
+Wire Wire Line
+	2800 5600 3000 5600
+Wire Wire Line
+	3000 5600 3100 5600
+Wire Wire Line
+	3000 5600 3000 5300
+Wire Wire Line
+	3000 5300 2800 5300
+Connection ~ 3000 5600
+Wire Wire Line
+	4300 3300 3500 3300
+Wire Wire Line
+	3500 3300 3500 3100
+Wire Wire Line
+	2900 3200 3200 3200
+Wire Wire Line
+	3200 3200 3300 3300
+Wire Wire Line
+	3300 3300 3500 3300
+Connection ~ 3500 3300
+Text Label 3900 3300 0    70   ~ 0
+SDA
+Wire Wire Line
+	4300 3200 3700 3200
+Wire Wire Line
+	3700 3200 3300 3200
+Wire Wire Line
+	3300 3200 3200 3300
+Wire Wire Line
+	3200 3300 2900 3300
+Connection ~ 3700 3200
+Text Label 3900 3200 0    70   ~ 0
+SCL
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:R-US_R0805 R1
+U 1 0 DE04AF3C
+P 3700 3000
+F 0 "R1" H 3550 3059 59  0000 L BNN
+F 1 "10K" H 3550 2870 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 3700 3000 50  0001 C CNN
+F 3 "" H 3700 3000 50  0001 C CNN
+	1    3700 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:R-US_R0805 R2
+U 1 0 0F3C4881
+P 3500 2900
+F 0 "R2" H 3350 2959 59  0000 L BNN
+F 1 "10K" H 3350 2770 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 3500 2900 50  0001 C CNN
+F 3 "" H 3500 2900 50  0001 C CNN
+	1    3500 2900
+	0    1    1    0   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:VDD #VDD01
+U 1 0 72EF7348
+P 3500 2600
+F 0 "#VDD01" H 3500 2600 50  0001 C CNN
+F 1 "VDD" V 3400 2500 59  0000 L BNN
+F 2 "" H 3500 2600 50  0001 C CNN
+F 3 "" H 3500 2600 50  0001 C CNN
+	1    3500 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:VDD #VDD02
+U 1 0 EDEAD374
+P 3700 2600
+F 0 "#VDD02" H 3700 2600 50  0001 C CNN
+F 1 "VDD" V 3600 2500 59  0000 L BNN
+F 2 "" H 3700 2600 50  0001 C CNN
+F 3 "" H 3700 2600 50  0001 C CNN
+	1    3700 2600
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:GND #GND01
+U 1 0 8DA2BB24
+P 4100 5500
+F 0 "#GND01" H 4100 5500 50  0001 C CNN
+F 1 "GND" H 4000 5400 59  0000 L BNN
+F 2 "" H 4100 5500 50  0001 C CNN
+F 3 "" H 4100 5500 50  0001 C CNN
+	1    4100 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:1X4-CLEANBIG CN1
+U 1 0 496D2C97
+P 2700 3200
+F 0 "CN1" H 2900 3500 50  0000 R TNN
+F 1 "1X4-CLEANBIG" H 2700 2800 50  0000 L BNN
+F 2 "Adafruit bicolor 8x8:1X04-CLEANBIG" H 2700 3200 50  0001 C CNN
+F 3 "" H 2700 3200 50  0001 C CNN
+	1    2700 3200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:GND #GND02
+U 1 0 4877C9E2
+P 3200 3000
+F 0 "#GND02" H 3200 3000 50  0001 C CNN
+F 1 "GND" H 3100 2900 59  0000 L BNN
+F 2 "" H 3200 3000 50  0001 C CNN
+F 3 "" H 3200 3000 50  0001 C CNN
+	1    3200 3000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:VDD #VDD04
+U 1 0 055670B3
+P 2900 2500
+F 0 "#VDD04" H 2900 2500 50  0001 C CNN
+F 1 "VDD" V 2800 2400 59  0000 L BNN
+F 2 "" H 2900 2500 50  0001 C CNN
+F 3 "" H 2900 2500 50  0001 C CNN
+	1    2900 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:SOLDERJUMPERREFLOW_NOPASTE A1
+U 1 0 EA64C37F
+P 2100 5600
+F 0 "A1" H 2000 5700 59  0000 L BNN
+F 1 "SOLDERJUMPERREFLOW_NOPASTE" H 2000 5450 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOLDERJUMPER_REFLOW_NOPASTE" H 2100 5600 50  0001 C CNN
+F 3 "" H 2100 5600 50  0001 C CNN
+	1    2100 5600
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:SOLDERJUMPERREFLOW_NOPASTE A0
+U 1 0 CA8A32A2
+P 2100 5300
+F 0 "A0" H 2000 5400 59  0000 L BNN
+F 1 "SOLDERJUMPERREFLOW_NOPASTE" H 2000 5150 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOLDERJUMPER_REFLOW_NOPASTE" H 2100 5300 50  0001 C CNN
+F 3 "" H 2100 5300 50  0001 C CNN
+	1    2100 5300
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:FIDUCIAL U$1
+U 1 0 89E33A62
+P 4700 6000
+F 0 "U$1" H 4700 6000 50  0001 C CNN
+F 1 "FIDUCIAL" H 4700 6000 50  0001 C CNN
+F 2 "Adafruit bicolor 8x8:FIDUCIAL_1MM" H 4700 6000 50  0001 C CNN
+F 3 "" H 4700 6000 50  0001 C CNN
+	1    4700 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:FIDUCIAL U$2
+U 1 0 87B7DF34
+P 5000 6000
+F 0 "U$2" H 5000 6000 50  0001 C CNN
+F 1 "FIDUCIAL" H 5000 6000 50  0001 C CNN
+F 2 "Adafruit bicolor 8x8:FIDUCIAL_1MM" H 5000 6000 50  0001 C CNN
+F 3 "" H 5000 6000 50  0001 C CNN
+	1    5000 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:C-USC0805 C1
+U 1 0 E7D47EA7
+P 2800 4000
+F 0 "C1" H 2840 4025 59  0000 L BNN
+F 1 "10uF" H 2840 3835 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:C0805" H 2800 4000 50  0001 C CNN
+F 3 "" H 2800 4000 50  0001 C CNN
+	1    2800 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:VDD #VDD05
+U 1 0 38DFADE0
+P 2800 3800
+F 0 "#VDD05" H 2800 3800 50  0001 C CNN
+F 1 "VDD" V 2700 3700 59  0000 L BNN
+F 2 "" H 2800 3800 50  0001 C CNN
+F 3 "" H 2800 3800 50  0001 C CNN
+	1    2800 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:GND #GND03
+U 1 0 21137572
+P 2800 4300
+F 0 "#GND03" H 2800 4300 50  0001 C CNN
+F 1 "GND" H 2700 4200 59  0000 L BNN
+F 2 "" H 2800 4300 50  0001 C CNN
+F 3 "" H 2800 4300 50  0001 C CNN
+	1    2800 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:R-US_R0805 R3
+U 1 0 2A684572
+P 2600 5600
+F 0 "R3" H 2450 5659 59  0000 L BNN
+F 1 "10K" H 2450 5470 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 2600 5600 50  0001 C CNN
+F 3 "" H 2600 5600 50  0001 C CNN
+	1    2600 5600
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:R-US_R0805 R4
+U 1 0 30FCCEAE
+P 2600 5300
+F 0 "R4" H 2450 5359 59  0000 L BNN
+F 1 "10K" H 2450 5170 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 2600 5300 50  0001 C CNN
+F 3 "" H 2600 5300 50  0001 C CNN
+	1    2600 5300
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DISP_SEGMENT_8X8_BICOLOR_ROWCATHODEMI2A883XX LED2
+U 1 0 221661FE
+P 10600 5000
+F 0 "LED2" H 8200 6700 42  0000 L BNN
+F 1 "DISP_SEGMENT_8X8_BICOLOR_ROWCATHODEMI2A883XX" H 8200 3300 42  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SEGMENT_BICOL_BL-M12A883XX" H 10600 5000 50  0001 C CNN
+F 3 "" H 10600 5000 50  0001 C CNN
+	1    10600 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:HT16K33_SOP28 U2
+U 1 0 73CE8659
+P 4900 3900
+F 0 "U2" H 4400 5500 42  0000 L BNN
+F 1 "28-SOIC" H 4400 2200 42  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOP28_300MIL" H 4900 3900 50  0001 C CNN
+F 3 "" H 4900 3900 50  0001 C CNN
+	1    4900 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:R-US_R0805 R5
+U 1 0 40871C63
+P 2600 5900
+F 0 "R5" H 2450 5959 59  0000 L BNN
+F 1 "10K" H 2450 5770 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 2600 5900 50  0001 C CNN
+F 3 "" H 2600 5900 50  0001 C CNN
+	1    2600 5900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:SOLDERJUMPERREFLOW_NOPASTE A2
+U 1 0 08E3D46F
+P 2100 5900
+F 0 "A2" H 2000 6000 59  0000 L BNN
+F 1 "SOLDERJUMPERREFLOW_NOPASTE" H 2000 5750 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOLDERJUMPER_REFLOW_NOPASTE" H 2100 5900 50  0001 C CNN
+F 3 "" H 2100 5900 50  0001 C CNN
+	1    2100 5900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D1
+U 1 0 AE17BF77
+P 3200 5600
+F 0 "D1" H 3100 5700 42  0000 L BNN
+F 1 "1N4148" H 3100 5450 42  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 3200 5600 50  0001 C CNN
+F 3 "" H 3200 5600 50  0001 C CNN
+	1    3200 5600
+	-1   0    0    1   
+$EndComp
+$EndSCHEMATC
