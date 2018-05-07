@@ -2895,18 +2895,6 @@ X K8 9 -2600 -1600 200 R 50 0 1 0 U
 ENDDRAW
 ENDDEF
 #
-# ledskey-rescue:FIDUCIAL-Adafruit_bicolor_8x8-eagle-import
-#
-DEF ~ledskey-rescue:FIDUCIAL-Adafruit_bicolor_8x8-eagle-import ~ 0 40 Y Y 1 F N
-F0 "" 0 0 50 H I C CNN
-F1 "ledskey-rescue:FIDUCIAL-Adafruit_bicolor_8x8-eagle-import" 0 0 50 H I C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-C 0 0 100 1 0 10 N
-ENDDRAW
-ENDDEF
-#
 # ledskey-rescue:GND-Adafruit_bicolor_8x8-eagle-import
 #
 DEF ledskey-rescue:GND-Adafruit_bicolor_8x8-eagle-import #GND 0 40 Y Y 1 F P
