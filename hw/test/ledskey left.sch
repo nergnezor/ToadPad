@@ -1,0 +1,438 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr User 13787 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	5350 5400 7500 5400
+Wire Wire Line
+	7500 5400 7500 7000
+Wire Wire Line
+	7500 7000 8000 7000
+Wire Wire Line
+	8000 6600 7600 6600
+Wire Wire Line
+	7600 6600 7600 5300
+Wire Wire Line
+	7600 5300 5350 5300
+Wire Wire Line
+	8000 6200 7700 6200
+Wire Wire Line
+	7700 6200 7700 5200
+Wire Wire Line
+	7700 5200 5350 5200
+Wire Wire Line
+	5350 4900 8000 4900
+Wire Wire Line
+	8000 4900 8000 5000
+Wire Wire Line
+	8000 4800 5350 4800
+Wire Wire Line
+	7900 4700 7900 4200
+Wire Wire Line
+	5350 4700 3500 4700
+Wire Wire Line
+	3500 4700 3500 5600
+Wire Wire Line
+	3500 5600 3300 5600
+Wire Wire Line
+	3150 2700 3150 3100
+Text Label 3150 2700 0    10   ~ 0
+VDD
+Wire Wire Line
+	3700 2700 3700 2800
+Wire Wire Line
+	4000 2800 3700 2800
+Wire Wire Line
+	4150 2900 4000 2900
+Wire Wire Line
+	4000 2900 4000 2800
+Connection ~ 3700 2800
+Text Label 3700 2700 0    10   ~ 0
+VDD
+Text Label 2850 3000 0    10   ~ 0
+GND
+Wire Wire Line
+	4100 5400 4150 5400
+Text Label 4100 5400 0    10   ~ 0
+GND
+Text Label 5850 3000 0    70   ~ 0
+A1
+Text Label 1900 5600 0    70   ~ 0
+A1
+Wire Wire Line
+	5350 4300 6900 4300
+Wire Wire Line
+	5350 4200 6800 4200
+Wire Wire Line
+	6300 1700 8800 1700
+Wire Wire Line
+	5350 3800 6400 3800
+Wire Wire Line
+	6400 1800 9400 1800
+Wire Wire Line
+	5350 4000 6600 4000
+Wire Wire Line
+	5350 3700 6300 3700
+Wire Wire Line
+	5350 4100 6700 4100
+Wire Wire Line
+	5350 4400 7000 4400
+Text Label 5850 3100 0    70   ~ 0
+A0
+Text Label 1900 5300 0    70   ~ 0
+A0
+Text Label 5850 2900 0    70   ~ 0
+A2
+Text Label 1900 5900 0    70   ~ 0
+A2
+Wire Wire Line
+	2800 5900 3000 5900
+Wire Wire Line
+	3000 5900 3000 5600
+Wire Wire Line
+	2800 5600 3000 5600
+Wire Wire Line
+	3000 5600 3100 5600
+Wire Wire Line
+	3000 5600 3000 5300
+Wire Wire Line
+	3000 5300 2800 5300
+Connection ~ 3000 5600
+Wire Wire Line
+	4150 3300 3500 3300
+Wire Wire Line
+	3500 3300 3500 3100
+Connection ~ 3500 3300
+Text Label 3900 3300 0    70   ~ 0
+SDA
+Wire Wire Line
+	4150 3200 3700 3200
+Connection ~ 3700 3200
+Text Label 3900 3200 0    70   ~ 0
+SCL
+$Comp
+L ledskey-rescue:R-US_R0805-Adafruit_bicolor_8x8-eagle-import R1
+U 1 0 DE04AF3C
+P 3700 3000
+F 0 "R1" H 3550 3059 59  0000 L BNN
+F 1 "10K" H 3550 2870 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 3700 3000 50  0001 C CNN
+F 3 "" H 3700 3000 50  0001 C CNN
+	1    3700 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L ledskey-rescue:R-US_R0805-Adafruit_bicolor_8x8-eagle-import R2
+U 1 0 0F3C4881
+P 3500 2900
+F 0 "R2" H 3350 2959 59  0000 L BNN
+F 1 "10K" H 3350 2770 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 3500 2900 50  0001 C CNN
+F 3 "" H 3500 2900 50  0001 C CNN
+	1    3500 2900
+	0    1    1    0   
+$EndComp
+$Comp
+L ledskey-rescue:VDD-Adafruit_bicolor_8x8-eagle-import #VDD01
+U 1 0 72EF7348
+P 3500 2600
+F 0 "#VDD01" H 3500 2600 50  0001 C CNN
+F 1 "VDD" V 3400 2500 59  0000 L BNN
+F 2 "" H 3500 2600 50  0001 C CNN
+F 3 "" H 3500 2600 50  0001 C CNN
+	1    3500 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:VDD-Adafruit_bicolor_8x8-eagle-import #VDD02
+U 1 0 EDEAD374
+P 3700 2600
+F 0 "#VDD02" H 3700 2600 50  0001 C CNN
+F 1 "VDD" V 3600 2500 59  0000 L BNN
+F 2 "" H 3700 2600 50  0001 C CNN
+F 3 "" H 3700 2600 50  0001 C CNN
+	1    3700 2600
+	-1   0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:GND-Adafruit_bicolor_8x8-eagle-import #GND01
+U 1 0 8DA2BB24
+P 4100 5500
+F 0 "#GND01" H 4100 5500 50  0001 C CNN
+F 1 "GND" H 4000 5400 59  0000 L BNN
+F 2 "" H 4100 5500 50  0001 C CNN
+F 3 "" H 4100 5500 50  0001 C CNN
+	1    4100 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:1X4-CLEANBIG-Adafruit_bicolor_8x8-eagle-import CN1
+U 1 0 496D2C97
+P 2700 3200
+F 0 "CN1" H 2900 3500 50  0000 R TNN
+F 1 "1X4-CLEANBIG" H 2700 2800 50  0000 L BNN
+F 2 "Adafruit bicolor 8x8:1X04-CLEANBIG" H 2700 3200 50  0001 C CNN
+F 3 "" H 2700 3200 50  0001 C CNN
+	1    2700 3200
+	-1   0    0    1   
+$EndComp
+$Comp
+L ledskey-rescue:GND-Adafruit_bicolor_8x8-eagle-import #GND02
+U 1 0 4877C9E2
+P 2900 2900
+F 0 "#GND02" H 2900 2900 50  0001 C CNN
+F 1 "GND" H 2800 2800 59  0000 L BNN
+F 2 "" H 2900 2900 50  0001 C CNN
+F 3 "" H 2900 2900 50  0001 C CNN
+	1    2900 2900
+	-1   0    0    1   
+$EndComp
+$Comp
+L ledskey-rescue:VDD-Adafruit_bicolor_8x8-eagle-import #VDD04
+U 1 0 055670B3
+P 3150 2600
+F 0 "#VDD04" H 3150 2600 50  0001 C CNN
+F 1 "VDD" V 3050 2500 59  0000 L BNN
+F 2 "" H 3150 2600 50  0001 C CNN
+F 3 "" H 3150 2600 50  0001 C CNN
+	1    3150 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:C-USC0805-Adafruit_bicolor_8x8-eagle-import C1
+U 1 0 E7D47EA7
+P 2800 4000
+F 0 "C1" H 2840 4025 59  0000 L BNN
+F 1 "10uF" H 2840 3835 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:C0805" H 2800 4000 50  0001 C CNN
+F 3 "" H 2800 4000 50  0001 C CNN
+	1    2800 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:VDD-Adafruit_bicolor_8x8-eagle-import #VDD05
+U 1 0 38DFADE0
+P 2800 3800
+F 0 "#VDD05" H 2800 3800 50  0001 C CNN
+F 1 "VDD" V 2700 3700 59  0000 L BNN
+F 2 "" H 2800 3800 50  0001 C CNN
+F 3 "" H 2800 3800 50  0001 C CNN
+	1    2800 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:GND-Adafruit_bicolor_8x8-eagle-import #GND03
+U 1 0 21137572
+P 2800 4300
+F 0 "#GND03" H 2800 4300 50  0001 C CNN
+F 1 "GND" H 2700 4200 59  0000 L BNN
+F 2 "" H 2800 4300 50  0001 C CNN
+F 3 "" H 2800 4300 50  0001 C CNN
+	1    2800 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:R-US_R0805-Adafruit_bicolor_8x8-eagle-import R3
+U 1 0 2A684572
+P 2600 5600
+F 0 "R3" H 2450 5659 59  0000 L BNN
+F 1 "10K" H 2450 5470 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 2600 5600 50  0001 C CNN
+F 3 "" H 2600 5600 50  0001 C CNN
+	1    2600 5600
+	-1   0    0    1   
+$EndComp
+$Comp
+L ledskey-rescue:R-US_R0805-Adafruit_bicolor_8x8-eagle-import R4
+U 1 0 30FCCEAE
+P 2600 5300
+F 0 "R4" H 2450 5359 59  0000 L BNN
+F 1 "10K" H 2450 5170 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 2600 5300 50  0001 C CNN
+F 3 "" H 2600 5300 50  0001 C CNN
+	1    2600 5300
+	-1   0    0    1   
+$EndComp
+$Comp
+L ledskey-rescue:DISP_SEGMENT_8X8_BICOLOR_ROWCATHODEMI2A883XX-Adafruit_bicolor_8x8-eagle-import LED2
+U 1 0 221661FE
+P 10600 5400
+F 0 "LED2" H 8200 7100 42  0000 L BNN
+F 1 "DISP_SEGMENT_8X8_BICOLOR_ROWCATHODEMI2A883XX" H 8200 3700 42  0000 L BNN
+F 2 "Adafruit bicolor 8x8:788AHG" H 10600 5400 50  0001 C CNN
+F 3 "" H 10600 5400 50  0001 C CNN
+	1    10600 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:HT16K33_SOP28-Adafruit_bicolor_8x8-eagle-import U2
+U 1 0 73CE8659
+P 4750 3900
+F 0 "U2" H 4250 5500 42  0000 L BNN
+F 1 "28-SOIC" H 4250 2200 42  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOP28_300MIL" H 4750 3900 50  0001 C CNN
+F 3 "" H 4750 3900 50  0001 C CNN
+	1    4750 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L ledskey-rescue:R-US_R0805-Adafruit_bicolor_8x8-eagle-import R5
+U 1 0 40871C63
+P 2600 5900
+F 0 "R5" H 2450 5959 59  0000 L BNN
+F 1 "10K" H 2450 5770 59  0000 L BNN
+F 2 "Adafruit bicolor 8x8:R0805" H 2600 5900 50  0001 C CNN
+F 3 "" H 2600 5900 50  0001 C CNN
+	1    2600 5900
+	-1   0    0    1   
+$EndComp
+$Comp
+L ledskey-rescue:DIODESOD-323F-Adafruit_bicolor_8x8-eagle-import D1
+U 1 0 AE17BF77
+P 3200 5600
+F 0 "D1" H 3100 5700 42  0000 L BNN
+F 1 "1N4148" H 3100 5450 42  0000 L BNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 3200 5600 50  0001 C CNN
+F 3 "" H 3200 5600 50  0001 C CNN
+	1    3200 5600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9700 3400 9700 3600
+Wire Wire Line
+	9100 3600 9100 3500
+Wire Wire Line
+	10300 3300 10300 3600
+Wire Wire Line
+	10900 3200 10900 3600
+Wire Wire Line
+	11500 3100 11500 3600
+Wire Wire Line
+	13000 2400 13000 3600
+Wire Wire Line
+	12400 2300 12400 3600
+Wire Wire Line
+	6400 1800 6400 3800
+Wire Wire Line
+	6600 2000 6600 4000
+Wire Wire Line
+	6700 2100 6700 4100
+Wire Wire Line
+	6800 2200 6800 4200
+Wire Wire Line
+	6900 2300 6900 4300
+Wire Wire Line
+	7000 2400 7000 4400
+Wire Wire Line
+	6500 1900 8800 1900
+Wire Wire Line
+	9400 1800 9400 2000
+Wire Wire Line
+	10000 1900 10000 2100
+Wire Wire Line
+	6800 2200 10600 2200
+Wire Wire Line
+	6900 2300 11200 2300
+Wire Wire Line
+	11800 2200 11800 2400
+Wire Wire Line
+	12100 3000 12100 3600
+Wire Wire Line
+	12700 2900 12700 3600
+Wire Wire Line
+	6300 1700 6300 3700
+Wire Wire Line
+	6500 3900 5350 3900
+Wire Wire Line
+	8800 1900 10000 1900
+Wire Wire Line
+	9400 2000 9400 3600
+Wire Wire Line
+	10000 2100 10000 3600
+Wire Wire Line
+	10600 2200 11800 2200
+Wire Wire Line
+	11200 2300 12400 2300
+Wire Wire Line
+	11800 2400 11800 3600
+Wire Wire Line
+	5350 3600 8500 3600
+Wire Wire Line
+	5350 3500 9100 3500
+Wire Wire Line
+	5350 3400 9700 3400
+Wire Wire Line
+	5350 3300 10300 3300
+Wire Wire Line
+	5350 3200 10900 3200
+Wire Wire Line
+	5350 3100 11500 3100
+Wire Wire Line
+	5350 3000 12100 3000
+Wire Wire Line
+	5350 2900 12700 2900
+Wire Wire Line
+	8800 1700 8800 3600
+Wire Wire Line
+	6600 2000 10600 2000
+Wire Wire Line
+	6700 2100 11200 2100
+Wire Wire Line
+	10600 2000 10600 3600
+Wire Wire Line
+	11200 2100 11200 3600
+Wire Wire Line
+	7000 2400 13000 2400
+Wire Wire Line
+	7900 4200 8000 4200
+Wire Wire Line
+	8000 4600 8000 4800
+Connection ~ 5350 4700
+Wire Wire Line
+	5350 4700 7900 4700
+Wire Wire Line
+	5350 5000 7900 5000
+Wire Wire Line
+	7900 5400 8000 5400
+Wire Wire Line
+	7900 5000 7900 5400
+Wire Wire Line
+	7800 5100 7800 5800
+Wire Wire Line
+	5350 5100 7800 5100
+Wire Wire Line
+	7800 5800 8000 5800
+Wire Wire Line
+	6500 1900 6500 3900
+Wire Wire Line
+	1900 5900 2400 5900
+Wire Wire Line
+	1900 5600 2400 5600
+Wire Wire Line
+	1900 5300 2400 5300
+Wire Wire Line
+	2900 3100 3150 3100
+Wire Wire Line
+	3300 3300 3500 3300
+Wire Wire Line
+	3700 3200 3300 3200
+Wire Wire Line
+	3300 3200 3200 3300
+Wire Wire Line
+	3200 3200 3300 3300
+Wire Wire Line
+	2900 3200 3200 3200
+Wire Wire Line
+	3200 3300 2900 3300
+$EndSCHEMATC
