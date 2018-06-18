@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:ledskey left-cache
 EELAYER 26 0
 EELAYER END
 $Descr User 13787 8268
@@ -424,15 +425,7 @@ Wire Wire Line
 Wire Wire Line
 	2900 3100 3150 3100
 Wire Wire Line
-	3300 3300 3500 3300
+	2900 3200 3700 3200
 Wire Wire Line
-	3700 3200 3300 3200
-Wire Wire Line
-	3300 3200 3200 3300
-Wire Wire Line
-	3200 3200 3300 3300
-Wire Wire Line
-	2900 3200 3200 3200
-Wire Wire Line
-	3200 3300 2900 3300
+	2900 3300 3500 3300
 $EndSCHEMATC

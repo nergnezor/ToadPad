@@ -435,15 +435,4 @@ Wire Wire Line
 	2900 3200 3200 3200
 Wire Wire Line
 	3200 3300 2900 3300
-$Comp
-L mechanical:Mounting_Hole MK1
-U 1 1 5AF4168F
-P 2200 3050
-F 0 "MK1" H 2300 3096 50  0000 L CNN
-F 1 "Mounting_Hole" H 2300 3005 50  0000 L CNN
-F 2 "" H 2200 3050 50  0001 C CNN
-F 3 "" H 2200 3050 50  0001 C CNN
-	1    2200 3050
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
