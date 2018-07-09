@@ -1,0 +1,7 @@
+{
+    "sketch": "bicolor8x8.ino",
+    "port": "COM14",
+    "board": "esp8266:esp8266:d1_mini",
+    "configuration": "CpuFrequency=80,UploadSpeed=921600,FlashSize=4M3M",
+    "output": "build"
+}
