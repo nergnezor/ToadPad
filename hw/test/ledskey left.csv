@@ -1,0 +1,8 @@
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"REF**,REF**,REF**,REF**";"1pin";4;"1pin";;;
+2;"LED2";"788AHG";1;"DISP_SEGMENT_8X8_BICOLOR_ROWCATHODEMI2A883XX";;;
+3;"R3,R1,R2,R4,R5";"R0805";5;"10K";;;
+4;"C1";"C0805";1;"10uF";;;
+5;"U2";"SOP28_300MIL";1;"28-SOIC";;;
+6;"CN1";"1X04-CLEANBIG";1;"1X4-CLEANBIG";;;
+7;"D1";"SOD-323F";1;"1N4148";;;
