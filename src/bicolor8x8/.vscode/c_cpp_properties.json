@@ -7,7 +7,9 @@
                 "C:\\Program Files (x86)\\Arduino\\hardware\\tools",
                 "C:\\Program Files (x86)\\Arduino\\libraries",
                 "C:\\Users\\erikr\\Documents\\Arduino\\hardware\\tools",
-                "C:\\Users\\erikr\\Documents\\Arduino\\libraries"
+                "C:\\Users\\erikr\\Documents\\Arduino\\libraries",
+                "C:/Users/erikr/Documents/Arduino/libraries/Adafruit_LED_Backpack_Library",
+                "C:/Users/erikr/Documents/Arduino/libraries/Adafruit_GFX_Library"
             ],
             "browse": {
                 "path": [
