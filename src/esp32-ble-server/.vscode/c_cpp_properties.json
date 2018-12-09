@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\ESP8266_and_ESP32_Oled_Driver_for_SSD1306_display\\src",
+                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_SSD1306",
+                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**",
+                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.0\\**",
+                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
+                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.2\\**"
+            ],
+            "forcedInclude": [],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
