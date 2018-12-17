@@ -514,6 +514,42 @@ Wire Wire Line
 	6700 5050 6700 5250
 Wire Wire Line
 	6700 5050 6750 5050
+Connection ~ 6700 5250
+Wire Wire Line
+	7650 4600 7600 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D30
+U 1 1 5C25FBE8
+P 7400 5050
+F 0 "D30" H 7400 5150 42  0000 C CNN
+F 1 "1N4148" H 7400 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 7400 5050 50  0001 C CNN
+F 3 "" H 7400 5050 50  0001 C CNN
+	1    7400 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW30
+U 1 1 5C25FBEF
+P 7400 4700
+F 0 "SW30" H 7400 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 7400 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 7400 5000 50  0001 C CNN
+F 3 "" H 7400 5000 50  0001 C CNN
+	1    7400 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 5050 7650 5050
+Wire Wire Line
+	7650 4600 7650 5050
+Wire Wire Line
+	7250 5050 7250 5250
+Wire Wire Line
+	7250 5050 7300 5050
+Connection ~ 7250 5250
+Wire Wire Line
+	6700 5250 7250 5250
 Wire Wire Line
 	7100 3800 7050 3800
 $Comp
@@ -591,6 +627,78 @@ Wire Wire Line
 Wire Wire Line
 	6700 4450 7250 4450
 Wire Wire Line
+	7150 3800 7150 4600
+Wire Wire Line
+	7150 4600 7200 4600
+Wire Wire Line
+	8200 4600 8150 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D31
+U 1 1 5C25FC2E
+P 7950 5050
+F 0 "D31" H 7950 5150 42  0000 C CNN
+F 1 "1N4148" H 7950 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 7950 5050 50  0001 C CNN
+F 3 "" H 7950 5050 50  0001 C CNN
+	1    7950 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW31
+U 1 1 5C25FC35
+P 7950 4700
+F 0 "SW31" H 7950 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 7950 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 7950 5000 50  0001 C CNN
+F 3 "" H 7950 5000 50  0001 C CNN
+	1    7950 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8050 5050 8200 5050
+Wire Wire Line
+	8200 4600 8200 5050
+Wire Wire Line
+	7800 5050 7800 5250
+Wire Wire Line
+	7800 5050 7850 5050
+Connection ~ 7800 5250
+Wire Wire Line
+	8750 4600 8700 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D32
+U 1 1 5C25FC42
+P 8500 5050
+F 0 "D32" H 8500 5150 42  0000 C CNN
+F 1 "1N4148" H 8500 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 8500 5050 50  0001 C CNN
+F 3 "" H 8500 5050 50  0001 C CNN
+	1    8500 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW32
+U 1 1 5C25FC49
+P 8500 4700
+F 0 "SW32" H 8500 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 8500 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 8500 5000 50  0001 C CNN
+F 3 "" H 8500 5000 50  0001 C CNN
+	1    8500 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8600 5050 8750 5050
+Wire Wire Line
+	8750 4600 8750 5050
+Wire Wire Line
+	8350 5050 8350 5250
+Wire Wire Line
+	8350 5050 8400 5050
+Connection ~ 8350 5250
+Wire Wire Line
+	7800 5250 8350 5250
+Wire Wire Line
 	8200 3800 8150 3800
 $Comp
 L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D19
@@ -653,6 +761,7 @@ Wire Wire Line
 	8750 3800 8750 4250
 Wire Wire Line
 	8350 4250 8350 4450
+Connection ~ 8350 4450
 Wire Wire Line
 	7700 3800 7750 3800
 Wire Wire Line
@@ -660,11 +769,23 @@ Wire Wire Line
 Wire Wire Line
 	8350 4250 8400 4250
 Wire Wire Line
+	7750 4600 7700 4600
+Wire Wire Line
 	7700 3800 7700 4450
 Wire Wire Line
 	7800 4450 8350 4450
+Wire Wire Line
+	8250 3800 8250 4600
+Wire Wire Line
+	8250 4600 8300 4600
+Wire Wire Line
+	7700 4450 7700 4600
+Wire Wire Line
+	7250 5250 7800 5250
 Connection ~ 6600 3800
+Connection ~ 7150 3800
 Connection ~ 7700 3800
+Connection ~ 8250 3800
 Wire Wire Line
 	7100 3000 7050 3000
 $Comp
@@ -820,6 +941,308 @@ Connection ~ 8250 3000
 Wire Wire Line
 	6150 5250 6700 5250
 Wire Wire Line
+	9300 4600 9250 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D33
+U 1 1 5C26B431
+P 9050 5050
+F 0 "D33" H 9050 5150 42  0000 C CNN
+F 1 "1N4148" H 9050 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 9050 5050 50  0001 C CNN
+F 3 "" H 9050 5050 50  0001 C CNN
+	1    9050 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW33
+U 1 1 5C26B438
+P 9050 4700
+F 0 "SW33" H 9050 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 9050 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9050 5000 50  0001 C CNN
+F 3 "" H 9050 5000 50  0001 C CNN
+	1    9050 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 5050 9300 5050
+Wire Wire Line
+	9300 4600 9300 5050
+Wire Wire Line
+	8900 5050 8900 5250
+Wire Wire Line
+	8900 5050 8950 5050
+Connection ~ 8900 5250
+Wire Wire Line
+	9850 4600 9800 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D34
+U 1 1 5C26B445
+P 9600 5050
+F 0 "D34" H 9600 5150 42  0000 C CNN
+F 1 "1N4148" H 9600 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 9600 5050 50  0001 C CNN
+F 3 "" H 9600 5050 50  0001 C CNN
+	1    9600 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW34
+U 1 1 5C26B44C
+P 9600 4700
+F 0 "SW34" H 9600 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 9600 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9600 5000 50  0001 C CNN
+F 3 "" H 9600 5000 50  0001 C CNN
+	1    9600 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9700 5050 9850 5050
+Wire Wire Line
+	9850 4600 9850 5050
+Wire Wire Line
+	9450 5050 9450 5250
+Wire Wire Line
+	9450 5050 9500 5050
+Connection ~ 9450 5250
+Wire Wire Line
+	8900 5250 9450 5250
+Wire Wire Line
+	9300 3800 9250 3800
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D21
+U 1 1 5C26B45A
+P 9050 4250
+F 0 "D21" H 9050 4350 42  0000 C CNN
+F 1 "1N4148" H 9050 4150 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 9050 4250 50  0001 C CNN
+F 3 "" H 9050 4250 50  0001 C CNN
+	1    9050 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW21
+U 1 1 5C26B461
+P 9050 3900
+F 0 "SW21" H 9050 4100 50  0000 C CNN
+F 1 "SW_Push_LED" H 9050 3750 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9050 4200 50  0001 C CNN
+F 3 "" H 9050 4200 50  0001 C CNN
+	1    9050 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 4250 9300 4250
+Wire Wire Line
+	9300 3800 9300 4250
+Wire Wire Line
+	8900 4250 8900 4450
+Wire Wire Line
+	8900 4250 8950 4250
+Connection ~ 8900 4450
+Wire Wire Line
+	9850 3800 9800 3800
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D22
+U 1 1 5C26B46E
+P 9600 4250
+F 0 "D22" H 9600 4350 42  0000 C CNN
+F 1 "1N4148" H 9600 4150 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 9600 4250 50  0001 C CNN
+F 3 "" H 9600 4250 50  0001 C CNN
+	1    9600 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW22
+U 1 1 5C26B475
+P 9600 3900
+F 0 "SW22" H 9600 4100 50  0000 C CNN
+F 1 "SW_Push_LED" H 9600 3750 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9600 4200 50  0001 C CNN
+F 3 "" H 9600 4200 50  0001 C CNN
+	1    9600 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9700 4250 9850 4250
+Wire Wire Line
+	9850 3800 9850 4250
+Wire Wire Line
+	9450 4250 9450 4450
+Connection ~ 9450 4450
+Wire Wire Line
+	8800 3800 8850 3800
+Wire Wire Line
+	9350 3800 9400 3800
+Wire Wire Line
+	9450 4250 9500 4250
+Wire Wire Line
+	8850 4600 8800 4600
+Wire Wire Line
+	8800 3800 8800 4450
+Wire Wire Line
+	8900 4450 9450 4450
+Wire Wire Line
+	9350 3800 9350 4600
+Wire Wire Line
+	9350 4600 9400 4600
+Wire Wire Line
+	10400 4600 10350 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D35
+U 1 1 5C26B48B
+P 10150 5050
+F 0 "D35" H 10150 5150 42  0000 C CNN
+F 1 "1N4148" H 10150 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 10150 5050 50  0001 C CNN
+F 3 "" H 10150 5050 50  0001 C CNN
+	1    10150 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW35
+U 1 1 5C26B492
+P 10150 4700
+F 0 "SW35" H 10150 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 10150 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 10150 5000 50  0001 C CNN
+F 3 "" H 10150 5000 50  0001 C CNN
+	1    10150 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10250 5050 10400 5050
+Wire Wire Line
+	10400 4600 10400 5050
+Wire Wire Line
+	10000 5050 10000 5250
+Wire Wire Line
+	10000 5050 10050 5050
+Connection ~ 10000 5250
+Wire Wire Line
+	10950 4600 10900 4600
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D36
+U 1 1 5C26B49F
+P 10700 5050
+F 0 "D36" H 10700 5150 42  0000 C CNN
+F 1 "1N4148" H 10700 4950 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 10700 5050 50  0001 C CNN
+F 3 "" H 10700 5050 50  0001 C CNN
+	1    10700 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW36
+U 1 1 5C26B4A6
+P 10700 4700
+F 0 "SW36" H 10700 4900 50  0000 C CNN
+F 1 "SW_Push_LED" H 10700 4550 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 10700 5000 50  0001 C CNN
+F 3 "" H 10700 5000 50  0001 C CNN
+	1    10700 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10800 5050 10950 5050
+Wire Wire Line
+	10950 4600 10950 5050
+Wire Wire Line
+	10550 5050 10550 5250
+Wire Wire Line
+	10550 5050 10600 5050
+Wire Wire Line
+	10000 5250 10550 5250
+Wire Wire Line
+	10400 3800 10350 3800
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D23
+U 1 1 5C26B4B4
+P 10150 4250
+F 0 "D23" H 10150 4350 42  0000 C CNN
+F 1 "1N4148" H 10150 4150 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 10150 4250 50  0001 C CNN
+F 3 "" H 10150 4250 50  0001 C CNN
+	1    10150 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW23
+U 1 1 5C26B4BB
+P 10150 3900
+F 0 "SW23" H 10150 4100 50  0000 C CNN
+F 1 "SW_Push_LED" H 10150 3750 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 10150 4200 50  0001 C CNN
+F 3 "" H 10150 4200 50  0001 C CNN
+	1    10150 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10250 4250 10400 4250
+Wire Wire Line
+	10400 3800 10400 4250
+Wire Wire Line
+	10000 4250 10000 4450
+Wire Wire Line
+	10000 4250 10050 4250
+Connection ~ 10000 4450
+Wire Wire Line
+	10950 3800 10900 3800
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D24
+U 1 1 5C26B4C8
+P 10700 4250
+F 0 "D24" H 10700 4350 42  0000 C CNN
+F 1 "1N4148" H 10700 4150 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 10700 4250 50  0001 C CNN
+F 3 "" H 10700 4250 50  0001 C CNN
+	1    10700 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW24
+U 1 1 5C26B4CF
+P 10700 3900
+F 0 "SW24" H 10700 4100 50  0000 C CNN
+F 1 "SW_Push_LED" H 10700 3750 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 10700 4200 50  0001 C CNN
+F 3 "" H 10700 4200 50  0001 C CNN
+	1    10700 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10800 4250 10950 4250
+Wire Wire Line
+	10950 3800 10950 4250
+Wire Wire Line
+	10550 4250 10550 4450
+Wire Wire Line
+	9900 3800 9950 3800
+Wire Wire Line
+	10450 3800 10500 3800
+Wire Wire Line
+	10550 4250 10600 4250
+Wire Wire Line
+	9950 4600 9900 4600
+Wire Wire Line
+	9900 3800 9900 4450
+Wire Wire Line
+	10000 4450 10550 4450
+Wire Wire Line
+	10450 3800 10450 4600
+Wire Wire Line
+	10450 4600 10500 4600
+Wire Wire Line
+	9900 4450 9900 4600
+Wire Wire Line
+	9450 5250 10000 5250
+Connection ~ 8800 3800
+Connection ~ 9350 3800
+Connection ~ 9900 3800
+Connection ~ 10450 3800
+Wire Wire Line
 	9300 3000 9250 3000
 $Comp
 L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D9
@@ -851,11 +1274,139 @@ Wire Wire Line
 	8900 3450 8900 3650
 Wire Wire Line
 	8900 3450 8950 3450
+Connection ~ 8900 3650
+Wire Wire Line
+	9850 3000 9800 3000
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D10
+U 1 1 5C26B506
+P 9600 3450
+F 0 "D10" H 9600 3550 42  0000 C CNN
+F 1 "1N4148" H 9600 3350 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 9600 3450 50  0001 C CNN
+F 3 "" H 9600 3450 50  0001 C CNN
+	1    9600 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW10
+U 1 1 5C26B50D
+P 9600 3100
+F 0 "SW10" H 9600 3300 50  0000 C CNN
+F 1 "SW_Push_LED" H 9600 2950 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9600 3400 50  0001 C CNN
+F 3 "" H 9600 3400 50  0001 C CNN
+	1    9600 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9700 3450 9850 3450
+Wire Wire Line
+	9850 3000 9850 3450
+Wire Wire Line
+	9450 3450 9450 3650
+Connection ~ 9450 3650
 Wire Wire Line
 	8800 3000 8850 3000
 Wire Wire Line
+	9350 3000 9400 3000
+Wire Wire Line
+	9450 3450 9500 3450
+Wire Wire Line
 	8800 3650 8900 3650
+Wire Wire Line
+	8900 3650 9350 3650
+Wire Wire Line
+	10400 3000 10350 3000
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D11
+U 1 1 5C26B521
+P 10150 3450
+F 0 "D11" H 10150 3550 42  0000 C CNN
+F 1 "1N4148" H 10150 3350 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 10150 3450 50  0001 C CNN
+F 3 "" H 10150 3450 50  0001 C CNN
+	1    10150 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW11
+U 1 1 5C26B528
+P 10150 3100
+F 0 "SW11" H 10150 3300 50  0000 C CNN
+F 1 "SW_Push_LED" H 10150 2950 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 10150 3400 50  0001 C CNN
+F 3 "" H 10150 3400 50  0001 C CNN
+	1    10150 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10250 3450 10400 3450
+Wire Wire Line
+	10400 3000 10400 3450
+Wire Wire Line
+	10000 3450 10000 3650
+Wire Wire Line
+	10000 3450 10050 3450
+Connection ~ 10000 3650
+Wire Wire Line
+	10950 3000 10900 3000
+$Comp
+L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D12
+U 1 1 5C26B535
+P 10700 3450
+F 0 "D12" H 10700 3550 42  0000 C CNN
+F 1 "1N4148" H 10700 3350 42  0000 C CNN
+F 2 "Adafruit bicolor 8x8:SOD-323F" H 10700 3450 50  0001 C CNN
+F 3 "" H 10700 3450 50  0001 C CNN
+	1    10700 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push_LED SW12
+U 1 1 5C26B53C
+P 10700 3100
+F 0 "SW12" H 10700 3300 50  0000 C CNN
+F 1 "SW_Push_LED" H 10700 2950 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 10700 3400 50  0001 C CNN
+F 3 "" H 10700 3400 50  0001 C CNN
+	1    10700 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10800 3450 10950 3450
+Wire Wire Line
+	10950 3000 10950 3450
+Wire Wire Line
+	10550 3450 10550 3650
+Wire Wire Line
+	9900 3000 9950 3000
+Wire Wire Line
+	10450 3000 10500 3000
+Wire Wire Line
+	10550 3450 10600 3450
+Wire Wire Line
+	9900 3650 10000 3650
+Wire Wire Line
+	10000 3650 10450 3650
 Connection ~ 8800 3000
+Connection ~ 9350 3000
+Connection ~ 9900 3000
+Connection ~ 10450 3000
+Wire Wire Line
+	8350 5250 8900 5250
+Wire Wire Line
+	10450 2750 4200 2750
+Wire Wire Line
+	10450 2750 10450 3000
+Wire Wire Line
+	9900 2650 4200 2650
+Wire Wire Line
+	9900 2650 9900 3000
+Wire Wire Line
+	9350 2550 4200 2550
+Wire Wire Line
+	9350 2550 9350 3000
 Wire Wire Line
 	8800 2450 4200 2450
 Wire Wire Line
@@ -905,6 +1456,12 @@ Wire Wire Line
 Wire Wire Line
 	8250 3650 8350 3650
 Wire Wire Line
+	8800 4450 8800 4600
+Wire Wire Line
+	9350 3650 9450 3650
+Wire Wire Line
+	10450 3650 10550 3650
+Wire Wire Line
 	5050 3650 5500 3650
 Wire Wire Line
 	6150 3650 6600 3650
@@ -912,6 +1469,8 @@ Wire Wire Line
 	7250 3650 7700 3650
 Wire Wire Line
 	8350 3650 8800 3650
+Wire Wire Line
+	9450 3650 9900 3650
 Wire Wire Line
 	4350 3650 4350 3250
 Wire Wire Line
@@ -950,136 +1509,17 @@ Wire Wire Line
 Wire Wire Line
 	7250 4450 7800 4450
 Wire Wire Line
-	8250 3000 8250 3800
-Connection ~ 8350 4450
-Wire Wire Line
 	8350 4450 8900 4450
 Wire Wire Line
 	8800 3000 8800 3800
 Wire Wire Line
-	8800 3800 8800 4450
-Connection ~ 8800 3800
-Wire Wire Line
-	8800 3800 8850 3800
-Wire Wire Line
-	8900 4250 8950 4250
-Wire Wire Line
-	8900 4250 8900 4450
-Wire Wire Line
-	9300 3800 9300 4250
-Wire Wire Line
-	9150 4250 9300 4250
-$Comp
-L switches:SW_Push_LED SW21
-U 1 1 5C26B461
-P 9050 3900
-F 0 "SW21" H 9050 4100 50  0000 C CNN
-F 1 "SW_Push_LED" H 9050 3750 50  0000 C CNN
-F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9050 4200 50  0001 C CNN
-F 3 "" H 9050 4200 50  0001 C CNN
-	1    9050 3900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D21
-U 1 1 5C26B45A
-P 9050 4250
-F 0 "D21" H 9050 4350 42  0000 C CNN
-F 1 "1N4148" H 9050 4150 42  0000 C CNN
-F 2 "Adafruit bicolor 8x8:SOD-323F" H 9050 4250 50  0001 C CNN
-F 3 "" H 9050 4250 50  0001 C CNN
-	1    9050 4250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9300 3800 9250 3800
-Connection ~ 8900 4450
-Wire Wire Line
-	9350 2550 4200 2550
-Connection ~ 8900 3650
-Wire Wire Line
-	8900 3650 9350 3650
-Wire Wire Line
-	9450 3450 9500 3450
-Wire Wire Line
-	9350 2550 9350 3000
-Connection ~ 9350 3000
-Wire Wire Line
-	9350 3000 9400 3000
-Wire Wire Line
-	9350 3650 9450 3650
-Wire Wire Line
-	9450 3450 9450 3650
-Wire Wire Line
-	9850 3000 9850 3450
-Wire Wire Line
-	9700 3450 9850 3450
-$Comp
-L switches:SW_Push_LED SW10
-U 1 1 5C26B50D
-P 9600 3100
-F 0 "SW10" H 9600 3300 50  0000 C CNN
-F 1 "SW_Push_LED" H 9600 2950 50  0000 C CNN
-F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9600 3400 50  0001 C CNN
-F 3 "" H 9600 3400 50  0001 C CNN
-	1    9600 3100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D10
-U 1 1 5C26B506
-P 9600 3450
-F 0 "D10" H 9600 3550 42  0000 C CNN
-F 1 "1N4148" H 9600 3350 42  0000 C CNN
-F 2 "Adafruit bicolor 8x8:SOD-323F" H 9600 3450 50  0001 C CNN
-F 3 "" H 9600 3450 50  0001 C CNN
-	1    9600 3450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9850 3000 9800 3000
-Wire Wire Line
-	9450 4250 9500 4250
+	8250 3000 8250 3800
 Wire Wire Line
 	9350 3000 9350 3800
 Wire Wire Line
-	9350 3800 9400 3800
+	9450 4450 10000 4450
 Wire Wire Line
-	8900 4450 9450 4450
+	9900 3000 9900 3800
 Wire Wire Line
-	9450 4250 9450 4450
-Wire Wire Line
-	9850 3800 9850 4250
-Wire Wire Line
-	9700 4250 9850 4250
-$Comp
-L switches:SW_Push_LED SW22
-U 1 1 5C26B475
-P 9600 3900
-F 0 "SW22" H 9600 4100 50  0000 C CNN
-F 1 "SW_Push_LED" H 9600 3750 50  0000 C CNN
-F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 9600 4200 50  0001 C CNN
-F 3 "" H 9600 4200 50  0001 C CNN
-	1    9600 3900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D22
-U 1 1 5C26B46E
-P 9600 4250
-F 0 "D22" H 9600 4350 42  0000 C CNN
-F 1 "1N4148" H 9600 4150 42  0000 C CNN
-F 2 "Adafruit bicolor 8x8:SOD-323F" H 9600 4250 50  0001 C CNN
-F 3 "" H 9600 4250 50  0001 C CNN
-	1    9600 4250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9850 3800 9800 3800
-Wire Wire Line
-	6700 5250 7150 5250
-Wire Wire Line
-	7150 5250 7150 3800
-Connection ~ 6700 5250
-Connection ~ 7150 3800
+	10450 3000 10450 3800
 $EndSCHEMATC
