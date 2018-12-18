@@ -3,3 +3,14 @@ src/bicolor8x8/build
 *.stl
 
 src/build/
+*.blend1
+
+hw/SwitchBoard/_autosave-SwitchBoard\.pro
+
+hw/SwitchBoard/_saved_SwitchBoard\.pro
+
+hw/SwitchBoard/SwitchBoard-cache\.lib
+
+hw/SwitchBoard/SwitchBoard\.bak
+
+hw/SwitchBoard/SwitchBoard\.kicad_pcb-bak
