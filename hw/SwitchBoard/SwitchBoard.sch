@@ -106,17 +106,6 @@ F 3 "" H 2550 6250 50  0001 C CNN
 	1    2550 6250
 	1    0    0    -1  
 $EndComp
-$Comp
-L switches:SW_Push SW13
-U 1 1 5C1E0575
-P 2550 5800
-F 0 "SW13" H 2550 6000 50  0000 C CNN
-F 1 "SW_Push" H 2550 5650 50  0000 C CNN
-F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 2550 6100 50  0001 C CNN
-F 3 "" H 2550 6100 50  0001 C CNN
-	1    2550 5800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2650 6250 2800 6250
 Wire Wire Line
@@ -164,8 +153,6 @@ Wire Wire Line
 	2950 6250 3000 6250
 Wire Wire Line
 	2350 6600 2300 6600
-Wire Wire Line
-	2300 5800 2300 6450
 Wire Wire Line
 	2400 6450 2950 6450
 Wire Wire Line
@@ -313,15 +300,11 @@ Wire Wire Line
 Wire Wire Line
 	3450 6600 3400 6600
 Wire Wire Line
-	3400 5800 3400 6450
-Wire Wire Line
 	3500 6450 4050 6450
 Wire Wire Line
 	3950 5800 3950 6600
 Wire Wire Line
 	3950 6600 4000 6600
-Wire Wire Line
-	3400 6450 3400 6600
 Wire Wire Line
 	2950 7250 3500 7250
 Connection ~ 2300 5800
@@ -399,12 +382,6 @@ Wire Wire Line
 Wire Wire Line
 	2950 5450 3000 5450
 Wire Wire Line
-	2300 5650 2400 5650
-Wire Wire Line
-	2300 5650 2250 5650
-Wire Wire Line
-	2400 5650 2850 5650
-Wire Wire Line
 	3900 5000 3850 5000
 $Comp
 L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D3
@@ -474,10 +451,6 @@ Wire Wire Line
 	3950 5000 4000 5000
 Wire Wire Line
 	4050 5450 4100 5450
-Wire Wire Line
-	3400 5650 3500 5650
-Wire Wire Line
-	3500 5650 3950 5650
 Connection ~ 2300 5000
 Connection ~ 2850 5000
 Connection ~ 3400 5000
@@ -586,8 +559,6 @@ Wire Wire Line
 	5150 6250 5200 6250
 Wire Wire Line
 	4550 6600 4500 6600
-Wire Wire Line
-	4500 5800 4500 6450
 Wire Wire Line
 	4600 6450 5150 6450
 Wire Wire Line
@@ -733,10 +704,6 @@ Wire Wire Line
 Wire Wire Line
 	5150 5450 5200 5450
 Wire Wire Line
-	4500 5650 4600 5650
-Wire Wire Line
-	4600 5650 5050 5650
-Wire Wire Line
 	6100 5000 6050 5000
 $Comp
 L Adafruit_bicolor_8x8-eagle-import:DIODESOD-323F D7
@@ -806,10 +773,6 @@ Wire Wire Line
 	6150 5000 6200 5000
 Wire Wire Line
 	6250 5450 6300 5450
-Wire Wire Line
-	5600 5650 5700 5650
-Wire Wire Line
-	5700 5650 6150 5650
 Connection ~ 4500 5000
 Connection ~ 5050 5000
 Connection ~ 5600 5000
@@ -850,8 +813,6 @@ Wire Wire Line
 	6800 5450 6850 5450
 Wire Wire Line
 	6700 5000 6750 5000
-Wire Wire Line
-	6700 5650 6800 5650
 Connection ~ 6700 5000
 Wire Wire Line
 	6700 4450 2100 4450
@@ -889,26 +850,6 @@ Wire Wire Line
 	2300 3650 2100 3650
 Wire Wire Line
 	2300 3650 2300 5000
-Wire Wire Line
-	2300 6450 2300 6600
-Wire Wire Line
-	2850 5650 2950 5650
-Wire Wire Line
-	3950 5650 4050 5650
-Wire Wire Line
-	4500 6450 4500 6600
-Wire Wire Line
-	5050 5650 5150 5650
-Wire Wire Line
-	6150 5650 6250 5650
-Wire Wire Line
-	2950 5650 3400 5650
-Wire Wire Line
-	4050 5650 4500 5650
-Wire Wire Line
-	5150 5650 5600 5650
-Wire Wire Line
-	6250 5650 6700 5650
 Wire Wire Line
 	2250 5650 2250 5250
 Wire Wire Line
@@ -992,16 +933,12 @@ Wire Wire Line
 	7250 4550 2100 4550
 Connection ~ 6800 5650
 Wire Wire Line
-	6800 5650 7250 5650
-Wire Wire Line
 	7350 5450 7400 5450
 Wire Wire Line
 	7250 4550 7250 5000
 Connection ~ 7250 5000
 Wire Wire Line
 	7250 5000 7300 5000
-Wire Wire Line
-	7250 5650 7350 5650
 Wire Wire Line
 	7350 5450 7350 5650
 Wire Wire Line
@@ -1073,51 +1010,94 @@ Wire Wire Line
 $Comp
 L conn:Conn_01x04_Female J1
 U 1 1 5C19CDF1
-P 9900 5750
-F 0 "J1" H 9927 5726 50  0000 L CNN
-F 1 "Conn_01x04_Female" H 9927 5635 50  0000 L CNN
-F 2 "Adafruit bicolor 8x8:Grove_1x04" H 9900 5750 50  0001 C CNN
-F 3 "~" H 9900 5750 50  0001 C CNN
-	1    9900 5750
+P 6700 1600
+F 0 "J1" H 6727 1576 50  0000 L CNN
+F 1 "Conn_01x04_Female" H 6727 1485 50  0000 L CNN
+F 2 "Adafruit bicolor 8x8:Grove_1x04" H 6700 1600 50  0001 C CNN
+F 3 "~" H 6700 1600 50  0001 C CNN
+	1    6700 1600
 	1    0    0    -1  
 $EndComp
-Connection ~ 2300 5650
 Wire Wire Line
 	2300 5650 2300 5800
-Connection ~ 2300 6450
 Wire Wire Line
 	2300 6450 2400 6450
-Connection ~ 2850 5650
 Wire Wire Line
 	2850 5650 2850 5800
-Connection ~ 3400 5650
 Wire Wire Line
 	3400 5650 3400 5800
-Connection ~ 3400 6450
 Wire Wire Line
 	3400 6450 3500 6450
-Connection ~ 3950 5650
 Wire Wire Line
 	3950 5650 3950 5800
-Connection ~ 4500 5650
 Wire Wire Line
 	4500 5650 4500 5800
-Connection ~ 4500 6450
 Wire Wire Line
 	4500 6450 4600 6450
-Connection ~ 5050 5650
 Wire Wire Line
 	5050 5650 5050 5800
-Connection ~ 5600 5650
 Wire Wire Line
 	5600 5650 5600 5800
-Connection ~ 6150 5650
 Wire Wire Line
 	6150 5650 6150 5800
-Connection ~ 6700 5650
 Wire Wire Line
 	6700 5650 6700 5800
-Connection ~ 7250 5650
 Wire Wire Line
 	7250 5650 7250 5800
+$Comp
+L conn:Conn_01x04_Female J2
+U 1 1 5C33561D
+P 7800 1600
+F 0 "J2" H 7827 1576 50  0000 L CNN
+F 1 "Conn_01x04_Female" H 7827 1485 50  0000 L CNN
+F 2 "Adafruit bicolor 8x8:Grove_1x04" H 7800 1600 50  0001 C CNN
+F 3 "~" H 7800 1600 50  0001 C CNN
+	1    7800 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 1800 7600 1800
+$Comp
+L switches:SW_Push SW13
+U 1 1 5C1E0575
+P 2550 5800
+F 0 "SW13" H 2550 6000 50  0000 C CNN
+F 1 "SW_Push" H 2550 5650 50  0000 C CNN
+F 2 "Adafruit bicolor 8x8:Kailh-PG1350-1u-No-Clickhole" H 2550 6100 50  0001 C CNN
+F 3 "" H 2550 6100 50  0001 C CNN
+	1    2550 5800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 5650 2400 5650
+Wire Wire Line
+	2400 5650 2950 5650
+Wire Wire Line
+	2950 5650 3500 5650
+Wire Wire Line
+	2300 5800 2300 6600
+Wire Wire Line
+	3400 5800 3400 6600
+Wire Wire Line
+	4500 5800 4500 6600
+Wire Wire Line
+	4600 5650 5150 5650
+Wire Wire Line
+	5150 5650 5700 5650
+Wire Wire Line
+	4050 5650 4600 5650
+Wire Wire Line
+	3500 5650 4050 5650
+Wire Wire Line
+	5700 5650 6250 5650
+Wire Wire Line
+	6250 5650 6800 5650
+Wire Wire Line
+	6800 5650 7350 5650
+Wire Wire Line
+	6500 1500 7600 1500
+Wire Wire Line
+	6500 1600 7600 1600
+Wire Wire Line
+	6500 1700 7600 1700
 $EndSCHEMATC
