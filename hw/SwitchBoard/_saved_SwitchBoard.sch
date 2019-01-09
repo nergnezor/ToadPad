@@ -1431,7 +1431,7 @@ VDD
 Text Label 6750 2700 0    50   ~ 0
 SCL
 Text Label 6750 2800 0    50   ~ 0
-SDA2
+SDA3
 $Comp
 L conn:Conn_01x04_Female J20
 U 1 1 5C7A14D8
@@ -1458,7 +1458,7 @@ VDD
 Text Label 7250 2700 0    50   ~ 0
 SCL
 Text Label 7250 2800 0    50   ~ 0
-SDA2
+SDA3
 $Comp
 L conn:Conn_01x04_Female J27
 U 1 1 5C7B802E
@@ -1539,7 +1539,7 @@ VDD
 Text Label 8250 2200 0    50   ~ 0
 SCL
 Text Label 8250 2300 0    50   ~ 0
-SDA3
+SDA2
 $Comp
 L conn:Conn_01x04_Female J21
 U 1 1 5C7D039A
@@ -1566,7 +1566,7 @@ VDD
 Text Label 7750 2700 0    50   ~ 0
 SCL
 Text Label 7750 2800 0    50   ~ 0
-SDA2
+SDA3
 $Comp
 L conn:Conn_01x04_Female J22
 U 1 1 5C7D03A9
@@ -1593,7 +1593,7 @@ VDD
 Text Label 8250 2700 0    50   ~ 0
 SCL
 Text Label 8250 2800 0    50   ~ 0
-SDA2
+SDA3
 NoConn ~ 10050 2200
 $Comp
 L conn:Conn_01x04_Female J15
@@ -1621,7 +1621,7 @@ VDD
 Text Label 8750 2200 0    50   ~ 0
 SCL
 Text Label 8750 2300 0    50   ~ 0
-SDA3
+SDA2
 $Comp
 L conn:Conn_01x04_Female J16
 U 1 1 5C7EC8F1
@@ -1648,7 +1648,7 @@ VDD
 Text Label 9250 2200 0    50   ~ 0
 SCL
 Text Label 9250 2300 0    50   ~ 0
-SDA3
+SDA2
 $Comp
 L conn:Conn_01x04_Female J23
 U 1 1 5C7EC900
@@ -1675,7 +1675,7 @@ VDD
 Text Label 8750 2700 0    50   ~ 0
 SCL
 Text Label 8750 2800 0    50   ~ 0
-SDA2
+SDA3
 $Comp
 L conn:Conn_01x04_Female J24
 U 1 1 5C7EC90F
@@ -1729,7 +1729,7 @@ VDD
 Text Label 9750 2200 0    50   ~ 0
 SCL
 Text Label 9750 2300 0    50   ~ 0
-SDA3
+SDA2
 $Comp
 L conn:Conn_01x04_Female J18
 U 1 1 5C7EC94B
@@ -1813,34 +1813,4 @@ Text Label 10250 2800 0    50   ~ 0
 SDA3
 Text Label 900  3750 2    50   ~ 0
 SDA4
-$Comp
-L device:C C1
-U 1 1 5C3A16AA
-P 2700 2150
-F 0 "C1" H 2815 2196 50  0000 L CNN
-F 1 "10uF" H 2815 2105 50  0000 L CNN
-F 2 "Adafruit bicolor 8x8:C0805" H 2738 2000 50  0001 C CNN
-F 3 "" H 2700 2150 50  0001 C CNN
-	1    2700 2150
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C2
-U 1 1 5C3A1878
-P 3100 2150
-F 0 "C2" H 3215 2196 50  0000 L CNN
-F 1 "10uF" H 3215 2105 50  0000 L CNN
-F 2 "Adafruit bicolor 8x8:C0805" H 3138 2000 50  0001 C CNN
-F 3 "" H 3100 2150 50  0001 C CNN
-	1    3100 2150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2700 2000 3100 2000
-Wire Wire Line
-	2700 2300 3100 2300
-Text Label 2850 2000 0    50   ~ 0
-VDD
-Text Label 2900 2300 0    50   ~ 0
-GND
 $EndSCHEMATC
