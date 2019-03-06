@@ -3,76 +3,7 @@
 #include <Adafruit_GFX.h>
 #include <Wire.h>
 
-class BicolorMatrix_Flipped : public Adafruit_LEDBackpack, public Adafruit_GFX {
-public:
-    BicolorMatrix_Flipped(void);
-
-    void drawPixel(int16_t x, int16_t y, uint16_t color);
-
-private:
-};
-BicolorMatrix_Flipped::BicolorMatrix_Flipped(void)
-    : Adafruit_GFX(8, 8)
-{
-}
-
-void BicolorMatrix_Flipped::drawPixel(int16_t x, int16_t y, uint16_t color)
-{
-/* Changed */
-#define _swap_int16_t(a, b) \
-    {                       \
-        int16_t t = a;      \
-        a = b;              \
-        b = t;              \
-    }
-    // x = 8 - x - 1;
-    _swap_int16_t(x, y);
-
-    y = 8 - y - 1;
-    // if (color == LED_GREEN) color = LED_RED;
-    // if (color == LED_RED) color = LED_GREEN;
-
-    /* Changed */
-
-    if ((y < 0) || (y >= 8))
-        return;
-    if ((x < 0) || (x >= 8))
-        return;
-
-    switch (getRotation()) {
-    case 1:
-        _swap_int16_t(x, y);
-        x = 8 - x - 1;
-        break;
-    case 2:
-        x = 8 - x - 1;
-        y = 8 - y - 1;
-        break;
-    case 3:
-        _swap_int16_t(x, y);
-        y = 8 - y - 1;
-        break;
-    }
-
-    if (color == LED_GREEN) {
-        // Turn on green LED.
-        displaybuffer[y] |= 1 << (x + 8);
-        // Turn off red LED.
-        // displaybuffer[y] &= ~(1 << (x + 8));
-    } else if (color == LED_RED) {
-        // Turn on red LED.
-        displaybuffer[y] |= 1 << (7 - x);
-        // Turn off green LED.
-        // displaybuffer[y] &= ~(1 << x);
-    } else if (color == LED_YELLOW) {
-        // Turn on green and red LED.
-        displaybuffer[y] |= (1 << (x + 8)) | (1 << (7 - x));
-    } else if (color == LED_OFF) {
-        // Turn off green and red LED.
-        displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
-    }
-}
-BicolorMatrix_Flipped matrix = BicolorMatrix_Flipped();
+Adafruit_BicolorMatrix matrix = Adafruit_BicolorMatrix();
 
 void setup()
 {
@@ -97,12 +28,13 @@ int circle[] = { 4, 4, 4 };
 void loop()
 {
     matrix.clear();
+    matrix.setBrightness(random(16));
     // for (int rot = 0; rot < 4; ++rot) {
-    //   matrix.setRotation(rot);
-    //   matrix.drawCircle(0, 1, 1, LED_RED);
-    //   matrix.drawCircle(0, 1, 2, LED_GREEN);
+    //     matrix.setRotation(rot);
+    //     matrix.drawCircle(0, 1, 1, LED_RED);
+    //     matrix.drawCircle(0, 1, 2, LED_GREEN);
     // }
-    // matrix.writeDisplay();  // write the changes we just made to the display
+    // matrix.writeDisplay(); // write the changes we just made to the display
     // matrix.setRotation(0);
 
     // delay(500);
@@ -121,45 +53,45 @@ void loop()
     // matrix.writeDisplay();
     // delay(500);
 
-    // matrix.clear();  // clear display
+    // matrix.clear(); // clear display
     // matrix.drawPixel(0, 0, LED_GREEN);
-    // matrix.writeDisplay();  // write the changes we just made to the display
+    // matrix.writeDisplay(); // write the changes we just made to the display
     // delay(500);
 
     // matrix.clear();
     // matrix.drawLine(0, 0, 7, 7, LED_YELLOW);
-    // matrix.writeDisplay();  // write the changes we just made to the display
+    // matrix.writeDisplay(); // write the changes we just made to the display
     // delay(500);
 
     // matrix.clear();
     // matrix.drawRect(0, 0, 8, 8, LED_RED);
     // matrix.fillRect(2, 2, 4, 4, LED_GREEN);
-    // matrix.writeDisplay();  // write the changes we just made to the display
+    // matrix.writeDisplay(); // write the changes we just made to the display
     // delay(500);
 
     // matrix.clear();
     // matrix.drawCircle(3, 3, 3, LED_YELLOW);
-    // matrix.writeDisplay();  // write the changes we just made to the display
+    // matrix.writeDisplay(); // write the changes we just made to the display
     // delay(500);
 
-    // matrix.setTextWrap(false);  // we dont want text to wrap so it scrolls nicely
+    // matrix.setTextWrap(false); // we dont want text to wrap so it scrolls nicely
     // matrix.setTextSize(1);
     // matrix.setTextColor(LED_GREEN);
     // for (int8_t x = 7; x >= -36; x--) {
-    //   matrix.clear();
-    //   matrix.setCursor(x, 0);
-    //   matrix.print("Hello");
-    //   matrix.writeDisplay();
-    //   delay(100);
+    //     matrix.clear();
+    //     matrix.setCursor(x, 0);
+    //     matrix.print("Hello");
+    //     matrix.writeDisplay();
+    //     delay(100);
     // }
     // matrix.setRotation(3);
     // matrix.setTextColor(LED_RED);
     // for (int8_t x = 7; x >= -36; x--) {
-    //   matrix.clear();
-    //   matrix.setCursor(x, 0);
-    //   matrix.print("World");
-    //   matrix.writeDisplay();
-    //   delay(100);
+    //     matrix.clear();
+    //     matrix.setCursor(x, 0);
+    //     matrix.print("World");
+    //     matrix.writeDisplay();
+    //     delay(100);
     // }
 
     // matrix.setTextSize(1);
@@ -167,8 +99,6 @@ void loop()
     // matrix.setCursor(0, 0);
     // matrix.setRotation(0);
     // matrix.print("W");
-    // Serial.println(erik);
-    // Serial.println("Erik: %d", erik);
 
     for (int i = 0; i < sizeof(circle); i++) {
         circle[i] += (random(3) - 1);
