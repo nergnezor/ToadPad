@@ -1,16 +1,32 @@
 
-#include "Adafruit_LEDBackpack.h"
+// #include "Adafruit_LEDBackpack.h"
+#include "src/Adafruit_LED_Backpack_Library/Adafruit_LEDBackpack.h"
 #include <Adafruit_GFX.h>
-#include <Wire.h>
+// #include <Wire.h>
+#include "src/Wire/Wire.h"
 
-Adafruit_BicolorMatrix matrix = Adafruit_BicolorMatrix();
+Adafruit_BicolorMatrix matrix[25];
+// = Adafruit_BicolorMatrix();
 
+byte i2cPins[][2] = {
+    { 11, 26 }, { 30, 26 }, { 27, 26 }, { 25, 26 }
+};
 void setup()
 {
     Serial.begin(115200);
     Serial.println("8x8 LED Matrix Test");
+    // for (size_t i = 0; i < 4; i++) {
+    //     for (size_t j = 0; j < 8; j++) {
+    // matrix[i].begin(i2cPins[i][0], i2cPins[i][1], 0x70 + j); // pass in the address
+    //     }
+    // }
 
-    matrix.begin(0x70); // pass in the address
+    matrix[0].begin(i2cPins[0][0], i2cPins[0][1], 0x70); // pass in the address
+    matrix[1].begin(i2cPins[1][0], i2cPins[1][1], 0x70); // pass in the address
+    matrix[2].begin(i2cPins[2][0], i2cPins[2][1], 0x71); // pass in the address
+
+    // matrix[0].begin(0x70); // pass in the address
+    // matrix[2].begin(0x71); // pass in the address
 }
 
 static const uint8_t PROGMEM smile_bmp[] = { B00111100, B01000010, B10100101,
@@ -24,11 +40,11 @@ static const uint8_t PROGMEM smile_bmp[] = { B00111100, B01000010, B10100101,
                                  B01000010, B00111100 };
 
 int circle[] = { 4, 4, 4 };
-
+int brightness;
 void loop()
 {
-    matrix.clear();
-    matrix.setBrightness(random(16));
+    // matrix.setBrightness(brightness);
+    // brightness %= 0x0f;
     // for (int rot = 0; rot < 4; ++rot) {
     //     matrix.setRotation(rot);
     //     matrix.drawCircle(0, 1, 1, LED_RED);
@@ -110,13 +126,22 @@ void loop()
 
     int rand[] = { random(3), random(3) };
     int r = 2 + circle[2] / 2;
-    matrix.fillCircle(circle[0], circle[1], r, LED_GREEN);
-    matrix.fillCircle(circle[0], circle[1], r - 1, LED_YELLOW);
-    matrix.fillCircle(circle[0], circle[1], r / 2, LED_OFF);
-    matrix.fillCircle(circle[0], circle[1], r / 2, LED_RED);
-    // matrix.fillCircle(circle[0], circle[1], r - 4, LED_OFF);
-    // matrix.fillRect(2, 2, 4, 4, LED_GREEN);
 
-    matrix.writeDisplay();
+    for (size_t i = 0; i < 3; i++) {
+        // matrix[i].begin(i2cPins[i][0], i2cPins[i][1], 0x70); // pass in the address
+
+        matrix[i].clear();
+        matrix[i].fillCircle(circle[0], circle[1], r, LED_GREEN);
+        matrix[i].fillCircle(circle[0], circle[1], r - 1, LED_YELLOW + i);
+        matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_OFF);
+        matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_RED + i);
+        matrix[i].writeDisplay();
+        for (size_t i = 0; i < 8; i++)
+        /* code */
+        {
+        }
+        /* code */
+    }
+
     delay(10 + random(200));
 }
