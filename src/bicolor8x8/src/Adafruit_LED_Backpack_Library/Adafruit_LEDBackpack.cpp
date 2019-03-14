@@ -224,25 +224,24 @@ void Adafruit_LEDBackpack::begin(uint8_t _addr = 0x70)
 
     setBrightness(0); // max brightness
 }
-void Adafruit_LEDBackpack::begin(uint8_t sda, uint8_t scl, uint8_t _addr = 0x70)
+int Adafruit_LEDBackpack::begin(uint8_t sda, uint8_t scl, uint8_t _addr = 0x70)
 {
     int result = 1;
 
     i2c_addr = _addr;
     i2c_sda = sda;
     i2c_scl = scl;
-    Wire.begin(sda, scl);
+    // Wire.begin(sda, scl);
+    Wire.begin();
     Wire.beginTransmission(i2c_addr);
     Wire.write(0x21); // turn on oscillator
 
     result = Wire.endTransmission();
-    Serial.println(sda);
-    Serial.println(scl);
-    Serial.println(result);
 
     blinkRate(HT16K33_BLINK_OFF);
 
     setBrightness(0); // max brightness
+    return result;
 }
 void Adafruit_LEDBackpack::writeDisplay(void)
 {

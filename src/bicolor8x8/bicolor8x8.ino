@@ -8,25 +8,37 @@
 Adafruit_BicolorMatrix matrix[25];
 // = Adafruit_BicolorMatrix();
 
-byte i2cPins[][2] = {
+uint8_t i2cPins[][2] = {
     { 11, 26 }, { 30, 26 }, { 27, 26 }, { 25, 26 }
 };
+
+uint8_t keyScanIndex = 3;
+static int nKeys;
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("8x8 LED Matrix Test");
-    // for (size_t i = 0; i < 4; i++) {
-    //     for (size_t j = 0; j < 8; j++) {
-    // matrix[i].begin(i2cPins[i][0], i2cPins[i][1], 0x70 + j); // pass in the address
-    //     }
-    // }
+    for (size_t i = 0; i < 4; i++) {
+        for (size_t j = 0; j < 8; j++) {
+            if (i == keyScanIndex && j == 0) {
+                continue;
+            }
 
-    matrix[0].begin(i2cPins[0][0], i2cPins[0][1], 0x70); // pass in the address
-    matrix[1].begin(i2cPins[1][0], i2cPins[1][1], 0x70); // pass in the address
-    matrix[2].begin(i2cPins[2][0], i2cPins[2][1], 0x71); // pass in the address
-
-    // matrix[0].begin(0x70); // pass in the address
-    // matrix[2].begin(0x71); // pass in the address
+            if (matrix[nKeys].begin(i2cPins[i][0], i2cPins[i][1], 0x70 + j) == 0) {
+                matrix[nKeys].clear();
+                Serial.print("sda: ");
+                Serial.print(i);
+                Serial.print(", adress: ");
+                Serial.print(j);
+                Serial.println();
+                matrix[nKeys].setTextSize(1);
+                matrix[nKeys].setTextColor(LED_GREEN);
+                matrix[nKeys].setCursor(0, 0);
+                matrix[nKeys].print(j);
+                matrix[nKeys].writeDisplay();
+                ++nKeys;
+            }
+        }
+    }
 }
 
 static const uint8_t PROGMEM smile_bmp[] = { B00111100, B01000010, B10100101,
@@ -116,32 +128,32 @@ void loop()
     // matrix.setRotation(0);
     // matrix.print("W");
 
-    for (int i = 0; i < sizeof(circle); i++) {
-        circle[i] += (random(3) - 1);
-        if (circle[i] < 0)
-            circle[i] = 0;
-        if (circle[i] > 8)
-            circle[i] = 8;
-    }
+    // for (int i = 0; i < sizeof(circle); i++) {
+    //     circle[i] += (random(3) - 1);
+    //     if (circle[i] < 0)
+    //         circle[i] = 0;
+    //     if (circle[i] > 8)
+    //         circle[i] = 8;
+    // }
 
-    int rand[] = { random(3), random(3) };
-    int r = 2 + circle[2] / 2;
+    // int rand[] = { random(3), random(3) };
+    // int r = 2 + circle[2] / 2;
 
-    for (size_t i = 0; i < 3; i++) {
-        // matrix[i].begin(i2cPins[i][0], i2cPins[i][1], 0x70); // pass in the address
+    // for (size_t i = 0; i < nKeys; i++) {
+    //     // matrix[i].begin(i2cPins[i][0], i2cPins[i][1], 0x70); // pass in the address
 
-        matrix[i].clear();
-        matrix[i].fillCircle(circle[0], circle[1], r, LED_GREEN);
-        matrix[i].fillCircle(circle[0], circle[1], r - 1, LED_YELLOW + i);
-        matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_OFF);
-        matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_RED + i);
-        matrix[i].writeDisplay();
-        for (size_t i = 0; i < 8; i++)
-        /* code */
-        {
-        }
-        /* code */
-    }
+    //     matrix[i].clear();
+    //     matrix[i].fillCircle(circle[0], circle[1], r, LED_GREEN);
+    //     matrix[i].fillCircle(circle[0], circle[1], r - 1, LED_YELLOW + i);
+    //     matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_OFF);
+    //     matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_RED + i);
+    //     matrix[i].writeDisplay();
+    //     for (size_t i = 0; i < 8; i++)
+    //     /* code */
+    //     {
+    //     }
+    //     /* code */
+    // }
 
     delay(10 + random(200));
 }
