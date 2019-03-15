@@ -5,25 +5,50 @@
 // #include <Wire.h>
 #include "src/Wire/Wire.h"
 
-Adafruit_BicolorMatrix matrix[25];
+Adafruit_BicolorMatrix matrix[26];
 // = Adafruit_BicolorMatrix();
-
-uint8_t i2cPins[][2] = {
+struct I2cPins {
+    uint8_t sda;
+    uint8_t scl;
+};
+I2cPins i2cPins[] = {
     { 11, 26 }, { 30, 26 }, { 27, 26 }, { 25, 26 }
 };
 
+Adafruit_BicolorMatrix keyscan;
+// TwoWire keyscan;
+
 uint8_t keyScanIndex = 3;
+uint8_t keyScanArrayIndex = 0;
+uint8_t keyScanAddress = 0;
+bool keyScanFound = 0;
 static int nKeys;
 void setup()
 {
     Serial.begin(115200);
     for (size_t i = 0; i < 4; i++) {
         for (size_t j = 0; j < 8; j++) {
-            if (i == keyScanIndex && j == 0) {
-                continue;
-            }
+            //     keyscan.begin(i2cPins[i].sda, i2cPins[i].scl, 0x70 + keyScanAddress);
+            //     // keyscan.begin(i2cPins[i].sda, i2cPins[i].scl);
+            //     // keyscan.beginTransmission(0x70 + keyScanAddress);
+            //     // keyscan.write(0x21); // turn on oscillator
 
-            if (matrix[nKeys].begin(i2cPins[i][0], i2cPins[i][1], 0x70 + j) == 0) {
+            //     // int result = Wire.endTransmission();
+            //     Serial.println(i);
+            //     continue;
+            // }
+
+            if (matrix[nKeys].begin(i2cPins[i].sda, i2cPins[i].scl, 0x70 + j) == 0) {
+                if (i == keyScanIndex && j == keyScanAddress) {
+                    Serial.println("KeyScan found");
+                    keyScanFound = true;
+                    // keyscan.readKeys();
+                    // matrix[nKeys].writeDisplay();
+                    keyScanArrayIndex = nKeys;
+                    ++nKeys;
+                    continue;
+                    // break;
+                }
                 matrix[nKeys].clear();
                 Serial.print("sda: ");
                 Serial.print(i);
@@ -140,7 +165,7 @@ void loop()
     // int r = 2 + circle[2] / 2;
 
     // for (size_t i = 0; i < nKeys; i++) {
-    //     // matrix[i].begin(i2cPins[i][0], i2cPins[i][1], 0x70); // pass in the address
+    //     // matrix[i].begin(i2cPins[i].sda, i2cPins[i].scl, 0x70); // pass in the address
 
     //     matrix[i].clear();
     //     matrix[i].fillCircle(circle[0], circle[1], r, LED_GREEN);
@@ -154,6 +179,7 @@ void loop()
     //     }
     //     /* code */
     // }
-
-    delay(10 + random(200));
+    // keyscan.r
+    matrix[keyScanArrayIndex].readKeys();
+    delay(300);
 }
