@@ -256,8 +256,9 @@ void Adafruit_LEDBackpack::writeDisplay(void)
 }
 void Adafruit_LEDBackpack::readKeys(void)
 {
-    // static byte[6];
-    static uint64_t keyCode;
+    static const int ReadSize = 6;
+    static byte keyCode[ReadSize];
+    // static uint64_t keyCode;
     int result = 0;
     Wire.setSda(i2c_sda);
     Wire.beginTransmission(i2c_addr);
@@ -265,29 +266,29 @@ void Adafruit_LEDBackpack::readKeys(void)
 
     result = Wire.endTransmission();
     uint8_t length = Wire.requestFrom(i2c_addr, 6); // request 6 bytes from slave device #2
-    // uint8_t keys[6] = { 0 };
-    uint64_t keys = 0;
+
+    bool changed = false;
     for (int i = 0; Wire.available(); ++i) // slave may send less than requested
     {
         byte c = Wire.read(); // receive a byte as character
-        // keys |= (c << i);
-        keys = keys & ((uint8_t)c << i);
-
-        // if (keys[i] == c)
-        Serial.print(c); // print the character
-        Serial.print(" "); // print the character
+        if (keyCode[i] != c) {
+            changed = true;
+        }
+        keyCode[i] = c;
     }
-    Serial.println(); // print the character
-    if (keys != keyCode) {
-        Serial.println("press"); // print the character
-        keyCode = keys;
-        for (int i = 0; i < (6 * 8); i++) {
-            if (keyCode && (0x01 << i)) {
-                if (i == 6) {
-                    // continue;
-                }
+    if (changed) {
+        // Serial.println("press"); // print the character
+        // keyCode = keys;
+        for (size_t i = 0; i < ReadSize; i++) {
+            for (int bit = 0; bit < 8; bit++) {
+                if (keyCode[i] & (0x01 << bit)) {
+                    byte index = i * 8 + bit;
+                    if (index == 41) {
+                        continue;
+                    }
 
-                Serial.println(i); // print the character
+                    Serial.println(index); // print the character
+                }
             }
         }
     }

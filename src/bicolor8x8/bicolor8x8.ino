@@ -181,5 +181,5 @@ void loop()
     // }
     // keyscan.r
     matrix[keyScanArrayIndex].readKeys();
-    delay(300);
+    delay(30);
 }
