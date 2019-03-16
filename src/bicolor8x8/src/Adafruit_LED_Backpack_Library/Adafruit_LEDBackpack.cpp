@@ -226,13 +226,12 @@ void Adafruit_LEDBackpack::begin(uint8_t _addr = 0x70)
 }
 int Adafruit_LEDBackpack::begin(uint8_t sda, uint8_t scl, uint8_t _addr = 0x70)
 {
-    int result = 1;
+    int result = 0;
 
     i2c_addr = _addr;
     i2c_sda = sda;
     i2c_scl = scl;
-    // Wire.begin(sda, scl);
-    Wire.begin();
+    Wire.begin(sda, scl);
     Wire.beginTransmission(i2c_addr);
     Wire.write(0x21); // turn on oscillator
 
@@ -245,10 +244,6 @@ int Adafruit_LEDBackpack::begin(uint8_t sda, uint8_t scl, uint8_t _addr = 0x70)
 }
 void Adafruit_LEDBackpack::writeDisplay(void)
 {
-    // Serial.println(i2c_sda);
-    // Serial.println(i2c_scl);
-    // Serial.println(i2c_addr);
-    // Wire.begin(i2c_sda, i2c_scl);
     Wire.setSda(i2c_sda);
     Wire.beginTransmission(i2c_addr);
     Wire.write((uint8_t)0x00); // start at address $00
@@ -258,6 +253,45 @@ void Adafruit_LEDBackpack::writeDisplay(void)
         Wire.write(displaybuffer[i] >> 8);
     }
     Wire.endTransmission();
+}
+void Adafruit_LEDBackpack::readKeys(void)
+{
+    static const int ReadSize = 6;
+    static byte keyCode[ReadSize];
+    // static uint64_t keyCode;
+    int result = 0;
+    Wire.setSda(i2c_sda);
+    Wire.beginTransmission(i2c_addr);
+    Wire.write(0x40); // start at address $00
+
+    result = Wire.endTransmission();
+    uint8_t length = Wire.requestFrom(i2c_addr, 6); // request 6 bytes from slave device #2
+
+    bool changed = false;
+    for (int i = 0; Wire.available(); ++i) // slave may send less than requested
+    {
+        byte c = Wire.read(); // receive a byte as character
+        if (keyCode[i] != c) {
+            changed = true;
+        }
+        keyCode[i] = c;
+    }
+    if (changed) {
+        // Serial.println("press"); // print the character
+        // keyCode = keys;
+        for (size_t i = 0; i < ReadSize; i++) {
+            for (int bit = 0; bit < 8; bit++) {
+                if (keyCode[i] & (0x01 << bit)) {
+                    byte index = i * 8 + bit;
+                    if (index == 41) {
+                        continue;
+                    }
+
+                    Serial.println(index); // print the character
+                }
+            }
+        }
+    }
 }
 
 void Adafruit_LEDBackpack::clear(void)

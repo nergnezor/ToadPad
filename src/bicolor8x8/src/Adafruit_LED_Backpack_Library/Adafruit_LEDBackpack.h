@@ -58,6 +58,7 @@ public:
     void setBrightness(uint8_t b);
     void blinkRate(uint8_t b);
     void writeDisplay(void);
+    void readKeys(void);
     void clear(void);
 
     uint16_t displaybuffer[8];
