@@ -4,9 +4,15 @@
 #include <Adafruit_GFX.h>
 // #include <Wire.h>
 #include "src/Wire/Wire.h"
+#include "src/fonts.h"
+// #include "src/fonts/Code_8x88pt7b.h"
+// #include <Fonts/Picopixel.h>
+
+const GFXfont* font = &Roboto_Mono_Thin_8;
 
 Adafruit_BicolorMatrix matrix[26];
-// = Adafruit_BicolorMatrix();
+Adafruit_BicolorMatrix* keyscan;
+
 struct I2cPins {
     uint8_t sda;
     uint8_t scl;
@@ -15,52 +21,68 @@ I2cPins i2cPins[] = {
     { 11, 26 }, { 30, 26 }, { 27, 26 }, { 25, 26 }
 };
 
-Adafruit_BicolorMatrix keyscan;
-// TwoWire keyscan;
+static const uint8_t NCols = 5;
+static const uint8_t keyScanIndex = 3;
+static const uint8_t keyScanAddress = 0;
 
-uint8_t keyScanIndex = 3;
+static const char* Qwerty = "qwertyuiopasdfghjklzxcvbnm";
+
 uint8_t keyScanArrayIndex = 0;
-uint8_t keyScanAddress = 0;
 bool keyScanFound = 0;
 static int nKeys;
 void setup()
 {
     Serial.begin(115200);
-    for (size_t i = 0; i < 4; i++) {
-        for (size_t j = 0; j < 8; j++) {
-            //     keyscan.begin(i2cPins[i].sda, i2cPins[i].scl, 0x70 + keyScanAddress);
-            //     // keyscan.begin(i2cPins[i].sda, i2cPins[i].scl);
-            //     // keyscan.beginTransmission(0x70 + keyScanAddress);
-            //     // keyscan.write(0x21); // turn on oscillator
-
-            //     // int result = Wire.endTransmission();
-            //     Serial.println(i);
-            //     continue;
-            // }
-
-            if (matrix[nKeys].begin(i2cPins[i].sda, i2cPins[i].scl, 0x70 + j) == 0) {
-                if (i == keyScanIndex && j == keyScanAddress) {
+    for (size_t i2cLine = 0; i2cLine < 4; i2cLine++) {
+        for (size_t address = 0; address < 8; address++) {
+            Adafruit_BicolorMatrix* key = &matrix[nKeys];
+            if (key->begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70 + address) == 0) {
+                ++nKeys;
+                if (i2cLine == keyScanIndex && address == keyScanAddress) {
                     Serial.println("KeyScan found");
                     keyScanFound = true;
-                    // keyscan.readKeys();
-                    // matrix[nKeys].writeDisplay();
-                    keyScanArrayIndex = nKeys;
-                    ++nKeys;
+                    keyscan = key;
+                    // keyScanArrayIndex = nKeys;
                     continue;
-                    // break;
                 }
-                matrix[nKeys].clear();
+                // continue;
+                key->clear();
                 Serial.print("sda: ");
-                Serial.print(i);
+                Serial.print(i2cLine);
                 Serial.print(", adress: ");
-                Serial.print(j);
+                Serial.print(address);
                 Serial.println();
-                matrix[nKeys].setTextSize(1);
-                matrix[nKeys].setTextColor(LED_GREEN);
-                matrix[nKeys].setCursor(0, 0);
-                matrix[nKeys].print(j);
-                matrix[nKeys].writeDisplay();
-                ++nKeys;
+                key->setRotation(0);
+                key->setRotation(3);
+                if (nKeys % NCols == 0) {
+                    key->setRotation(1);
+                }
+                // key->drawRect(0, 0, 8, 8, LED_YELLOW);
+                // key->drawRect(0, 0, 8, 8, LED_RED);
+                key->setBrightness(0);
+                // key->setTextSize(1);
+                // key->setFont(font);
+                // key->setTextColor(LED_RED);
+                // for (size_t i = LED_RED; i <= LED_GREEN; i++) {
+                /* code */
+
+                // key->setTextColor(LED_GREEN);
+                // key->setCursor(1, 0);
+                // key->print(address);
+                key->setTextColor(LED_RED);
+                key->setCursor(1, 1);
+                key->print(address);
+                key->setTextColor(LED_YELLOW);
+                key->setCursor(2, 1);
+                key->print(address);
+                // key->setTextColor(i);
+                // key->setCursor(0, 2);
+                // }
+                // key->print(address);
+                // key->print(Qwerty[nKeys - 1]);
+                // key->print(char(0x40 + nKeys));
+                // key->print(nKeys);
+                key->writeDisplay();
             }
         }
     }
@@ -153,33 +175,33 @@ void loop()
     // matrix.setRotation(0);
     // matrix.print("W");
 
-    // for (int i = 0; i < sizeof(circle); i++) {
-    //     circle[i] += (random(3) - 1);
-    //     if (circle[i] < 0)
-    //         circle[i] = 0;
-    //     if (circle[i] > 8)
-    //         circle[i] = 8;
+    // for (int i2cLine = 0; i2cLine < sizeof(circle); i2cLine++) {
+    //     circle[i2cLine] += (random(3) - 1);
+    //     if (circle[i2cLine] < 0)
+    //         circle[i2cLine] = 0;
+    //     if (circle[i2cLine] > 8)
+    //         circle[i2cLine] = 8;
     // }
 
     // int rand[] = { random(3), random(3) };
     // int r = 2 + circle[2] / 2;
 
-    // for (size_t i = 0; i < nKeys; i++) {
-    //     // matrix[i].begin(i2cPins[i].sda, i2cPins[i].scl, 0x70); // pass in the address
+    // for (size_t i2cLine = 0; i2cLine < nKeys; i2cLine++) {
+    //     // matrix[i2cLine].begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70); // pass in the address
 
-    //     matrix[i].clear();
-    //     matrix[i].fillCircle(circle[0], circle[1], r, LED_GREEN);
-    //     matrix[i].fillCircle(circle[0], circle[1], r - 1, LED_YELLOW + i);
-    //     matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_OFF);
-    //     matrix[i].fillCircle(circle[0], circle[1], r / 2, LED_RED + i);
-    //     matrix[i].writeDisplay();
-    //     for (size_t i = 0; i < 8; i++)
+    //     matrix[i2cLine].clear();
+    //     matrix[i2cLine].fillCircle(circle[0], circle[1], r, LED_GREEN);
+    //     matrix[i2cLine].fillCircle(circle[0], circle[1], r - 1, LED_YELLOW + i2cLine);
+    //     matrix[i2cLine].fillCircle(circle[0], circle[1], r / 2, LED_OFF);
+    //     matrix[i2cLine].fillCircle(circle[0], circle[1], r / 2, LED_RED + i2cLine);
+    //     matrix[i2cLine].writeDisplay();
+    //     for (size_t i2cLine = 0; i2cLine < 8; i2cLine++)
     //     /* code */
     //     {
     //     }
     //     /* code */
     // }
     // keyscan.r
-    matrix[keyScanArrayIndex].readKeys();
+    keyscan->readKeys();
     delay(30);
 }

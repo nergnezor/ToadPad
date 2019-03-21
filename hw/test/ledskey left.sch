@@ -428,4 +428,10 @@ Wire Wire Line
 	2900 3200 3700 3200
 Wire Wire Line
 	2900 3300 3500 3300
+Text Notes 12650 3900 1    197  ~ 0
+Green
+Text Notes 12950 3900 1    197  ~ 0
+Red
+Text Notes 12800 5700 1    197  ~ 0
+Top row
 $EndSCHEMATC

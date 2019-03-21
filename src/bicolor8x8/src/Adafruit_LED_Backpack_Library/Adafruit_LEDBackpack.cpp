@@ -539,21 +539,23 @@ void Adafruit_BicolorMatrix::drawPixel(int16_t x, int16_t y, uint16_t color)
     }
 
     if (color == LED_GREEN) {
+        // x = 8 - x - 1;
         // Turn on green LED.
-        displaybuffer[y] |= 1 << x;
+        displaybuffer[y] |= 1 << (7 - x);
         // Turn off red LED.
         displaybuffer[y] &= ~(1 << (x + 8));
     } else if (color == LED_RED) {
         // Turn on red LED.
         displaybuffer[y] |= 1 << (x + 8);
         // Turn off green LED.
-        displaybuffer[y] &= ~(1 << x);
+        displaybuffer[y] &= ~(1 << (7 - x));
     } else if (color == LED_YELLOW) {
         // Turn on green and red LED.
-        displaybuffer[y] |= (1 << (x + 8)) | (1 << x);
+        // displaybuffer[y] |= (1 << (x + 8)) | (1 << x);
+        displaybuffer[y] |= (1 << (x + 8)) | (1 << (7 - x));
     } else if (color == LED_OFF) {
         // Turn off green and red LED.
-        displaybuffer[y] &= ~(1 << x) & ~(1 << (x + 8));
+        displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
     }
 }
 
