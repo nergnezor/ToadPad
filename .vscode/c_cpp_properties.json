@@ -2,39 +2,6 @@
     "version": 4,
     "configurations": [
         {
-            "name": "Win32",
-            "compilerPath": "",
-            "compilerArgs": [],
-            "intelliSenseMode": "clang-x64",
-            "includePath": [
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\0.9.3\\libraries\\Wire",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\tools\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\0.9.3\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.2\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.0\\**",
-                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.2\\libraries\\Wire",
-                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_LED_Backpack_Library",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools",
-                "C:\\Program Files (x86)\\Arduino\\libraries",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\5.4.0\\include",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
-                "C:\\Program Files (x86)\\Arduino",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard"
-            ],
-            "forcedInclude": [],
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "defines": [
-                "ARDUINO=100",
-                "NRF52"
-            ]
-        },
-        {
             "name": "Arduino",
             "compilerPath": "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\tools\\arm-none-eabi-gcc\\9-2019q4\\bin\\arm-none-eabi-g++",
             "compilerArgs": [
@@ -79,7 +46,6 @@
                 "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_BusIO",
                 "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\1.5.0\\libraries\\Wire",
                 "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\1.5.0\\libraries\\SPI",
-                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_LED_Backpack_Library",
                 "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\1.5.0\\libraries\\Adafruit_TinyUSB_Arduino\\src",
                 "c:\\users\\erikr\\appdata\\local\\arduino15\\packages\\adafruit\\tools\\arm-none-eabi-gcc\\9-2019q4\\arm-none-eabi\\include\\c++\\9.2.1",
                 "c:\\users\\erikr\\appdata\\local\\arduino15\\packages\\adafruit\\tools\\arm-none-eabi-gcc\\9-2019q4\\arm-none-eabi\\include\\c++\\9.2.1\\arm-none-eabi",
@@ -106,7 +72,7 @@
                 "NRF52_SERIES",
                 "DX_CC_TEE",
                 "LFS_NAME_MAX=64",
-                "CFG_DEBUG=0",
+                "CFG_DEBUG=2",
                 "CFG_LOGGER=0",
                 "CFG_SYSVIEW=0",
                 "__DBL_MIN_EXP__=(-1021)",

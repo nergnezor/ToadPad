@@ -1,47 +1,115 @@
-
-// #include "Adafruit_LEDBackpack.h"
-#include "src/Adafruit_LED_Backpack_Library/Adafruit_LEDBackpack.h"
 #include <Adafruit_GFX.h>
-// #include <Wire.h>
-#include "src/Wire/Wire.h"
+#include <Adafruit_LEDBackpack.h>
+#include <Wire.h>
 #include "src/fonts.h"
-// #include "src/fonts/Code_8x88pt7b.h"
-// #include <Fonts/Picopixel.h>
 
-const GFXfont* font = &Roboto_Mono_Thin_8;
-
-Adafruit_BicolorMatrix matrix[26];
-Adafruit_BicolorMatrix* keyscan;
-
-struct I2cPins {
+const GFXfont *font = &Roboto_Mono_Thin_8;
+struct I2cPins
+{
     uint8_t sda;
     uint8_t scl;
 };
 I2cPins i2cPins[] = {
-    { 11, 26 }, { 30, 26 }, { 27, 26 }, { 25, 26 }
-};
+    {11, 26}, {30, 26}, {27, 26}, {25, 26}};
 
 static const uint8_t NCols = 5;
 static const uint8_t keyScanIndex = 3;
 static const uint8_t keyScanAddress = 0;
+class Display : public Adafruit_BicolorMatrix
+{
+public:
+    void readKeys()
+    {
+        static const int ReadSize = 6;
+        static byte keyCode[ReadSize];
+        // static uint64_t keyCode;
+        int result = 0;
+        Wire.setPins(i2cPins[keyScanIndex].sda, i2cPins[keyScanIndex].scl);
+        // Wire.setSda(i2c_sda);
+        // auto wire = new TwoWire();
+        auto i2c_addr = 0x70 + keyScanAddress;
+        Wire.beginTransmission(i2c_addr);
+        // wire.beginTransmission(i2c_addr);
+        Wire.write(0x40); // start at address $00
+        // wire.write(0x40); // start at address $00
+        // wire.endTransmission();
+        result = Wire.endTransmission();
+        uint8_t length = Wire.requestFrom(i2c_addr, 6); // request 6 bytes from slave device #2
 
-static const char* Qwerty = "qwertyuiopasdfghjklzxcvbnm";
+        bool changed = false;
+        for (int i = 0; Wire.available(); ++i) // slave may send less than requested
+        {
+            byte c = Wire.read(); // receive a byte as character
+            if (keyCode[i] != c)
+            {
+                changed = true;
+            }
+            keyCode[i] = c;
+        }
+        if (changed)
+        {
+            // Serial.println("press"); // print the character
+            // keyCode = keys;
+            for (size_t i = 0; i < ReadSize; i++)
+            {
+                for (int bit = 0; bit < 8; bit++)
+                {
+                    if (keyCode[i] & (0x01 << bit))
+                    {
+                        byte index = i * 8 + bit;
+                        if (index == 41)
+                        {
+                            continue;
+                        }
+
+                        Serial.println(index); // print the character
+                    }
+                }
+            }
+        }
+    }
+};
+
+Adafruit_BicolorMatrix matrix[26];
+Display *keyscan;
+
+static const char *Qwerty = "qwertyuiopasdfghjklzxcvbnm";
 
 uint8_t keyScanArrayIndex = 0;
 bool keyScanFound = 0;
 static int nKeys;
+
 void setup()
 {
     Serial.begin(115200);
-    for (size_t i2cLine = 0; i2cLine < 4; i2cLine++) {
-        for (size_t address = 0; address < 8; address++) {
-            Adafruit_BicolorMatrix* key = &matrix[nKeys];
-            if (key->begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70 + address) == 0) {
+    Serial.println("Hello!");
+    for (size_t i2cLine = 0; i2cLine < 4; i2cLine++)
+    {
+        // NRF_TWIM_Type *twim = (NRF_TWIM_Type *)NRF_TWIM0_BASE + i2cLine;
+        // NRF_TWIS_Type *twis = (NRF_TWIS_Type *)NRF_TWIS0_BASE + i2cLine;
+        // IRQn_Type irq = (IRQn_Type)(PWM0_IRQn + i2cLine);
+        // TwoWire wire = TwoWire(twim, twis, irq, i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
+
+        // auto wire = TwoWire(0, 0, 0, i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
+        // auto wire = TwoWire();
+
+        for (size_t address = 0; address < 8; address++)
+        {
+            Adafruit_BicolorMatrix *key = &matrix[nKeys];
+            // wire.begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70 + address);
+            // auto wire = TwoWire();
+            // wire.begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
+            // wire.setSlave(address);
+            // if (key->begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70 + address) == 0)
+            Wire.setPins(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
+            if (key->begin(0x70 + address) == 0)
+            {
                 ++nKeys;
-                if (i2cLine == keyScanIndex && address == keyScanAddress) {
-                    Serial.println("KeyScan found");
+                if (i2cLine == keyScanIndex && address == keyScanAddress)
+                {
+                    Serial.println("KeyScan found!");
                     keyScanFound = true;
-                    keyscan = key;
+                    keyscan = (Display *)key;
                     // keyScanArrayIndex = nKeys;
                     continue;
                 }
@@ -54,7 +122,8 @@ void setup()
                 Serial.println();
                 key->setRotation(0);
                 key->setRotation(3);
-                if (nKeys % NCols == 0) {
+                if (nKeys % NCols == 0)
+                {
                     key->setRotation(1);
                 }
                 // key->drawRect(0, 0, 8, 8, LED_YELLOW);
@@ -72,7 +141,7 @@ void setup()
                 key->setTextColor(LED_RED);
                 key->setCursor(1, 1);
                 key->print(address);
-                key->setTextColor(LED_YELLOW);
+                key->setTextColor(LED_GREEN);
                 key->setCursor(2, 1);
                 key->print(address);
                 // key->setTextColor(i);
@@ -88,17 +157,17 @@ void setup()
     }
 }
 
-static const uint8_t PROGMEM smile_bmp[] = { B00111100, B01000010, B10100101,
-    B10000001, B10100101, B10011001,
-    B01000010, B00111100 },
-                             neutral_bmp[] = { B00111100, B01000010, B10100101,
-                                 B10000001, B10111101, B10000001,
-                                 B01000010, B00111100 },
-                             frown_bmp[] = { B00111100, B01000010, B10100101,
-                                 B10000001, B10011001, B10100101,
-                                 B01000010, B00111100 };
+static const uint8_t PROGMEM smile_bmp[] = {B00111100, B01000010, B10100101,
+                                            B10000001, B10100101, B10011001,
+                                            B01000010, B00111100},
+                             neutral_bmp[] = {B00111100, B01000010, B10100101,
+                                              B10000001, B10111101, B10000001,
+                                              B01000010, B00111100},
+                             frown_bmp[] = {B00111100, B01000010, B10100101,
+                                            B10000001, B10011001, B10100101,
+                                            B01000010, B00111100};
 
-int circle[] = { 4, 4, 4 };
+int circle[] = {4, 4, 4};
 int brightness;
 void loop()
 {

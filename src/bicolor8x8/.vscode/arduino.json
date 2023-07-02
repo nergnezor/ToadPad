@@ -1,7 +1,8 @@
 {
     "sketch": "bicolor8x8.ino",
-    "port": "COM28",
+    "port": "COM3",
     "board": "adafruit:nrf52:feather52832",
     "configuration": "softdevice=s132v6,debug=l0",
-    "output": "../build"
+    "output": "../build",
+    "programmer": "nrfutil_boot"
 }
