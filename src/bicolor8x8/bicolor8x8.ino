@@ -183,15 +183,15 @@ void setup()
                 {
                     key->setRotation(2);
                 }
-                key->setBrightness(10);
+                key->setBrightness(0);
 
-                // key->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
+                key->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
 
                 key->setTextColor(LED_YELLOW);
                 key->setCursor(2, 1);
                 key->print(address);
                 // key->setRotation(0);
-                key->setTextColor(LED_GREEN);
+                key->setTextColor(LED_RED);
                 key->setCursor(1, 1);
                 key->print(address);
 
