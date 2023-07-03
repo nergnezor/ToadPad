@@ -83,26 +83,30 @@ void setup()
 {
     Serial.begin(115200);
     Serial.println("Hello!");
+    // auto &wire = TwoWire::begin(0, 1);
+
     for (size_t i2cLine = 0; i2cLine < 4; i2cLine++)
     {
         // NRF_TWIM_Type *twim = (NRF_TWIM_Type *)NRF_TWIM0_BASE + i2cLine;
         // NRF_TWIS_Type *twis = (NRF_TWIS_Type *)NRF_TWIS0_BASE + i2cLine;
-        // IRQn_Type irq = (IRQn_Type)(PWM0_IRQn + i2cLine);
-        // TwoWire wire = TwoWire(twim, twis, irq, i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
+        // IRQn_Type irq = (IRQn_Type)(0);
+        // TwoWire wire = TwoWire.begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
 
         // auto wire = TwoWire(0, 0, 0, i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
         // auto wire = TwoWire();
+        // wire.begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
 
         for (size_t address = 0; address < 8; address++)
         {
             Adafruit_BicolorMatrix *key = &matrix[nKeys];
             // wire.begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70 + address);
-            // auto wire = TwoWire();
+            // auto wire = Wire();
             // wire.begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
             // wire.setSlave(address);
             // if (key->begin(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl, 0x70 + address) == 0)
             Wire.setPins(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
-            if (key->begin(0x70 + address) == 0)
+            key->begin(0x70 + address);
+            // if (key->begin(0x70 + address) == 0)
             {
                 ++nKeys;
                 if (i2cLine == keyScanIndex && address == keyScanAddress)
