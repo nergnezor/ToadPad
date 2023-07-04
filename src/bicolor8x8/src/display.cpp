@@ -63,4 +63,47 @@ void Display::drawPixel(int16_t x, int16_t y, uint16_t color)
         displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
     }
 }
-// };
+
+void Display::init(I2cPins i2cPins, uint8_t address, uint8_t i2cLine)
+{
+
+    this->cp437(true);
+    this->i2cPins = i2cPins;
+    this->address = 0x70 + address;
+    // matrix[nKeys] = key;
+    auto ok = begin(this->address);
+    if (ok)
+    {
+        // nKeys++;
+        // Serial.print(nKeys);
+        // Serial.print(". sda: ");
+        // Serial.print(i2cLine);
+        Serial.print(", adress: ");
+        Serial.print(address);
+        Serial.println();
+        clear();
+        setRotation(3);
+        if (address == 4 && i2cLine == 0 ||
+            address == 5 && i2cLine == 2 ||
+            address == 6 && i2cLine == 1 ||
+            address == 1 && i2cLine == 2)
+        {
+            setRotation(1);
+        }
+        if (address == 1 && i2cLine == 1)
+        {
+            setRotation(2);
+        }
+        setBrightness(0);
+
+        // this->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
+
+        // setTextColor(LED_GREEN);
+        // setCursor(1, 1);
+        // print(address);
+        setTextColor(LED_RED);
+        setCursor(0, 0);
+        print(address);
+        writeDisplay();
+    }
+}

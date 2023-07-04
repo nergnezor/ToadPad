@@ -101,45 +101,7 @@ void setup()
             if (nKeys >= N_KEYS)
                 break;
             key = &matrix[nKeys];
-            key->cp437(true);
-            key->i2cPins = i2cPins[i2cLine];
-            key->address = 0x70 + address;
-            // matrix[nKeys] = key;
-            auto ok = key->begin(key->address);
-            if (ok)
-            {
-                nKeys++;
-                key->clear();
-                Serial.print(nKeys);
-                Serial.print(". sda: ");
-                Serial.print(i2cLine);
-                Serial.print(", adress: ");
-                Serial.print(address);
-                Serial.println();
-                key->setRotation(3);
-                if (address == 4 && i2cLine == 0 ||
-                    address == 5 && i2cLine == 2 ||
-                    address == 6 && i2cLine == 1 ||
-                    address == 1 && i2cLine == 2)
-                {
-                    key->setRotation(1);
-                }
-                if (address == 1 && i2cLine == 1)
-                {
-                    key->setRotation(2);
-                }
-                key->setBrightness(0);
-
-                // key->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
-
-                key->setTextColor(LED_GREEN);
-                key->setCursor(1, 1);
-                key->print(nKeys % 10);
-                key->setTextColor(LED_RED);
-                key->setCursor(0, 0);
-                key->print(Qwerty[nKeys]);
-                key->writeDisplay();
-            }
+            key->init(i2cPins[i2cLine], address, i2cLine);
         }
     }
     Serial.println("Done!");

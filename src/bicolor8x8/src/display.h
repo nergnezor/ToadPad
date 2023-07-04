@@ -11,4 +11,5 @@ public:
     I2cPins i2cPins;
     uint8_t address;
     Adafruit_I2CDevice *get_i2c_device();
+    void init(I2cPins i2cPins, uint8_t address, uint8_t i2cLine);
 };
