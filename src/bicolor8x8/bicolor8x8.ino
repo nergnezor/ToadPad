@@ -154,6 +154,7 @@ void setup()
     Serial.println("Hello!");
     for (size_t i2cLine = 0; i2cLine < 4; i2cLine++)
     {
+        Wire.setPins(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
         for (size_t address = 0; address < 8; address++)
         {
             if (i2cLine == keyScanIndex && address == keyScanAddress)
@@ -162,13 +163,12 @@ void setup()
                 keyScanFound = true;
                 continue;
             }
-            Display *key = &matrix[N_KEYS];
+            Display *key = (Display *)&matrix[nKeys];
             key->i2cPins = i2cPins[i2cLine];
             key->address = 0x70 + address;
-            Wire.setPins(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
             // matrix[nKeys] = key;
             auto ok = key->begin(key->address);
-            // if (ok)
+            if (ok)
             {
                 nKeys++;
                 key->clear();
@@ -196,7 +196,7 @@ void setup()
 
                 key->setTextColor(LED_YELLOW);
                 key->setCursor(2, 1);
-                key->print(Qwerty[nKeys]);
+                key->print(address);
                 // key->setTextColor(LED_RED);
                 // key->setCursor(1, 1);
                 // key->print(Qwerty[nKeys]);
@@ -207,6 +207,7 @@ void setup()
             }
         }
     }
+    Serial.println("Done!");
     initialized = true;
 }
 
