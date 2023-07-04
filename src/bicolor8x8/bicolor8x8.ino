@@ -18,7 +18,7 @@ int readKeys()
     int result = 0;
     Wire.setPins(i2cPins[keyScanIndex].sda, i2cPins[keyScanIndex].scl);
     auto i2c_addr = 0x70 + keyScanAddress;
-    Serial.println(Wire.availableForWrite());
+
     Wire.begin();
     Wire.beginTransmission(i2c_addr);
     Wire.write(0x40); // start at address $00
@@ -167,5 +167,6 @@ void loop()
             i2c->end();
         }
     }
-    delay(30);
+    Serial.print(".");
+    delay(500);
 }
