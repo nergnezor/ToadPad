@@ -59,17 +59,26 @@ int readKeys()
     }
     return index;
 }
-
+// namespace
+// {
 constexpr uint8_t N_KEYS = 25;
 #include <vector>
 static std::vector<Display> matrix = std::vector<Display>(N_KEYS);
+constexpr std::initializer_list<uint8_t> display_order = {
+    19, 1, 2, 3, 4,     // A B C D E
+    5, 6, 7, 8, 9,      // F G H I J
+    16, 11, 12, 13, 14, // K L M N O
+    15, 17, 18, 10, 0,  // P Q R S T
+    20, 0, 21, 22, 23   // U V W X Y
+};
 // static Display keyscan;
 
-static const char *Alphabet = "abcdefghijklmnopqrstuvwxyz";
+static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // uint8_t keyScanArrayIndex = 0;
 // bool keyScanFound = 0;
 static int nKeys;
+// }
 
 void setup()
 {
@@ -92,13 +101,14 @@ void setup()
 
             // Display *key = &d;
             // matrix.push_back(d);
-            Display *key = &matrix[nKeys];
+            auto index = display_order.begin() + nKeys;
+            Display *key = &matrix[*index];
             key->cp437(true);
             key->i2cPins = i2cPins[i2cLine];
             key->address = 0x70 + address;
             // matrix[nKeys] = key;
             auto ok = key->begin(key->address);
-            if (ok)
+            // if (ok)
             {
                 key->clear();
                 key->setRotation(3);
@@ -117,14 +127,22 @@ void setup()
 
                 // key->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
 
-                key->setTextColor(LED_GREEN);
-                key->setCursor(1, 1);
-                key->print(nKeys % 10);
-                key->setTextColor(LED_RED);
-                key->setCursor(0, 0);
-                key->print(Alphabet[nKeys]);
+                // key->setTextColor(LED_GREEN);
+                // key->setCursor(1, 1);
+                // key->print(nKeys % 10);
+                auto colors = {LED_RED, LED_YELLOW, LED_GREEN};
+                auto x_offset = 0;
+                for (auto color : colors)
+                {
+
+                    key->setTextColor(color);
+                    key->setCursor(colors.size() - 1 - x_offset++, 0);
+                    key->print(Alphabet[*index]);
+                }
                 key->writeDisplay();
                 nKeys++;
+                if (nKeys >= N_KEYS)
+                    break;
             }
         }
     }
@@ -151,10 +169,12 @@ void loop()
             // key->print(Qwerty[i]);
             // key->writeDisplay();
             // key->endWrite();
-            key->setBrightness(15);
+            key->isPushed = !key->isPushed;
+            auto brightness = key->isPushed ? 15 : 0;
+            key->setBrightness(brightness);
             i2c->end();
         }
     }
-    Serial.print(".");
-    delay(500);
+    // Serial.print(".");
+    delay(100);
 }
