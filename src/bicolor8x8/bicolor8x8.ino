@@ -79,35 +79,6 @@ public:
             displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
         }
     }
-
-    bool begin2(uint8_t _addr, TwoWire *theWire)
-    {
-        // if (i2c_dev)
-        //     delete i2c_dev;
-        // i2c_dev = new Adafruit_I2CDevice(_addr, theWire);
-        if (!i2c_dev->begin())
-        {
-            Serial.println("begin failed");
-            return false;
-        }
-        // // turn on oscillator
-        // uint8_t buffer[1] = {0x21};
-        // i2c_dev->write(buffer, 1);
-
-        // // internal RAM powers up with garbage/random values.
-        // // ensure internal RAM is cleared before turning on display
-        // // this ensures that no garbage pixels show up on the display
-        // // when it is turned on.
-        // clear();
-        // writeDisplay();
-
-        // blinkRate(HT16K33_BLINK_OFF);
-
-        setBrightness(15); // max brightness
-        endWrite();
-
-        return true;
-    }
 };
 
 constexpr uint8_t NCols = 5;
@@ -252,25 +223,25 @@ void setup()
 int brightness;
 void loop()
 {
-        int i = readKeys();
-        if (i >= 0)
+    int i = readKeys();
+    if (i >= 0)
+    {
+        Serial.println(i); // print the character
+        if (i < N_KEYS)
         {
-            Serial.println(i); // print the character
-            if (i < N_KEYS)
-            {
-                auto key = &matrix[i];
-                auto i2c = key->get_i2c_device();
-                Wire.setPins(key->i2cPins.sda, key->i2cPins.scl);
-                i2c->begin(false);
-                // key->clear();
-                // key->setRotation(3);
-                // key->setCursor(0, 0);
-                // key->setTextColor(LED_GREEN);
-                // key->print(Qwerty[i]);
-                // key->writeDisplay();
-                // key->endWrite();
-                key->setBrightness(15);
-                i2c->end();
+            auto key = &matrix[i];
+            auto i2c = key->get_i2c_device();
+            Wire.setPins(key->i2cPins.sda, key->i2cPins.scl);
+            i2c->begin(false);
+            // key->clear();
+            // key->setRotation(3);
+            // key->setCursor(0, 0);
+            // key->setTextColor(LED_GREEN);
+            // key->print(Qwerty[i]);
+            // key->writeDisplay();
+            // key->endWrite();
+            key->setBrightness(15);
+            i2c->end();
         }
     }
     delay(30);
