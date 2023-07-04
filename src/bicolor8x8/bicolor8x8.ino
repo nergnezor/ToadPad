@@ -18,11 +18,13 @@ int readKeys()
     int result = 0;
     Wire.setPins(i2cPins[keyScanIndex].sda, i2cPins[keyScanIndex].scl);
     auto i2c_addr = 0x70 + keyScanAddress;
+    Serial.println(Wire.availableForWrite());
     Wire.begin();
     Wire.beginTransmission(i2c_addr);
     Wire.write(0x40); // start at address $00
     result = Wire.endTransmission();
     uint8_t length = Wire.requestFrom(i2c_addr, 6); // request 6 bytes from slave device #2
+    Wire.end();
 
     bool changed = false;
     int index = -1;
@@ -45,16 +47,11 @@ int readKeys()
                 if (keyCode[i] & (0x01 << bit))
                 {
                     index = i * 8 + bit;
-                    if (index == 41)
-                    {
-                        continue;
-                    }
                     return index;
                 }
             }
         }
     }
-    Wire.end();
     return index;
 }
 
