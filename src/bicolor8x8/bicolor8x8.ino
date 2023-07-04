@@ -194,17 +194,18 @@ void setup()
 
                 // key->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
 
-                key->setTextColor(LED_YELLOW);
-                key->setCursor(2, 1);
-                key->print(address);
-                // key->setTextColor(LED_RED);
-                // key->setCursor(1, 1);
-                // key->print(Qwerty[nKeys]);
+                key->setTextColor(LED_GREEN);
+                key->setCursor(1, 1);
+                key->print(nKeys % 10);
+                key->setTextColor(LED_RED);
+                key->setCursor(0, 0);
+                key->print(Qwerty[nKeys]);
                 key->writeDisplay();
 
                 if (nKeys >= N_KEYS)
                     return;
             }
+            // delay(100);
         }
     }
     Serial.println("Done!");
@@ -239,5 +240,5 @@ void loop()
     //         }
     //     }
     // }
-    // delay(30);
+    delay(30);
 }
