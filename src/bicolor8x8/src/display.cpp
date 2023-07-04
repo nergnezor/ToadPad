@@ -1,13 +1,6 @@
 #include <Adafruit_LEDBackpack.h>
 #include "display.h"
 
-// class Display : public Adafruit_BicolorMatrix
-// {
-
-// public:
-//     I2cPins i2cPins;
-//     uint8_t address;
-
 Adafruit_I2CDevice *Display::get_i2c_device()
 {
     return this->i2c_dev;
