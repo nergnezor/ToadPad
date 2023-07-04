@@ -10,5 +10,6 @@ class Display : public Adafruit_BicolorMatrix
 public:
     I2cPins i2cPins;
     uint8_t address;
+    bool isPushed = false;
     Adafruit_I2CDevice *get_i2c_device();
 };

@@ -3,5 +3,6 @@
     "configuration": "softdevice=s132v6,debug=l2,debug_output=serial",
     "board": "adafruit:nrf52:feather52832",
     "programmer": "nrfutil_boot",
-    "sketch": "src\\bicolor8x8\\bicolor8x8.ino"
+    "sketch": "src\\bicolor8x8\\bicolor8x8.ino",
+    "output": "build"
 }

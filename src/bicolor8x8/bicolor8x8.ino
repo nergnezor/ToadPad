@@ -59,26 +59,27 @@ int readKeys()
     }
     return index;
 }
-// namespace
-// {
 constexpr uint8_t N_KEYS = 25;
 #include <vector>
 static std::vector<Display> matrix = std::vector<Display>(N_KEYS);
+// constexpr std::initializer_list<uint8_t> display_order = {
+//     17, 1, 2, 3, 4,     // A B C D E | r x x x x
+//     5, 6, 7, 8, 9,      // F G H I J
+//     16, 11, 12, 13, 14, // K L M N O
+//     15, 0, 24, 10, 0,   // P Q R S T | x x x x a
+//     21, 19, 20, 22, 23  // U V W X Y
+// };
 constexpr std::initializer_list<uint8_t> display_order = {
-    19, 1, 2, 3, 4,     // A B C D E
+    17, 1, 2, 3, 4,     // A B C D E | r x x x x
     5, 6, 7, 8, 9,      // F G H I J
-    16, 11, 12, 13, 14, // K L M N O
-    15, 17, 18, 10, 0,  // P Q R S T
-    20, 0, 21, 22, 23   // U V W X Y
+    11, 12, 13, 14, 15, // K L M N O
+    24, 16, 0, 21, 19,  // P Q R S T | x x x v a
+    20, 22, 23, 5, 24   // U V W X Y
 };
-// static Display keyscan;
 
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-// uint8_t keyScanArrayIndex = 0;
-// bool keyScanFound = 0;
 static int nKeys;
-// }
 
 void setup()
 {
@@ -108,7 +109,7 @@ void setup()
             key->address = 0x70 + address;
             // matrix[nKeys] = key;
             auto ok = key->begin(key->address);
-            // if (ok)
+            if (ok)
             {
                 key->clear();
                 key->setRotation(3);
