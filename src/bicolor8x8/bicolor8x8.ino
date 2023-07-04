@@ -1,7 +1,12 @@
 #include <Adafruit_LEDBackpack.h>
 #include "src/fonts.h"
 #include "src/display.h"
-
+namespace std
+{
+    void __throw_length_error(char const *)
+    {
+    }
+}
 const GFXfont *font = &Roboto_Mono_Thin_8;
 
 I2cPins i2cPins[] = {
@@ -56,27 +61,15 @@ int readKeys()
 }
 
 constexpr uint8_t N_KEYS = 25;
-static Display matrix[N_KEYS];
-static Display keyscan;
+#include <vector>
+static std::vector<Display> matrix = std::vector<Display>(N_KEYS);
+// static Display keyscan;
 
-static const char *Qwerty = "qwertyuiopasdfghjklzxcvbnm";
+static const char *Alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-uint8_t keyScanArrayIndex = 0;
-bool keyScanFound = 0;
+// uint8_t keyScanArrayIndex = 0;
+// bool keyScanFound = 0;
 static int nKeys;
-
-static const uint8_t PROGMEM smile_bmp[] = {B00111100, B01000010, B10100101,
-                                            B10000001, B10100101, B10011001,
-                                            B01000010, B00111100},
-                             neutral_bmp[] = {B00111100, B01000010, B10100101,
-                                              B10000001, B10111101, B10000001,
-                                              B01000010, B00111100},
-                             frown_bmp[] = {B00111100, B01000010, B10100101,
-                                            B10000001, B10011001, B10100101,
-                                            B01000010, B00111100};
-
-int circle[] = {4, 4, 4};
-static bool initialized = false;
 
 void setup()
 {
@@ -87,17 +80,19 @@ void setup()
         Wire.setPins(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
         for (size_t address = 0; address < 8; address++)
         {
-            Display *key;
             if (i2cLine == keyScanIndex && address == keyScanAddress)
             {
                 Serial.println("KeyScan found!");
-                keyScanFound = true;
-                key = &keyscan;
                 continue;
             }
             if (nKeys >= N_KEYS)
                 break;
-            key = &matrix[nKeys];
+
+            // auto d = Display();
+
+            // Display *key = &d;
+            // matrix.push_back(d);
+            Display *key = &matrix[nKeys];
             key->cp437(true);
             key->i2cPins = i2cPins[i2cLine];
             key->address = 0x70 + address;
@@ -105,14 +100,7 @@ void setup()
             auto ok = key->begin(key->address);
             if (ok)
             {
-                nKeys++;
                 key->clear();
-                Serial.print(nKeys);
-                Serial.print(". sda: ");
-                Serial.print(i2cLine);
-                Serial.print(", adress: ");
-                Serial.print(address);
-                Serial.println();
                 key->setRotation(3);
                 if (address == 4 && i2cLine == 0 ||
                     address == 5 && i2cLine == 2 ||
@@ -134,13 +122,13 @@ void setup()
                 key->print(nKeys % 10);
                 key->setTextColor(LED_RED);
                 key->setCursor(0, 0);
-                key->print(Qwerty[nKeys]);
+                key->print(Alphabet[nKeys]);
                 key->writeDisplay();
+                nKeys++;
             }
         }
     }
-    Serial.println("Done!");
-    initialized = true;
+    Serial.println("Found " + String(nKeys) + " keys");
 }
 
 int brightness;
