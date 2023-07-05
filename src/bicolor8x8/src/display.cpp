@@ -6,6 +6,19 @@ Adafruit_I2CDevice *Display::get_i2c_device()
     return this->i2c_dev;
 }
 
+void Display::draw_shadowed_text(char c)
+{
+    auto colors = {LED_GREEN, LED_RED, LED_YELLOW};
+    auto x_offset = 0;
+    this->clear();
+    for (auto color : colors)
+    {
+        this->setTextColor(color);
+        this->setCursor(colors.size() - 1 - x_offset++, 0);
+        this->print(c);
+    }
+}
+
 void Display::drawPixel(int16_t x, int16_t y, uint16_t color)
 {
     if ((y < 0) || (y >= 8))

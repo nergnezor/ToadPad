@@ -1,3 +1,4 @@
+#include <utility>
 struct I2cPins
 {
     uint8_t sda;
@@ -11,5 +12,8 @@ public:
     I2cPins i2cPins;
     uint8_t address;
     bool isPushed = false;
+    std::pair<int, int> brightness_range = {2, 10};
+
     Adafruit_I2CDevice *get_i2c_device();
+    void draw_shadowed_text(char c);
 };

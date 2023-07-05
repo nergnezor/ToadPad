@@ -61,7 +61,7 @@ int readKeys()
 }
 constexpr uint8_t N_KEYS = 25;
 #include <vector>
-static std::vector<Display> matrix = std::vector<Display>(N_KEYS);
+static std::vector<Display> display = std::vector<Display>(N_KEYS);
 constexpr std::initializer_list<uint8_t> display_order = {
     17, 1, 2, 3, 4,     // A B C D E | r x x x x
     5, 6, 7, 8, 9,      // F G H I J
@@ -96,7 +96,7 @@ void setup()
 
             auto index = display_order.begin() + nKeys;
             nKeys++;
-            Display *key = &matrix[*index];
+            Display *key = &display[*index];
             key->cp437(true);
             key->i2cPins = i2c_pins[line];
             key->address = 0x70 + address;
@@ -125,17 +125,9 @@ void setup()
             {
                 key->setRotation(2);
             }
-            key->setBrightness(1);
+            key->setBrightness(key->brightness_range.first);
+            key->draw_shadowed_text(Alphabet[*index]);
 
-            auto colors = {LED_GREEN, LED_RED, LED_YELLOW};
-            auto x_offset = 0;
-            for (auto color : colors)
-            {
-
-                key->setTextColor(color);
-                key->setCursor(colors.size() - 1 - x_offset++, 0);
-                key->print(Alphabet[*index]);
-            }
             key->writeDisplay();
             if (nKeys >= N_KEYS)
                 break;
@@ -157,23 +149,18 @@ void loop()
         Serial.println(i); // print the character
         if (i < N_KEYS)
         {
-            auto key = &matrix[i];
+            auto key = &display[i];
             auto i2c = key->get_i2c_device();
             Wire.setPins(key->i2cPins.sda, key->i2cPins.scl);
             i2c->begin(false);
-            // key->clear();
-            // key->setRotation(3);
-            // key->setCursor(0, 0);
-            // key->setTextColor(LED_GREEN);
-            // key->print(Qwerty[i]);
-            // key->writeDisplay();
-            // key->endWrite();
+            key->draw_shadowed_text(Alphabet[i]);
             key->isPushed = !key->isPushed;
-            auto brightness = key->isPushed ? 15 : 0;
+            auto brightness = key->isPushed ? key->brightness_range.second : key->brightness_range.first;
             key->setBrightness(brightness);
+            key->writeDisplay();
             i2c->end();
         }
     }
     // Serial.print(".");
-    delay(100);
+    delay(50);
 }
