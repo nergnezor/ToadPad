@@ -9,7 +9,7 @@ namespace std
 }
 const GFXfont *font = &Roboto_Mono_Thin_8;
 
-I2cPins i2cPins[] = {
+I2cPins i2c_pins[] = {
     {11, 26}, {30, 26}, {27, 26}, {25, 26}};
 
 constexpr uint8_t NCols = 5;
@@ -21,7 +21,7 @@ int readKeys()
     static const int ReadSize = 6;
     static byte keyCode[ReadSize];
     int result = 0;
-    Wire.setPins(i2cPins[keyScanIndex].sda, i2cPins[keyScanIndex].scl);
+    Wire.setPins(i2c_pins[keyScanIndex].sda, i2c_pins[keyScanIndex].scl);
     auto i2c_addr = 0x70 + keyScanAddress;
 
     Wire.begin();
@@ -69,6 +69,7 @@ constexpr std::initializer_list<uint8_t> display_order = {
     15, 18, 24, 10, 0,  // P Q R S T | x x x x a
     21, 19, 20, 22, 23  // U V W X Y
 };
+
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 static int nKeys;
@@ -77,15 +78,15 @@ void setup()
 {
     Serial.begin(115200);
     Serial.println("Hej");
-    for (size_t i2cLine = 0; i2cLine < 4; i2cLine++)
+    for (size_t line = 0; line < 4; line++)
     {
-        Wire.setPins(i2cPins[i2cLine].sda, i2cPins[i2cLine].scl);
+        Wire.setPins(i2c_pins[line].sda, i2c_pins[line].scl);
         for (size_t address = 0; address < 8; address++)
         {
-            if (i2cLine == keyScanIndex && address == keyScanAddress)
+            if (line == keyScanIndex && address == keyScanAddress)
             {
                 Serial.print("KeyScan found at ");
-                Serial.print(i2cLine);
+                Serial.print(line);
                 Serial.print(" ");
                 Serial.println(address);
                 continue;
@@ -97,7 +98,7 @@ void setup()
             nKeys++;
             Display *key = &matrix[*index];
             key->cp437(true);
-            key->i2cPins = i2cPins[i2cLine];
+            key->i2cPins = i2c_pins[line];
             key->address = 0x70 + address;
             auto ok = key->begin(key->address);
 
@@ -105,7 +106,7 @@ void setup()
             {
                 Serial.print("Missing!");
                 Serial.print(" line: ");
-                Serial.print(i2cLine);
+                Serial.print(line);
                 Serial.print(" address: ");
                 Serial.println(address);
 
@@ -113,14 +114,14 @@ void setup()
             }
             key->clear();
             key->setRotation(3);
-            if (address == 4 && i2cLine == 0 ||
-                address == 5 && i2cLine == 2 ||
-                address == 6 && i2cLine == 1 ||
-                address == 1 && i2cLine == 2)
+            if (address == 4 && line == 0 ||
+                address == 5 && line == 2 ||
+                address == 6 && line == 1 ||
+                address == 1 && line == 2)
             {
                 key->setRotation(1);
             }
-            if (address == 1 && i2cLine == 1)
+            if (address == 1 && line == 1)
             {
                 key->setRotation(2);
             }
@@ -149,6 +150,10 @@ void loop()
     int i = readKeys();
     if (i >= 0)
     {
+        if (i > 9)
+            i -= 6;
+        if (i > 25)
+            i -= 6;
         Serial.println(i); // print the character
         if (i < N_KEYS)
         {
