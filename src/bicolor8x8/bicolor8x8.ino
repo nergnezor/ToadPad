@@ -62,21 +62,13 @@ int readKeys()
 constexpr uint8_t N_KEYS = 25;
 #include <vector>
 static std::vector<Display> matrix = std::vector<Display>(N_KEYS);
-// constexpr std::initializer_list<uint8_t> display_order = {
-//     17, 1, 2, 3, 4,     // A B C D E | r x x x x
-//     5, 6, 7, 8, 9,      // F G H I J
-//     16, 11, 12, 13, 14, // K L M N O
-//     15, 0, 24, 10, 0,   // P Q R S T | x x x x a
-//     21, 19, 20, 22, 23  // U V W X Y
-// };
 constexpr std::initializer_list<uint8_t> display_order = {
     17, 1, 2, 3, 4,     // A B C D E | r x x x x
     5, 6, 7, 8, 9,      // F G H I J
-    11, 12, 13, 14, 15, // K L M N O
-    24, 16, 0, 21, 19,  // P Q R S T | x x x v a
-    20, 22, 23, 5, 24   // U V W X Y
+    16, 11, 12, 13, 14, // K L M N O
+    15, 18, 24, 10, 0,  // P Q R S T | x x x x a
+    21, 19, 20, 22, 23  // U V W X Y
 };
-
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 static int nKeys;
@@ -92,59 +84,60 @@ void setup()
         {
             if (i2cLine == keyScanIndex && address == keyScanAddress)
             {
-                Serial.println("KeyScan found!");
+                Serial.print("KeyScan found at ");
+                Serial.print(i2cLine);
+                Serial.print(" ");
+                Serial.println(address);
                 continue;
             }
             if (nKeys >= N_KEYS)
                 break;
 
-            // auto d = Display();
-
-            // Display *key = &d;
-            // matrix.push_back(d);
             auto index = display_order.begin() + nKeys;
+            nKeys++;
             Display *key = &matrix[*index];
             key->cp437(true);
             key->i2cPins = i2cPins[i2cLine];
             key->address = 0x70 + address;
-            // matrix[nKeys] = key;
             auto ok = key->begin(key->address);
-            if (ok)
+
+            if (!ok)
             {
-                key->clear();
-                key->setRotation(3);
-                if (address == 4 && i2cLine == 0 ||
-                    address == 5 && i2cLine == 2 ||
-                    address == 6 && i2cLine == 1 ||
-                    address == 1 && i2cLine == 2)
-                {
-                    key->setRotation(1);
-                }
-                if (address == 1 && i2cLine == 1)
-                {
-                    key->setRotation(2);
-                }
-                key->setBrightness(0);
+                Serial.print("Missing!");
+                Serial.print(" line: ");
+                Serial.print(i2cLine);
+                Serial.print(" address: ");
+                Serial.println(address);
 
-                // key->drawBitmap(0, 0, smile_bmp, 8, 8, LED_GREEN);
-
-                // key->setTextColor(LED_GREEN);
-                // key->setCursor(1, 1);
-                // key->print(nKeys % 10);
-                auto colors = {LED_RED, LED_YELLOW, LED_GREEN};
-                auto x_offset = 0;
-                for (auto color : colors)
-                {
-
-                    key->setTextColor(color);
-                    key->setCursor(colors.size() - 1 - x_offset++, 0);
-                    key->print(Alphabet[*index]);
-                }
-                key->writeDisplay();
-                nKeys++;
-                if (nKeys >= N_KEYS)
-                    break;
+                continue;
             }
+            key->clear();
+            key->setRotation(3);
+            if (address == 4 && i2cLine == 0 ||
+                address == 5 && i2cLine == 2 ||
+                address == 6 && i2cLine == 1 ||
+                address == 1 && i2cLine == 2)
+            {
+                key->setRotation(1);
+            }
+            if (address == 1 && i2cLine == 1)
+            {
+                key->setRotation(2);
+            }
+            key->setBrightness(1);
+
+            auto colors = {LED_GREEN, LED_RED, LED_YELLOW};
+            auto x_offset = 0;
+            for (auto color : colors)
+            {
+
+                key->setTextColor(color);
+                key->setCursor(colors.size() - 1 - x_offset++, 0);
+                key->print(Alphabet[*index]);
+            }
+            key->writeDisplay();
+            if (nKeys >= N_KEYS)
+                break;
         }
     }
     Serial.println("Found " + String(nKeys) + " keys");
