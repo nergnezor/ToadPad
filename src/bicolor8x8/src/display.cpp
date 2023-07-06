@@ -3,6 +3,8 @@
 
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
+
 Adafruit_I2CDevice *Display::get_i2c_device()
 {
     return this->i2c_dev;

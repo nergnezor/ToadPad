@@ -1,12 +1,7 @@
 #include <Adafruit_LEDBackpack.h>
 #include "src/fonts.h"
 #include "src/display.h"
-namespace std
-{
-    void __throw_length_error(char const *)
-    {
-    }
-}
+
 const GFXfont *font = &Roboto_Mono_Thin_8;
 
 I2cPins i2c_pins[] = {
@@ -59,9 +54,6 @@ int readKeys()
     }
     return index;
 }
-constexpr uint8_t N_KEYS = 25;
-#include <vector>
-static std::vector<Display> displays = std::vector<Display>(N_KEYS);
 constexpr std::initializer_list<uint8_t> display_order = {
     17, 1, 2, 3, 4,     // A B C D E | r x x x x
     5, 6, 7, 8, 9,      // F G H I J
@@ -94,7 +86,7 @@ void setup()
 
             auto index = display_order.begin() + nKeys;
             nKeys++;
-            Display *display = &displays[*index];
+            Display *display = &Display::displays[*index];
 
             display->i2cPins = i2c_pins[line];
             display->address = 0x70 + address;
@@ -118,7 +110,7 @@ void loop()
         Serial.println(i); // print the character
         if (i < N_KEYS)
         {
-            auto key = &displays[i];
+            auto key = &Display::displays[i];
             auto i2c = key->get_i2c_device();
             Wire.setPins(key->i2cPins.sda, key->i2cPins.scl);
             i2c->begin(false);
@@ -131,5 +123,5 @@ void loop()
         }
     }
     // Serial.print(".");
-    delay(500);
+    delay(50);
 }
