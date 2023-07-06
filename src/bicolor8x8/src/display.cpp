@@ -4,11 +4,6 @@
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
-Adafruit_I2CDevice *Display::get_i2c_device()
-{
-    return this->i2c_dev;
-}
-
 void Display::draw_shadowed_text(int i)
 {
     auto colors = {LED_GREEN, LED_RED, LED_YELLOW};
@@ -38,6 +33,29 @@ void Display::init(int line, int count)
     draw_shadowed_text(count);
 
     writeDisplay();
+}
+
+void Display::on_pushed(int i)
+{
+    //  auto i2c = d->get_i2c_device();
+    Wire.setPins(i2cPins.sda, i2cPins.scl);
+    i2c_dev->begin(false);
+    draw_shadowed_text(i);
+    isPushed = !isPushed;
+    auto brightness = isPushed ? brightness_range.second : brightness_range.first;
+    setBrightness(brightness);
+    writeDisplay();
+    i2c_dev->end();
+    // isPushed = !isPushed;
+    // if (isPushed)
+    // {
+    //     setBrightness(brightness_range.second);
+    // }
+    // else
+    // {
+    //     setBrightness(brightness_range.first);
+    // }
+    // writeDisplay();
 }
 
 void Display::drawPixel(int16_t x, int16_t y, uint16_t color)

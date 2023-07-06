@@ -24,7 +24,7 @@ public:
         return *(display_order.begin() + found_index);
     };
 
-    Adafruit_I2CDevice *get_i2c_device();
     void draw_shadowed_text(int c);
     void init(int line, int count);
+    void on_pushed(int i);
 };

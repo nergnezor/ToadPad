@@ -89,7 +89,7 @@ void setup()
     Serial.println("Found " + String(nKeys) + " keys");
 }
 
-int brightness;
+int count;
 void loop()
 {
     int i = readKeys();
@@ -102,18 +102,20 @@ void loop()
         Serial.println(i); // print the character
         if (i < N_KEYS)
         {
-            auto key = &Display::displays[i];
-            auto i2c = key->get_i2c_device();
-            Wire.setPins(key->i2cPins.sda, key->i2cPins.scl);
-            i2c->begin(false);
-            key->draw_shadowed_text(i);
-            key->isPushed = !key->isPushed;
-            auto brightness = key->isPushed ? key->brightness_range.second : key->brightness_range.first;
-            key->setBrightness(brightness);
-            key->writeDisplay();
-            i2c->end();
+            auto d = &Display::displays[i];
+            d->on_pushed(i);
         }
+        delay(50);
     }
+    // else if (count < N_KEYS)
+    // {
+    //     auto d = &Display::displays[count];
+    //     d->on_pushed(count);
+    //     if (++count == N_KEYS)
+    //     {
+    //         count = 0;
+    //     }
+    // }
+
     // Serial.print(".");
-    delay(50);
 }
