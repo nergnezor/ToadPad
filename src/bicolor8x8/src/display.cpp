@@ -29,27 +29,11 @@ void Display::init(int line, int count)
 
     if (!ok)
     {
-        Serial.print("Missing!");
-        Serial.print(" line: ");
-        Serial.print(line);
-        Serial.print(" address: ");
-        Serial.println(address);
-
+        Serial.printf("Display %d at line %d, address %d not found\n", count, line, address);
         return;
     }
     clear();
-    setRotation(3);
-    if (address == 0x74 && line == 0 ||
-        address == 0x75 && line == 2 ||
-        address == 0x76 && line == 1 ||
-        address == 0x71 && line == 2)
-    {
-        setRotation(1);
-    }
-    if (address == 0x71 && line == 1)
-    {
-        setRotation(2);
-    }
+    setRotation(3 + *(display_rotation.begin() + count));
     setBrightness(brightness_range.first);
     draw_shadowed_text(count);
 
