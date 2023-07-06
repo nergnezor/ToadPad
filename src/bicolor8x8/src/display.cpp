@@ -2,7 +2,6 @@
 #include "display.h"
 
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
 Adafruit_I2CDevice *Display::get_i2c_device()
@@ -40,14 +39,14 @@ void Display::init(int line, int count)
     }
     clear();
     setRotation(3);
-    if (address == 4 && line == 0 ||
-        address == 5 && line == 2 ||
-        address == 6 && line == 1 ||
-        address == 1 && line == 2)
+    if (address == 0x74 && line == 0 ||
+        address == 0x75 && line == 2 ||
+        address == 0x76 && line == 1 ||
+        address == 0x71 && line == 2)
     {
         setRotation(1);
     }
-    if (address == 1 && line == 1)
+    if (address == 0x71 && line == 1)
     {
         setRotation(2);
     }

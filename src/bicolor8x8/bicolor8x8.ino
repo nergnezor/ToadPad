@@ -54,13 +54,6 @@ int readKeys()
     }
     return index;
 }
-constexpr std::initializer_list<uint8_t> display_order = {
-    17, 1, 2, 3, 4,     // A B C D E | r x x x x
-    5, 6, 7, 8, 9,      // F G H I J
-    16, 11, 12, 13, 14, // K L M N O
-    15, 18, 24, 10, 0,  // P Q R S T | x x x x a
-    21, 19, 20, 22, 23  // U V W X Y
-};
 
 static int nKeys;
 
@@ -84,14 +77,13 @@ void setup()
             if (nKeys >= N_KEYS)
                 break;
 
-            auto index = display_order.begin() + nKeys;
-            nKeys++;
-            Display *display = &Display::displays[*index];
+            auto index = Display::get_index(nKeys++);
+            Display *display = &Display::displays[index];
 
             display->i2cPins = i2c_pins[line];
             display->address = 0x70 + address;
 
-            display->init(line, nKeys);
+            display->init(line, index);
         }
     }
     Serial.println("Found " + String(nKeys) + " keys");
