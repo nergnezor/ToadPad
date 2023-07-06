@@ -105,8 +105,8 @@ void loop()
             auto d = &Display::displays[i];
             d->on_pushed(i);
         }
-        delay(50);
     }
+    delay(50);
     // else if (count < N_KEYS)
     // {
     //     auto d = &Display::displays[count];
