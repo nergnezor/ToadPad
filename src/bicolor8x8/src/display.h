@@ -11,10 +11,10 @@ struct I2cPins
 class Display : public Adafruit_BicolorMatrix
 {
     void drawPixel(int16_t x, int16_t y, uint16_t color);
+    I2cPins i2cPins;
 
 public:
-    I2cPins i2cPins;
-    uint8_t address;
+    // uint8_t address;
     bool isPushed = false;
     std::pair<int, int> brightness_range = {0, 10};
 
@@ -25,6 +25,6 @@ public:
     };
 
     void draw_shadowed_text(int c);
-    void init(int line, int count);
+    bool init(I2cPins pins, char address, int count);
     void on_pushed(int i);
 };

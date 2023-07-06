@@ -60,30 +60,26 @@ static int nKeys;
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("Hej");
     for (size_t line = 0; line < 4; line++)
     {
-        Wire.setPins(i2c_pins[line].sda, i2c_pins[line].scl);
+        auto pins = i2c_pins[line];
+        Wire.setPins(pins.sda, pins.scl);
         for (size_t address = 0; address < 8; address++)
         {
             if (line == keyScanIndex && address == keyScanAddress)
             {
-                Serial.print("KeyScan found at ");
-                Serial.print(line);
-                Serial.print(" ");
-                Serial.println(address);
                 continue;
             }
-            if (nKeys >= N_KEYS)
-                break;
+            // if (nKeys >= N_KEYS)
+            // break;
 
-            auto index = Display::get_index(nKeys++);
+            auto index = Display::get_index(nKeys);
             Display *display = &Display::displays[index];
 
-            display->i2cPins = i2c_pins[line];
-            display->address = 0x70 + address;
-
-            display->init(line, index);
+            if (display->init(pins, address, index))
+            {
+                nKeys++;
+            }
         }
     }
     Serial.println("Found " + String(nKeys) + " keys");

@@ -17,15 +17,17 @@ void Display::draw_shadowed_text(int i)
     }
 }
 
-void Display::init(int line, int count)
+bool Display::init(I2cPins pins, char address, int count)
 {
+    i2cPins = pins;
+    // address = 0x70 + address;
     cp437(true);
-    auto ok = begin(address);
+    auto ok = begin(0x70 + address);
 
     if (!ok)
     {
-        Serial.printf("Display %d at line %d, address %d not found\n", count, line, address);
-        return;
+        Serial.printf("Display %d at pins %d %d failed\n", count, pins.sda, pins.scl);
+        return false;
     }
     clear();
     setRotation(3 + *(display_rotation.begin() + count));
@@ -33,11 +35,11 @@ void Display::init(int line, int count)
     draw_shadowed_text(count);
 
     writeDisplay();
+    return true;
 }
 
 void Display::on_pushed(int i)
 {
-    //  auto i2c = d->get_i2c_device();
     Wire.setPins(i2cPins.sda, i2cPins.scl);
     i2c_dev->begin(false);
     draw_shadowed_text(i);
@@ -46,16 +48,6 @@ void Display::on_pushed(int i)
     setBrightness(brightness);
     writeDisplay();
     i2c_dev->end();
-    // isPushed = !isPushed;
-    // if (isPushed)
-    // {
-    //     setBrightness(brightness_range.second);
-    // }
-    // else
-    // {
-    //     setBrightness(brightness_range.first);
-    // }
-    // writeDisplay();
 }
 
 void Display::drawPixel(int16_t x, int16_t y, uint16_t color)
