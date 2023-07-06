@@ -1,12 +1,14 @@
 #include <Adafruit_LEDBackpack.h>
 #include "display.h"
 
+static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 Adafruit_I2CDevice *Display::get_i2c_device()
 {
     return this->i2c_dev;
 }
 
-void Display::draw_shadowed_text(char c)
+void Display::draw_shadowed_text(int i)
 {
     auto colors = {LED_GREEN, LED_RED, LED_YELLOW};
     auto x_offset = 0;
@@ -15,8 +17,42 @@ void Display::draw_shadowed_text(char c)
     {
         this->setTextColor(color);
         this->setCursor(colors.size() - 1 - x_offset++, 0);
-        this->print(c);
+        this->print(Alphabet[i]);
     }
+}
+
+void Display::init(int line, int count)
+{
+    cp437(true);
+    auto ok = begin(address);
+
+    if (!ok)
+    {
+        Serial.print("Missing!");
+        Serial.print(" line: ");
+        Serial.print(line);
+        Serial.print(" address: ");
+        Serial.println(address);
+
+        return;
+    }
+    clear();
+    setRotation(3);
+    if (address == 4 && line == 0 ||
+        address == 5 && line == 2 ||
+        address == 6 && line == 1 ||
+        address == 1 && line == 2)
+    {
+        setRotation(1);
+    }
+    if (address == 1 && line == 1)
+    {
+        setRotation(2);
+    }
+    setBrightness(brightness_range.first);
+    draw_shadowed_text(count);
+
+    writeDisplay();
 }
 
 void Display::drawPixel(int16_t x, int16_t y, uint16_t color)

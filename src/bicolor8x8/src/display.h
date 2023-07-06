@@ -12,8 +12,9 @@ public:
     I2cPins i2cPins;
     uint8_t address;
     bool isPushed = false;
-    std::pair<int, int> brightness_range = {2, 10};
+    std::pair<int, int> brightness_range = {0, 10};
 
     Adafruit_I2CDevice *get_i2c_device();
-    void draw_shadowed_text(char c);
+    void draw_shadowed_text(int c);
+    void init(int line, int count);
 };

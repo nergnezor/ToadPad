@@ -61,7 +61,7 @@ int readKeys()
 }
 constexpr uint8_t N_KEYS = 25;
 #include <vector>
-static std::vector<Display> display = std::vector<Display>(N_KEYS);
+static std::vector<Display> displays = std::vector<Display>(N_KEYS);
 constexpr std::initializer_list<uint8_t> display_order = {
     17, 1, 2, 3, 4,     // A B C D E | r x x x x
     5, 6, 7, 8, 9,      // F G H I J
@@ -69,8 +69,6 @@ constexpr std::initializer_list<uint8_t> display_order = {
     15, 18, 24, 10, 0,  // P Q R S T | x x x x a
     21, 19, 20, 22, 23  // U V W X Y
 };
-
-static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 static int nKeys;
 
@@ -96,41 +94,12 @@ void setup()
 
             auto index = display_order.begin() + nKeys;
             nKeys++;
-            Display *key = &display[*index];
-            key->cp437(true);
-            key->i2cPins = i2c_pins[line];
-            key->address = 0x70 + address;
-            auto ok = key->begin(key->address);
+            Display *display = &displays[*index];
 
-            if (!ok)
-            {
-                Serial.print("Missing!");
-                Serial.print(" line: ");
-                Serial.print(line);
-                Serial.print(" address: ");
-                Serial.println(address);
+            display->i2cPins = i2c_pins[line];
+            display->address = 0x70 + address;
 
-                continue;
-            }
-            key->clear();
-            key->setRotation(3);
-            if (address == 4 && line == 0 ||
-                address == 5 && line == 2 ||
-                address == 6 && line == 1 ||
-                address == 1 && line == 2)
-            {
-                key->setRotation(1);
-            }
-            if (address == 1 && line == 1)
-            {
-                key->setRotation(2);
-            }
-            key->setBrightness(key->brightness_range.first);
-            key->draw_shadowed_text(Alphabet[*index]);
-
-            key->writeDisplay();
-            if (nKeys >= N_KEYS)
-                break;
+            display->init(line, nKeys);
         }
     }
     Serial.println("Found " + String(nKeys) + " keys");
@@ -149,11 +118,11 @@ void loop()
         Serial.println(i); // print the character
         if (i < N_KEYS)
         {
-            auto key = &display[i];
+            auto key = &displays[i];
             auto i2c = key->get_i2c_device();
             Wire.setPins(key->i2cPins.sda, key->i2cPins.scl);
             i2c->begin(false);
-            key->draw_shadowed_text(Alphabet[i]);
+            key->draw_shadowed_text(i);
             key->isPushed = !key->isPushed;
             auto brightness = key->isPushed ? key->brightness_range.second : key->brightness_range.first;
             key->setBrightness(brightness);
@@ -162,5 +131,5 @@ void loop()
         }
     }
     // Serial.print(".");
-    delay(50);
+    delay(500);
 }
