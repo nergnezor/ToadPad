@@ -2,7 +2,9 @@
 
 #include "src/display.h"
 #include "src/fonts.h"
-
+namespace std {
+void __throw_length_error(char const *) {}
+}  // namespace std
 const GFXfont *font = &Roboto_Mono_Thin_8;
 
 I2cPins i2c_pins[] = {{11, 26}, {30, 26}, {27, 26}, {25, 26}};
@@ -11,7 +13,7 @@ constexpr uint8_t NCols = 5;
 static const uint8_t keyScanIndex = 3;
 static const uint8_t keyScanAddress = 0;
 static bool first = true;
-int readKeys() {
+std::vector<int> readKeys() {
   static const int ReadSize = 6;
   static byte keyCode[ReadSize];
   int result = 0;
@@ -27,7 +29,6 @@ int readKeys() {
   Wire.end();
 
   bool changed = false;
-  int index = -1;
   for (int i = 0; Wire.available(); ++i)  // slave may send less than requested
   {
     byte c = Wire.read();  // receive a byte as character
@@ -35,12 +36,13 @@ int readKeys() {
     keyCode[i] = c;
   }
 
-  if (changed)
+  auto v = std::vector<int>();
+  if (changed) {
     for (size_t i = 0; i < ReadSize; i++)
       for (int bit = 0; bit < 8; bit++)
-        if (keyCode[i] & (0x01 << bit)) return i * 8 + bit;
-
-  return index;
+        if (keyCode[i] & (0x01 << bit)) v.push_back(i * 8 + bit);
+  }
+  return v;
 }
 
 static int nKeys;
@@ -64,22 +66,21 @@ void setup() {
 
 int count;
 void loop() {
-  int i = readKeys();
-  if (i >= 0) {
+  auto keys = readKeys();
+  for (auto i : keys) {
+    Serial.print(i + String(","));  // print the character
     if (i > 9) i -= 6;
     if (i > 25) i -= 6;
-    Serial.println(i);  // print the character
     if (i < N_KEYS) {
       auto d = &Display::displays[i];
       d->on_pushed(i);
     }
   }
-  delay(50);
+  if (keys.size() > 0) Serial.println();
+  delay(20);
   //   else if (count < N_KEYS) {
   //     auto d = &Display::displays[count];
   //     d->on_pushed(count);
   //     if (++count == N_KEYS) count = 0;
   //   }
-
-  Serial.print(".");
 }

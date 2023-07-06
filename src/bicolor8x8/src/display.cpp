@@ -4,13 +4,13 @@ static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
 void Display::draw_shadowed_text(int i) {
+  Serial.println("draw_shadowed_text " + String(i));
   auto colors = {LED_GREEN, LED_RED, LED_YELLOW};
   auto x_offset = 0;
-  this->clear();
   for (auto color : colors) {
-    this->setTextColor(color);
-    this->setCursor(colors.size() - 1 - x_offset++, 0);
-    this->print(Alphabet[i]);
+    setTextColor(color);
+    setCursor(colors.size() - 1 - x_offset++, 0);
+    print(Alphabet[i]);
   }
 }
 
@@ -23,7 +23,7 @@ bool Display::init(I2cPins pins, char address, int count) {
   clear();
   setRotation(3 + *(display_rotation.begin() + count));
   setBrightness(brightness_range.first);
-  draw_shadowed_text(count);
+  //   draw_shadowed_text(count);
 
   writeDisplay();
   return true;
@@ -32,10 +32,11 @@ bool Display::init(I2cPins pins, char address, int count) {
 void Display::on_pushed(int i) {
   Wire.setPins(i2cPins.sda, i2cPins.scl);
   i2c_dev->begin(false);
-  draw_shadowed_text(i);
   isPushed = !isPushed;
-  auto brightness = isPushed ? brightness_range.second : brightness_range.first;
-  setBrightness(brightness);
+  clear();
+  if (isPushed) draw_shadowed_text(i);
+  //   auto brightness = isPushed ? brightness_range.second :
+  //   brightness_range.first; setBrightness(brightness);
   writeDisplay();
   i2c_dev->end();
 }
