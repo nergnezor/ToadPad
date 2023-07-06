@@ -18,13 +18,8 @@ bool Display::init(I2cPins pins, char address, int count) {
   i2cPins = pins;
   // address = 0x70 + address;
   cp437(true);
-  auto ok = begin(0x70 + address);
+  if (!begin(0x70 + address)) return false;
 
-  if (!ok) {
-    Serial.printf("Display %d at pins %d %d failed\n", count, pins.sda,
-                  pins.scl);
-    return false;
-  }
   clear();
   setRotation(3 + *(display_rotation.begin() + count));
   setBrightness(brightness_range.first);
@@ -91,4 +86,3 @@ void Display::drawPixel(int16_t x, int16_t y, uint16_t color) {
     displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
   }
 }
-// };

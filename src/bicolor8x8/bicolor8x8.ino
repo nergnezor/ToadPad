@@ -20,10 +20,10 @@ int readKeys() {
 
   Wire.begin();
   Wire.beginTransmission(i2c_addr);
-  Wire.write(0x40);  // start at address $00
+  Wire.write(0x40);
   result = Wire.endTransmission();
-  uint8_t length =
-      Wire.requestFrom(i2c_addr, 6);  // request 6 bytes from slave device #2
+  // request 6 bytes from slave device #2
+  uint8_t length = Wire.requestFrom(i2c_addr, 6);
   Wire.end();
 
   bool changed = false;
@@ -31,22 +31,15 @@ int readKeys() {
   for (int i = 0; Wire.available(); ++i)  // slave may send less than requested
   {
     byte c = Wire.read();  // receive a byte as character
-    if (keyCode[i] != c) {
-      changed = true;
-    }
+    if (keyCode[i] != c) changed = true;
     keyCode[i] = c;
   }
 
-  if (changed) {
-    for (size_t i = 0; i < ReadSize; i++) {
-      for (int bit = 0; bit < 8; bit++) {
-        if (keyCode[i] & (0x01 << bit)) {
-          index = i * 8 + bit;
-          return index;
-        }
-      }
-    }
-  }
+  if (changed)
+    for (size_t i = 0; i < ReadSize; i++)
+      for (int bit = 0; bit < 8; bit++)
+        if (keyCode[i] & (0x01 << bit)) return i * 8 + bit;
+
   return index;
 }
 
@@ -59,9 +52,6 @@ void setup() {
     Wire.setPins(pins.sda, pins.scl);
     for (size_t address = 0; address < 8; address++) {
       if (line == keyScanIndex && address == keyScanAddress) continue;
-
-      // if (nKeys >= N_KEYS)
-      // break;
 
       auto index = Display::get_index(nKeys);
       Display *display = &Display::displays[index];
@@ -85,15 +75,11 @@ void loop() {
     }
   }
   delay(50);
-  // else if (count < N_KEYS)
-  // {
+  //   else if (count < N_KEYS) {
   //     auto d = &Display::displays[count];
   //     d->on_pushed(count);
-  //     if (++count == N_KEYS)
-  //     {
-  //         count = 0;
-  //     }
-  // }
+  //     if (++count == N_KEYS) count = 0;
+  //   }
 
-  // Serial.print(".");
+  Serial.print(".");
 }
