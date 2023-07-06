@@ -1,3 +1,5 @@
+#include <Adafruit_LEDBackpack.h>
+
 #include <vector>
 
 #include "display_config.h"

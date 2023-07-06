@@ -1,7 +1,5 @@
 #include "display.h"
 
-#include <Adafruit_LEDBackpack.h>
-
 static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
