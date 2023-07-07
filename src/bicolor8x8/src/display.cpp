@@ -1,6 +1,6 @@
 #include "display.h"
 
-static const char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+constexpr char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
 void Display::draw_shadowed_text(int i) {
@@ -23,7 +23,7 @@ bool Display::init(I2cPins pins, char address, int count) {
   clear();
   setRotation(3 + *(display_rotation.begin() + count));
   setBrightness(brightness_range.first);
-  //   draw_shadowed_text(count);
+  draw_shadowed_text(count);
 
   writeDisplay();
   return true;
@@ -33,10 +33,12 @@ void Display::on_pushed(int i) {
   Wire.setPins(i2cPins.sda, i2cPins.scl);
   i2c_dev->begin(false);
   isPushed = !isPushed;
-  clear();
-  if (isPushed) draw_shadowed_text(i);
-  //   auto brightness = isPushed ? brightness_range.second :
-  //   brightness_range.first; setBrightness(brightness);
+  //   {
+  //     clear();
+  //     if (isPushed) draw_shadowed_text(i);
+  //   }
+  auto brightness = isPushed ? brightness_range.second : brightness_range.first;
+  setBrightness(brightness);
   writeDisplay();
   i2c_dev->end();
 }
