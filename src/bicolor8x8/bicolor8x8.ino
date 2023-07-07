@@ -71,13 +71,10 @@ void loop() {
     if (i > 9) i -= 6;
     if (i > 25) i -= 6;
     if (i < N_KEYS) {
-      Serial.print(i + String(" "));  // print the character
-      auto d = &Display::displays[i];
-      d->on_pushed(i);
+      Display::displays[i].on_pushed();
     }
   }
-  if (keys.size() > 0) Serial.println();
-  delay(50);
+  delay(20);
   //   else if (count < N_KEYS) {
   //     auto d = &Display::displays[count];
   //     d->on_pushed(count);
