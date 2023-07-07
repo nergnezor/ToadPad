@@ -16,6 +16,8 @@ class Display : public Adafruit_BicolorMatrix {
   void draw_shadowed_text();
 
  public:
+  void draw_rect();
+  char color = LED_YELLOW;
   bool isPushed = false;
   std::pair<int, int> brightness_range = {0, 10};
 

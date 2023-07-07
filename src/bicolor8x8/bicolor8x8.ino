@@ -72,8 +72,14 @@ void loop() {
     if (i > 25) i -= 6;
     if (i < N_KEYS) {
       Display::displays[i].on_pushed();
+      Display::displays[i + 1].on_pushed();
+      Display::displays[i - 1].on_pushed();
+      Display::displays[i - 5].on_pushed();
+      Display::displays[i + 5].on_pushed();
     }
   }
+  //   for (auto &d : Display::displays) d.draw_rect();
+
   delay(20);
   //   else if (count < N_KEYS) {
   //     auto d = &Display::displays[count];

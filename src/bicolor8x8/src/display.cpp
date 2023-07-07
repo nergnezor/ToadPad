@@ -16,11 +16,18 @@ void Display::draw_shadowed_text() {
   writeDisplay();
 }
 
+void Display::draw_rect() {
+  drawRoundRect(0, 0, 8, 8, 2, LED_GREEN);
+  if (isPushed) fillRect(1, 1, 6, 6, color);
+  writeDisplay();
+}
+
 bool Display::init(I2cPins pins, char address, int count) {
   i2cPins = pins;
   if (!begin(0x70 + address)) return false;
   setRotation(3 + *(display_rotation.begin() + count));
   setBrightness(brightness_range.first);
+  draw_rect();
   return true;
 }
 
@@ -29,7 +36,8 @@ void Display::on_pushed() {
   i2c_dev->begin(false);
   isPushed = !isPushed;
   clear();
-  if (isPushed) draw_shadowed_text();
+  //   if (isPushed) draw_shadowed_text();
+  draw_rect();
   i2c_dev->end();
 }
 
