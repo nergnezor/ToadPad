@@ -9,7 +9,6 @@ const GFXfont *font = &Roboto_Mono_Thin_8;
 
 I2cPins i2c_pins[] = {{11, 26}, {30, 26}, {27, 26}, {25, 26}};
 
-constexpr uint8_t NCols = 5;
 static const uint8_t keyScanIndex = 3;
 static const uint8_t keyScanAddress = 0;
 static bool first = true;
@@ -62,6 +61,7 @@ void setup() {
     }
   }
   Serial.println("Found " + String(nKeys) + " keys");
+  Display::draw_rects(8, 0, 10, 10, LED_YELLOW);
 }
 
 int count;
@@ -72,10 +72,11 @@ void loop() {
     if (i > 25) i -= 6;
     if (i < N_KEYS) {
       Display::displays[i].on_pushed();
-      Display::displays[i + 1].on_pushed();
-      Display::displays[i - 1].on_pushed();
-      Display::displays[i - 5].on_pushed();
-      Display::displays[i + 5].on_pushed();
+      //   Display::displays[i + 1].on_pushed();
+      //   Display::displays[i - 1].on_pushed();
+      //   Display::displays[i - 5].on_pushed();
+      //   Display::displays[i + 5].on_pushed();
+      //   Display::draw_rect(8, 0, 8, 8, LED_YELLOW);
     }
   }
   //   for (auto &d : Display::displays) d.draw_rect();

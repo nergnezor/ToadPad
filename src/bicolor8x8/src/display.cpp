@@ -1,6 +1,6 @@
 #include "display.h"
 
-constexpr char *Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+constexpr char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
 void Display::draw_shadowed_text() {
@@ -11,14 +11,54 @@ void Display::draw_shadowed_text() {
   for (auto color : colors) {
     setTextColor(color);
     setCursor(colors.size() - 1 - x_offset++, 0);
-    print(Alphabet[i]);
+    print(alphabet[i]);
   }
   writeDisplay();
 }
 
+void Display::draw_rects(int x, int y, int w, int h, uint16_t color) {
+  // Every display has 8x8 pixels.
+  // Draw a rectangle on all affected displays.
+  auto display_pixel_width = 8;
+  auto display_pixel_height = 8;
+  auto top_left_display_index =
+      x / display_pixel_width + y / display_pixel_height * N_COLS;
+  auto bottom_right_display_index =
+      (x + w) / display_pixel_width + (y + h) / display_pixel_height * N_COLS;
+
+  Serial.println(top_left_display_index);
+  Serial.println(bottom_right_display_index);
+  struct Point {
+    int x;
+    int y;
+  };
+  Point top_left = {top_left_display_index % N_COLS,
+                    top_left_display_index / N_COLS};
+  Point bottom_right = {bottom_right_display_index % N_COLS,
+                        bottom_right_display_index / N_COLS};
+
+  for (auto row = top_left.y; row <= bottom_right.y; row++)
+    for (auto column = top_left.x; column <= bottom_right.x; column++) {
+      auto display = &displays[column + row * N_COLS];
+
+      auto local_x = x - column * display_pixel_width;
+      auto local_y = y - row * display_pixel_height;
+      auto local_w = w;
+      auto local_h = h;
+
+      Wire.setPins(display->i2cPins.sda, display->i2cPins.scl);
+      display->i2c_dev->begin(false);
+      display->drawRect(local_x, local_y, local_w, local_h, color);
+      // display->drawRect(0, 0, 4, 4, color);
+      display->writeDisplay();
+      display->i2c_dev->end();
+    }
+}
+
 void Display::draw_rect() {
   drawRoundRect(0, 0, 8, 8, 2, LED_GREEN);
-  if (isPushed) fillRect(1, 1, 6, 6, color);
+  if (isPushed) fillRect(1, 1, 6, 6, LED_YELLOW);
+
   writeDisplay();
 }
 
@@ -27,7 +67,7 @@ bool Display::init(I2cPins pins, char address, int count) {
   if (!begin(0x70 + address)) return false;
   setRotation(3 + *(display_rotation.begin() + count));
   setBrightness(brightness_range.first);
-  draw_rect();
+  //   draw_rect();
   return true;
 }
 
@@ -36,7 +76,7 @@ void Display::on_pushed() {
   i2c_dev->begin(false);
   isPushed = !isPushed;
   clear();
-  //   if (isPushed) draw_shadowed_text();
+  if (isPushed) draw_shadowed_text();
   draw_rect();
   i2c_dev->end();
 }
@@ -44,17 +84,15 @@ void Display::on_pushed() {
 void Display::drawPixel(int16_t x, int16_t y, uint16_t color) {
   if ((y < 0) || (y >= 8)) return;
   if ((x < 0) || (x >= 8)) return;
-#ifndef _swap_int16_t
-#define _swap_int16_t(a, b) \
-  {                         \
-    int16_t t = a;          \
-    a = b;                  \
-    b = t;                  \
+#define swap(a, b) \
+  {                \
+    int16_t t = a; \
+    (a) = b;       \
+    (b) = t;       \
   }  ///< 16-bit var swap
-#endif
   switch (getRotation()) {
     case 1:
-      _swap_int16_t(x, y);
+      swap(x, y);
       x = 8 - x - 1;
       break;
     case 2:
@@ -62,28 +100,25 @@ void Display::drawPixel(int16_t x, int16_t y, uint16_t color) {
       y = 8 - y - 1;
       break;
     case 3:
-      _swap_int16_t(x, y);
+      swap(x, y);
       y = 8 - y - 1;
       break;
   }
 
-  if (color == LED_GREEN) {
-    // x = 8 - x - 1;
-    // Turn on green LED.
-    displaybuffer[y] |= 1 << (7 - x);
-    // Turn off red LED.
-    displaybuffer[y] &= ~(1 << (x + 8));
-  } else if (color == LED_RED) {
-    // Turn on red LED.
-    displaybuffer[y] |= 1 << (x + 8);
-    // Turn off green LED.
-    displaybuffer[y] &= ~(1 << (7 - x));
-  } else if (color == LED_YELLOW) {
-    // Turn on green and red LED.
-    // displaybuffer[y] |= (1 << (x + 8)) | (1 << x);
-    displaybuffer[y] |= (1 << (x + 8)) | (1 << (7 - x));
-  } else if (color == LED_OFF) {
-    // Turn off green and red LED.
-    displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
+  switch (color) {
+    case LED_GREEN:
+      displaybuffer[y] |= 1 << (7 - x);
+      break;
+    case LED_RED:
+      displaybuffer[y] |= 1 << (x + 8);
+      break;
+    case LED_YELLOW:
+      //   // Turn on green and red LED.
+      displaybuffer[y] |= (1 << (x + 8)) | (1 << (7 - x));
+      break;
+    case LED_OFF:
+      //   // Turn off green and red LED.
+      displaybuffer[y] &= ~(1 << (7 - x)) & ~(1 << (x + 8));
+      break;
   }
 }

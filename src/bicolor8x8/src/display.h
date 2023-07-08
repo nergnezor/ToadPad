@@ -1,3 +1,4 @@
+#undef LED_RED
 #include <Adafruit_LEDBackpack.h>
 
 #include <vector>
@@ -5,6 +6,7 @@
 #include "display_config.h"
 
 constexpr uint8_t N_KEYS = 25;
+constexpr uint8_t N_COLS = 5;
 
 struct I2cPins {
   uint8_t sda;
@@ -16,8 +18,9 @@ class Display : public Adafruit_BicolorMatrix {
   void draw_shadowed_text();
 
  public:
+  static void draw_rects(int x, int y, int w, int h, uint16_t color);
   void draw_rect();
-  char color = LED_YELLOW;
+  // char color = LED_YELLOW;
   bool isPushed = false;
   std::pair<int, int> brightness_range = {0, 10};
 
