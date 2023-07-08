@@ -55,13 +55,17 @@ void setup() {
       if (line == keyScanIndex && address == keyScanAddress) continue;
 
       auto index = Display::get_index(nKeys);
-      Display *display = &Display::displays[index];
+      Display display;
 
-      if (display->init(pins, address, index)) nKeys++;
+      if (!display.init(pins, address, index)) {
+        Serial.println("Failed to init display " + String(nKeys));
+        continue;
+      }
+      Display::displays[index] = display;
+      nKeys++;
     }
   }
   Serial.println("Found " + String(nKeys) + " keys");
-  Display::draw_rects(8, 0, 10, 10, LED_YELLOW);
 }
 
 int count;
@@ -77,11 +81,14 @@ void loop() {
       //   Display::displays[i - 5].on_pushed();
       //   Display::displays[i + 5].on_pushed();
       //   Display::draw_rect(8, 0, 8, 8, LED_YELLOW);
+      // delay(10);
     }
   }
+  auto x = (count++) % 10;
+  Display::draw_rects(9, x, 20, 20, LED_YELLOW);
   //   for (auto &d : Display::displays) d.draw_rect();
 
-  delay(20);
+  delay(10);
   //   else if (count < N_KEYS) {
   //     auto d = &Display::displays[count];
   //     d->on_pushed(count);

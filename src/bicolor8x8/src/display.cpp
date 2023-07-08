@@ -26,8 +26,6 @@ void Display::draw_rects(int x, int y, int w, int h, uint16_t color) {
   auto bottom_right_display_index =
       (x + w) / display_pixel_width + (y + h) / display_pixel_height * N_COLS;
 
-  Serial.println(top_left_display_index);
-  Serial.println(bottom_right_display_index);
   struct Point {
     int x;
     int y;
@@ -39,19 +37,17 @@ void Display::draw_rects(int x, int y, int w, int h, uint16_t color) {
 
   for (auto row = top_left.y; row <= bottom_right.y; row++)
     for (auto column = top_left.x; column <= bottom_right.x; column++) {
-      auto display = &displays[column + row * N_COLS];
+      auto d = &displays[column + row * N_COLS];
 
       auto local_x = x - column * display_pixel_width;
       auto local_y = y - row * display_pixel_height;
-      auto local_w = w;
-      auto local_h = h;
 
-      Wire.setPins(display->i2cPins.sda, display->i2cPins.scl);
-      display->i2c_dev->begin(false);
-      display->drawRect(local_x, local_y, local_w, local_h, color);
-      // display->drawRect(0, 0, 4, 4, color);
-      display->writeDisplay();
-      display->i2c_dev->end();
+      Wire.setPins(d->i2cPins.sda, d->i2cPins.scl);
+      d->i2c_dev->begin(false);
+      d->clear();
+      d->drawRect(local_x, local_y, w, h, color);
+      d->writeDisplay();
+      d->i2c_dev->end();
     }
 }
 
