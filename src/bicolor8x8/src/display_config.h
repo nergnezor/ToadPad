@@ -15,3 +15,6 @@ constexpr std::initializer_list<int8_t> display_rotation = {
     0, 0, 0, 0, 2,   // P Q R S T
     0, 0, 0, 0, 2    // U V W X Y
 };
+
+constexpr int display_pixel_width = 8;
+constexpr int display_pixel_height = 8;

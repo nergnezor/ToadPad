@@ -84,8 +84,8 @@ void loop() {
       // delay(10);
     }
   }
-  auto x = (count++) % 10;
-  Display::draw_rects(9, x, 20, 20, LED_YELLOW);
+  auto y = (count++) % 40;
+  Display::draw_big_rect(9, y, 20, 20, LED_YELLOW);
   //   for (auto &d : Display::displays) d.draw_rect();
 
   delay(10);

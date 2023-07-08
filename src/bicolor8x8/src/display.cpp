@@ -1,8 +1,17 @@
 #include "display.h"
-
-constexpr char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
-
+struct Point {
+  int x;
+  int y;
+};
+struct Rect {
+  Point pos;
+  Point size;
+};
+namespace {
+constexpr char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Rect rect;
+}  // namespace
 void Display::draw_shadowed_text() {
   int i = this - &displays[0];
   Serial.println(i);
@@ -16,20 +25,19 @@ void Display::draw_shadowed_text() {
   writeDisplay();
 }
 
-void Display::draw_rects(int x, int y, int w, int h, uint16_t color) {
+void Display::draw_big_rect(int x, int y, int w, int h, uint16_t color) {
+  if (rect.size.x > 0 && color != LED_OFF) {
+    draw_big_rect(rect.pos.x, rect.pos.y, rect.size.x, rect.size.y, LED_OFF);
+  }
+  rect = Rect{{x, y}, {w, h}};
   // Every display has 8x8 pixels.
   // Draw a rectangle on all affected displays.
-  auto display_pixel_width = 8;
-  auto display_pixel_height = 8;
+
   auto top_left_display_index =
       x / display_pixel_width + y / display_pixel_height * N_COLS;
   auto bottom_right_display_index =
       (x + w) / display_pixel_width + (y + h) / display_pixel_height * N_COLS;
 
-  struct Point {
-    int x;
-    int y;
-  };
   Point top_left = {top_left_display_index % N_COLS,
                     top_left_display_index / N_COLS};
   Point bottom_right = {bottom_right_display_index % N_COLS,
@@ -37,7 +45,9 @@ void Display::draw_rects(int x, int y, int w, int h, uint16_t color) {
 
   for (auto row = top_left.y; row <= bottom_right.y; row++)
     for (auto column = top_left.x; column <= bottom_right.x; column++) {
-      auto d = &displays[column + row * N_COLS];
+      auto index = row * N_COLS + column;
+      if (index < 0 || index >= N_KEYS) continue;
+      auto d = &displays[index];
 
       auto local_x = x - column * display_pixel_width;
       auto local_y = y - row * display_pixel_height;
@@ -72,7 +82,7 @@ void Display::on_pushed() {
   i2c_dev->begin(false);
   isPushed = !isPushed;
   clear();
-  if (isPushed) draw_shadowed_text();
+  // if (isPushed) draw_shadowed_text();
   draw_rect();
   i2c_dev->end();
 }

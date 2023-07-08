@@ -1,4 +1,4 @@
-// #undef LED_RED
+#undef LED_RED
 #include <Adafruit_LEDBackpack.h>
 
 #include <vector>
@@ -18,7 +18,7 @@ class Display : public Adafruit_BicolorMatrix {
   void draw_shadowed_text();
 
  public:
-  static void draw_rects(int x, int y, int w, int h, uint16_t color);
+  static void draw_big_rect(int x, int y, int w, int h, uint16_t color);
   void draw_rect();
   // char color = LED_YELLOW;
   bool isPushed = false;
