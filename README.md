@@ -1,1 +1,3 @@
-# ToadPad
+- Add https://adafruit.github.io/arduino-board-index/package_adafruit_index.json as an 'Additional Board Manager URL'
+- Install Adafruit nRF52 board package 1.5.0
+- Install Adafruit LED Backpack library 1.3.2
