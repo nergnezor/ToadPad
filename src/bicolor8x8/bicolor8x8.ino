@@ -1,5 +1,3 @@
-#include <Adafruit_LEDBackpack.h>
-
 #include "src/display.h"
 #include "src/fonts.h"
 namespace std {
@@ -48,6 +46,7 @@ static int nKeys;
 
 void setup() {
   Serial.begin(115200);
+  Wire.setClock(400000);
   for (size_t line = 0; line < 4; line++) {
     auto pins = i2c_pins[line];
     Wire.setPins(pins.sda, pins.scl);
@@ -85,7 +84,7 @@ void loop() {
     }
   }
   auto y = (count++) % 40;
-  Display::draw_big_rect(9, y, 20, 20, LED_YELLOW);
+  Display::draw_big_rect(4, y, 30, 20, LED_YELLOW);
   //   for (auto &d : Display::displays) d.draw_rect();
 
   delay(10);
