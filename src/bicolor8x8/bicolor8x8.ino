@@ -75,22 +75,11 @@ void loop() {
     if (i > 25) i -= 6;
     if (i < N_KEYS) {
       Display::displays[i].on_pushed();
-      //   Display::displays[i + 1].on_pushed();
-      //   Display::displays[i - 1].on_pushed();
-      //   Display::displays[i - 5].on_pushed();
-      //   Display::displays[i + 5].on_pushed();
-      //   Display::draw_rect(8, 0, 8, 8, LED_YELLOW);
-      // delay(10);
     }
   }
-  auto y = (count++) % 40;
-  Display::draw_big_rect(4, y, 30, 20, LED_YELLOW);
+  Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
   //   for (auto &d : Display::displays) d.draw_rect();
 
   delay(10);
-  //   else if (count < N_KEYS) {
-  //     auto d = &Display::displays[count];
-  //     d->on_pushed(count);
-  //     if (++count == N_KEYS) count = 0;
-  //   }
+  Serial.print(".");
 }

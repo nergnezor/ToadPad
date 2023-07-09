@@ -1,4 +1,3 @@
-#undef LED_RED
 #include <Adafruit_LEDBackpack.h>
 
 #include <vector>
