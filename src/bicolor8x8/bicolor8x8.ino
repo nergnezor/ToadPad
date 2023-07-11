@@ -69,17 +69,13 @@ void setup() {
 
 int count;
 void loop() {
-  auto keys = readKeys();
-  for (auto i : keys) {
-    if (i > 9) i -= 6;
-    if (i > 25) i -= 6;
-    if (i < N_KEYS) {
-      Display::displays[i].on_pushed();
-    }
-  }
+  // auto keys = readKeys();
+  // for (auto i : keys) {
+  //   if (i > 9) i -= 6;
+  //   if (i > 25) i -= 6;
+  //   if (i < N_KEYS) {
+  //     Display::displays[i].on_pushed();
+  //   }
+  // }
   Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
-  //   for (auto &d : Display::displays) d.draw_rect();
-
-  delay(10);
-  Serial.print(".");
 }
