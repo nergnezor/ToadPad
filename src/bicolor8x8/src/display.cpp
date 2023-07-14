@@ -112,14 +112,19 @@ bool Display::init(I2cPins pins, char address, int count) {
 }
 
 void Display::on_pushed() {
-  Wire.setPins(i2cPins.sda, i2cPins.scl);
-  i2c_dev->begin(false);
+  start_draw();
   clear();
   // if (isPushed) draw_shadowed_text();
   draw_rect();
   isPushed = !isPushed;
-  i2c_dev->end();
+  end_draw();
 }
+
+void Display::start_draw() {
+  Wire.setPins(i2cPins.sda, i2cPins.scl);
+  i2c_dev->begin(false);
+}
+void Display::end_draw() { i2c_dev->end(); }
 
 void Display::drawPixel(int16_t x, int16_t y, uint16_t color) {
   if ((y < 0) || (y >= 8)) return;

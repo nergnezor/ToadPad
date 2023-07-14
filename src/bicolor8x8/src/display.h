@@ -14,10 +14,12 @@ struct I2cPins {
 class Display : public Adafruit_BicolorMatrix {
   void drawPixel(int16_t x, int16_t y, uint16_t color);
   I2cPins i2cPins;
-  void draw_shadowed_text();
 
  public:
   static void draw_big_rect(int x, int y, int w, int h, uint16_t color);
+  void draw_shadowed_text();
+  void start_draw();
+  void end_draw();
   void draw_rect();
   // char color = LED_YELLOW;
   bool isPushed = false;
