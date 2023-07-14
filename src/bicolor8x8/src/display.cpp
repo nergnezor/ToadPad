@@ -114,10 +114,10 @@ bool Display::init(I2cPins pins, char address, int count) {
 void Display::on_pushed() {
   Wire.setPins(i2cPins.sda, i2cPins.scl);
   i2c_dev->begin(false);
-  isPushed = !isPushed;
   clear();
   // if (isPushed) draw_shadowed_text();
   draw_rect();
+  isPushed = !isPushed;
   i2c_dev->end();
 }
 

@@ -1,4 +1,5 @@
 #include "src/display.h"
+#include "src/draw.h"
 #include "src/fonts.h"
 namespace std {
 void __throw_length_error(char const *) {}
@@ -65,17 +66,24 @@ void setup() {
     }
   }
   Serial.println("Found " + String(nKeys) + " keys");
+  Draw::init();
 }
 
 int count;
+bool animate = false;
 void loop() {
-  // auto keys = readKeys();
-  // for (auto i : keys) {
-  //   if (i > 9) i -= 6;
-  //   if (i > 25) i -= 6;
-  //   if (i < N_KEYS) {
-  //     Display::displays[i].on_pushed();
-  //   }
-  // }
-  Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
+  auto keys = readKeys();
+  for (auto i : keys) {
+    if (i > 9) i -= 6;
+    if (i > 25) i -= 6;
+    if (i < N_KEYS) {
+      Display::displays[i].on_pushed();
+    }
+    if (i == Display::displays.size() - 1) {
+      animate = !animate;
+    }
+  }
+  if (animate) Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
+  // else
+  delay(50);
 }
