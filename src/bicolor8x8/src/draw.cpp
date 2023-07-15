@@ -13,7 +13,7 @@ static void animate_line(Display& d, Axis axis, int start, int end,
     else
       d.drawPixel(other_axis, i, color);
     d.writeDisplay();
-    delay(5);
+    delay(1);
   }
 }
 void Draw::init() {
@@ -30,7 +30,7 @@ void Draw::init() {
       ++c;
       ++min;
       --max;
-    } while (min < max);
+    } while (max - min > 1);
     d.end_draw();
   }
 };
