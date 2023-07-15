@@ -5,7 +5,7 @@
 enum Axis { X, Y };
 
 static void animate_line(Display& d, Axis axis, int start, int end,
-                         int other_axis, Color color) {
+                         int other_axis, int color) {
   int iterator = start < end ? 1 : -1;
   for (int i = start; i != end; i += iterator) {
     if (axis == X)
@@ -21,12 +21,16 @@ void Draw::init() {
     d.start_draw();
     int min = 0;
     int max = display_pixel_width - 1;
-    Color c = Red;
-    animate_line(d, X, min, max, min, c);
-    animate_line(d, Y, min, max, max, c);
-    animate_line(d, X, max, min, max, c);
-    animate_line(d, Y, max, min, min, c);
-
+    auto c = (int)Red;
+    do {
+      animate_line(d, X, min, max, min, c);
+      animate_line(d, Y, min, max, max, c);
+      animate_line(d, X, max, min, max, c);
+      animate_line(d, Y, max, min, min, c);
+      ++c;
+      ++min;
+      --max;
+    } while (min < max);
     d.end_draw();
   }
 };
