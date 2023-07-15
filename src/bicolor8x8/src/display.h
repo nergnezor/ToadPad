@@ -3,7 +3,12 @@
 #include <vector>
 
 #include "display_config.h"
-
+enum Color {
+  Off = LED_OFF,
+  Red = LED_RED,
+  Yellow = LED_YELLOW,
+  Green = LED_GREEN,
+};
 constexpr uint8_t N_KEYS = 25;
 constexpr uint8_t N_COLS = 5;
 
@@ -12,11 +17,11 @@ struct I2cPins {
   uint8_t scl;
 };
 class Display : public Adafruit_BicolorMatrix {
-  void drawPixel(int16_t x, int16_t y, uint16_t color);
   I2cPins i2cPins;
 
  public:
   static void draw_big_rect(int x, int y, int w, int h, uint16_t color);
+  void drawPixel(int16_t x, int16_t y, uint16_t color);
   void draw_shadowed_text();
   void start_draw();
   void end_draw();

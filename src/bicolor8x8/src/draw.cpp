@@ -2,18 +2,31 @@
 
 #include "display.h"
 
+enum Axis { X, Y };
+
+static void animate_line(Display& d, Axis axis, int start, int end,
+                         int other_axis, Color color) {
+  int iterator = start < end ? 1 : -1;
+  for (int i = start; i != end; i += iterator) {
+    if (axis == X)
+      d.drawPixel(i, other_axis, color);
+    else
+      d.drawPixel(other_axis, i, color);
+    d.writeDisplay();
+    delay(5);
+  }
+}
 void Draw::init() {
   for (auto& d : Display::displays) {
-    d.on_pushed();
-    // d.start_draw();
-    // // const char* c = "e";
-    // // d.drawChar(0, 0, *c, 1, 1, 8);
-    // // Serial.println(&d - &Display::displays[0]);
-    // // d.draw_shadowed_text();
-    // // d.drawCircle(3, 3, 3, 1);
-    // d.draw_rect();
-    // // d.writeDisplay();
-    // d.end_draw();
-    delay(30);
+    d.start_draw();
+    int min = 0;
+    int max = display_pixel_width - 1;
+    Color c = Red;
+    animate_line(d, X, min, max, min, c);
+    animate_line(d, Y, min, max, max, c);
+    animate_line(d, X, max, min, max, c);
+    animate_line(d, Y, max, min, min, c);
+
+    d.end_draw();
   }
 };

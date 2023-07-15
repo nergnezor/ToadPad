@@ -28,12 +28,7 @@ void Display::draw_shadowed_text() {
   }
   writeDisplay();
 }
-enum Color {
-  Off = LED_OFF,
-  Red = LED_RED,
-  Yellow = LED_YELLOW,
-  Green = LED_GREEN,
-};
+
 struct Pixel {
   Point pos;
   Color color;
