@@ -3,10 +3,7 @@
 #include <algorithm>
 
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
-struct Point {
-  int x;
-  int y;
-};
+
 struct Rect {
   Point pos;
   Point size;

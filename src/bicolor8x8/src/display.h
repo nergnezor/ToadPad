@@ -9,6 +9,10 @@ enum Color {
   Yellow = LED_YELLOW,
   Green = LED_GREEN,
 };
+struct Point {
+  int x;
+  int y;
+};
 constexpr uint8_t N_KEYS = 25;
 constexpr uint8_t N_COLS = 5;
 
