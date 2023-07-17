@@ -1,5 +1,6 @@
 #include "draw.h"
 
+#include <avr/pgmspace.h>
 #include <stdint.h>
 
 #include "../images/lego.h"
@@ -29,17 +30,20 @@ void full_image(const uint8_t* image) {
   for (auto& d : Display::displays) {
     d.start_draw();
     d.clear();
-    for (int i = 0; i < display_pixel_width; ++i) {
-      for (int j = 0; j < display_pixel_height; ++j) {
+    for (int i = 0; i < Config::display_pixel_width; ++i) {
+      for (int j = 0; j < Config::display_pixel_height; ++j) {
         Point pixel = {
-            display_pos.x * display_pixel_width * N_CHANNELS + i * N_CHANNELS,
-            display_pos.y * display_pixel_height + j};
+            display_pos.x * Config::display_pixel_width * N_CHANNELS +
+                i * N_CHANNELS,
+            display_pos.y * Config::display_pixel_height + j};
         int index =
-            pixel.y * display_pixel_width * N_CHANNELS * N_COLS + pixel.x;
+            pixel.y * Config::display_pixel_width * N_CHANNELS * N_COLS +
+            pixel.x;
 
         // Get highest color value
-        Color color;
-        int max = 0;
+        Color color = Off;
+        constexpr char black_threshold = 20;
+        int max = black_threshold;
         for (int k = 0; k < 3; ++k) {
           // auto value = image[pixel.y  +
           //                    pixel.x + k];
@@ -75,13 +79,17 @@ void full_image(const uint8_t* image) {
     }
   }
 }
-void Draw::init() { full_image(lego); };
+void Draw::init() {
+  full_image(rgb);
+  delay(1000);
+  full_image(lego);
+};
 
 void swirl() {
   for (auto& d : Display::displays) {
     d.start_draw();
     int min = 0;
-    int max = display_pixel_width - 1;
+    int max = Config::display_pixel_width - 1;
     auto c = (int)Red;
     do {
       animate_line(d, X, min, max, min, c);

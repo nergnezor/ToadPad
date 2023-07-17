@@ -61,7 +61,10 @@ void setup() {
         Serial.println("Failed to init display " + String(nKeys));
         continue;
       }
+      if (Config::rotate_vertical)
+        index = Config::display_order.size() - 1 - index;
       Display::displays[index] = display;
+
       nKeys++;
     }
   }

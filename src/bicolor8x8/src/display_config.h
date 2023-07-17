@@ -1,11 +1,12 @@
 #include <utility>
 
+namespace Config {
 constexpr std::initializer_list<uint8_t> display_order = {
-    17, 1,  2,  3,  4,   // A B C D E | r x x x x
-    5,  6,  7,  8,  9,   // F G H I J
-    16, 11, 12, 13, 14,  // K L M N O
-    15, 18, 24, 10, 0,   // P Q R S T | x x x x a
-    21, 19, 20, 22, 23   // U V W X Y
+    17, 1,  2,  3,  4,   //
+    5,  6,  7,  8,  9,   //
+    16, 11, 12, 13, 14,  //
+    15, 18, 24, 10, 0,   //
+    21, 19, 20, 22, 23,  //
 };
 
 constexpr std::initializer_list<int8_t> display_rotation = {
@@ -18,3 +19,5 @@ constexpr std::initializer_list<int8_t> display_rotation = {
 
 constexpr int display_pixel_width = 8;
 constexpr int display_pixel_height = 8;
+constexpr bool rotate_vertical = true;
+};  // namespace Config

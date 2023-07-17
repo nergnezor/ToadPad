@@ -36,7 +36,7 @@ class Display : public Adafruit_BicolorMatrix {
 
   static std::vector<Display> displays;
   static int get_index(int found_index) {
-    return *(display_order.begin() + found_index);
+    return *(Config::display_order.begin() + found_index);
   };
 
   bool init(I2cPins pins, char address, int count);

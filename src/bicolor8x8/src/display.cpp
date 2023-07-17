@@ -43,10 +43,11 @@ void Display::draw_big_rect(int x, int y, int w, int h, uint16_t color) {
   // Every display has 8x8 pixels.
   // Draw a rectangle on all affected displays.
 
-  auto top_left_display_index =
-      x / display_pixel_width + y / display_pixel_height * N_COLS;
+  auto top_left_display_index = x / Config::display_pixel_width +
+                                y / Config::display_pixel_height * N_COLS;
   auto bottom_right_display_index =
-      (x + w) / display_pixel_width + (y + h) / display_pixel_height * N_COLS;
+      (x + w) / Config::display_pixel_width +
+      (y + h) / Config::display_pixel_height * N_COLS;
 
   Point top_left = {top_left_display_index % N_COLS,
                     top_left_display_index / N_COLS};
@@ -59,8 +60,8 @@ void Display::draw_big_rect(int x, int y, int w, int h, uint16_t color) {
       if (index < 0 || index >= N_KEYS) continue;
       auto d = &displays[index];
 
-      auto local_x = x - column * display_pixel_width;
-      auto local_y = y - row * display_pixel_height;
+      auto local_x = x - column * Config::display_pixel_width;
+      auto local_y = y - row * Config::display_pixel_height;
 
       Wire.setPins(d->i2cPins.sda, d->i2cPins.scl);
       d->i2c_dev->begin(false);
@@ -97,7 +98,8 @@ void Display::draw_rect() {
 bool Display::init(I2cPins pins, char address, int count) {
   i2cPins = pins;
   if (!begin(0x70 + address)) return false;
-  setRotation(3 + *(display_rotation.begin() + count));
+  int rotation = Config::rotate_vertical ? 1 : 3;
+  setRotation(rotation + *(Config::display_rotation.begin() + count));
   setBrightness(brightness_range.first);
   //   draw_rect();
   return true;
