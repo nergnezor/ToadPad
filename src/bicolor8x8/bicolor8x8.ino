@@ -1,3 +1,5 @@
+// #include "src/ble/keyboard.h"
+#include "src/ble/uart.h"
 #include "src/display.h"
 #include "src/draw.h"
 #include "src/fonts.h"
@@ -46,7 +48,8 @@ std::vector<int> readKeys() {
 static int nKeys;
 
 void setup() {
-  Serial.begin(115200);
+  BleUart::setup();
+  // Serial.begin(115200);
   Wire.setClock(400000);
   for (size_t line = 0; line < 4; line++) {
     auto pins = i2c_pins[line];
@@ -58,7 +61,7 @@ void setup() {
       Display display;
 
       if (!display.init(pins, address, index)) {
-        Serial.println("Failed to init display " + String(nKeys));
+        // Serial.println("Failed to init display " + String(nKeys));
         continue;
       }
       if (Config::rotate_vertical)
@@ -70,23 +73,29 @@ void setup() {
   }
   Serial.println("Found " + String(nKeys) + " keys");
   Draw::init();
+  // BleKeyboard::setup();
 }
 
 int count;
 bool animate = false;
 void loop() {
-  auto keys = readKeys();
-  for (auto i : keys) {
-    if (i > 9) i -= 6;
-    if (i > 25) i -= 6;
-    if (i < N_KEYS) {
-      Display::displays[i].on_pushed();
-    }
-    if (i == Display::displays.size() - 1) {
-      animate = !animate;
-    }
-  }
-  if (animate) Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
+  // BleKeyboard::loop();
+  BleUart::loop();
+  // auto keys = readKeys();
+  // for (auto i : keys) {
+  //   if (i > 9) i -= 6;
+  //   if (i > 25) i -= 6;
+  //   if (i < N_KEYS) {
+  //     auto c = 'a' + i;
+  //     Serial.println("Key " + String(i) + " pressed: " + String(c));
+  //     // BleKeyboard::keypress(c);
+  //     Display::displays[i].on_pushed();
+  //   }
+  //   if (i == Display::displays.size() - 1) {
+  //     animate = !animate;
+  //   }
+  // }
+  // if (animate) Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
   // else
-  delay(50);
+  //   delay(50);
 }

@@ -3,35 +3,20 @@
     "configurations": [
         {
             "name": "Win32",
-            "compilerPath": "",
+            "compilerPath": "cl.exe",
             "compilerArgs": [],
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "windows-msvc-x64",
             "includePath": [
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\0.9.3\\libraries\\Wire",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\tools\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\adafruit\\hardware\\nrf52\\0.9.3\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.2\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.0\\**",
-                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_GFX_Library",
-                "C:\\Users\\erikr\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.2\\libraries\\Wire",
-                "C:\\Users\\erikr\\Documents\\Arduino\\libraries\\Adafruit_LED_Backpack_Library",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools",
-                "C:\\Program Files (x86)\\Arduino\\libraries",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\5.4.0\\include",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
-                "C:\\Program Files (x86)\\Arduino",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard"
+                "${workspaceFolder}/**",
+                "${vcpkgRoot}/x64-windows/include"
             ],
             "forcedInclude": [],
-            "cStandard": "c11",
+            "cStandard": "c17",
             "cppStandard": "c++17",
             "defines": [
-                "ARDUINO=100",
-                "NRF52"
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
             ]
         },
         {
