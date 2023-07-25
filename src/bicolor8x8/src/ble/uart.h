@@ -2,6 +2,5 @@
 
 namespace BleUart {
 void setup();
-void loop();
-
+bool loop();
 };

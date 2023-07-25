@@ -3,9 +3,7 @@
 #include "src/display.h"
 #include "src/draw.h"
 #include "src/fonts.h"
-namespace std {
-void __throw_length_error(char const *) {}
-}  // namespace std
+
 const GFXfont *font = &Roboto_Mono_Thin_8;
 
 I2cPins i2c_pins[] = {{11, 26}, {30, 26}, {27, 26}, {25, 26}};
@@ -13,7 +11,9 @@ I2cPins i2c_pins[] = {{11, 26}, {30, 26}, {27, 26}, {25, 26}};
 static const uint8_t keyScanIndex = 3;
 static const uint8_t keyScanAddress = 0;
 static bool first = true;
-std::vector<int> readKeys() {
+static int pushed_keys[3];
+int readKeys() {
+  int count = 0;
   static const int ReadSize = 6;
   static byte keyCode[ReadSize];
   int result = 0;
@@ -36,21 +36,21 @@ std::vector<int> readKeys() {
     keyCode[i] = c;
   }
 
-  auto v = std::vector<int>();
+  // auto v = std::vector<int>();
   if (changed) {
     for (size_t i = 0; i < ReadSize; i++)
       for (int bit = 0; bit < 8; bit++)
-        if (keyCode[i] & (0x01 << bit)) v.push_back(i * 8 + bit);
+        if (keyCode[i] & (0x01 << bit)) pushed_keys[count++] = i * 8 + bit;
+    // v.push_back(i * 8 + bit);
   }
-  return v;
+  return count;
 }
 
 static int nKeys;
 
 void setup() {
-  BleUart::setup();
-  // Serial.begin(115200);
-  Wire.setClock(400000);
+  Serial.begin(115200);
+  // Wire.setClock(400000);
   for (size_t line = 0; line < 4; line++) {
     auto pins = i2c_pins[line];
     Wire.setPins(pins.sda, pins.scl);
@@ -72,6 +72,7 @@ void setup() {
     }
   }
   Serial.println("Found " + String(nKeys) + " keys");
+  BleUart::setup();
   Draw::init();
   // BleKeyboard::setup();
 }
@@ -79,10 +80,11 @@ void setup() {
 int count;
 bool animate = false;
 void loop() {
+  if (BleUart::loop()) animate = !animate;
   // BleKeyboard::loop();
-  BleUart::loop();
-  // auto keys = readKeys();
-  // for (auto i : keys) {
+  // int n_keys = readKeys();
+  // for (int k = 0; k < n_keys; k++) {
+  //   auto i = pushed_keys[k];
   //   if (i > 9) i -= 6;
   //   if (i > 25) i -= 6;
   //   if (i < N_KEYS) {
@@ -95,7 +97,8 @@ void loop() {
   //     animate = !animate;
   //   }
   // }
-  // if (animate) Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
-  // else
-  //   delay(50);
+  if (animate)
+    Display::draw_big_rect(4, (count++) % 40, 30, 20, LED_YELLOW);
+  else
+    delay(50);
 }

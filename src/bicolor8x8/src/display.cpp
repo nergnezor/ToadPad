@@ -1,7 +1,10 @@
 #include "display.h"
 
 #include <algorithm>
-
+#include <vector>
+namespace std {
+void __throw_length_error(char const *) {}
+}  // namespace std
 std::vector<Display> Display::displays = std::vector<Display>(N_KEYS);
 
 struct Rect {

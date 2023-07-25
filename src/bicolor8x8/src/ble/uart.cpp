@@ -126,7 +126,8 @@ void BleUart::setup() {
   Serial.println("Once connected, enter character(s) that you wish to send");
 }
 
-void BleUart::loop() {
+bool BleUart::loop() {
+  bool got_data = false;
   // Forward data from HW Serial to BLEUART
   while (Serial.available()) {
     // Delay to wait for enough input, since we have a limited transmission
@@ -143,5 +144,7 @@ void BleUart::loop() {
     uint8_t ch;
     ch = (uint8_t)bleuart.read();
     Serial.write(ch);
+    got_data = true;
   }
+  return got_data;
 }

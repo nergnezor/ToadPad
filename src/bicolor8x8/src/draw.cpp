@@ -64,9 +64,9 @@ void full_image(const uint8_t* image) {
           }
         }
         d.drawPixel(i, j, color);
-        Serial.print(color);
+        // Serial.print(color);
       }
-      Serial.println();
+      // Serial.println();
     }
     d.writeDisplay();
     d.end_draw();
