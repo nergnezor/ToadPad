@@ -15,3 +15,4 @@ hw/SwitchBoard/SwitchBoard\.bak
 
 hw/SwitchBoard/SwitchBoard\.kicad_pcb-bak
 build
+.vscode/c_cpp_properties.json

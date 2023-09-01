@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #include "../images/lego.h"
+#include "../images/nerg.h"
 #include "../images/rgb.h"
 #include "display.h"
 enum Axis { X, Y };
@@ -44,21 +45,26 @@ void full_image(const uint8_t* image) {
         Color color = Off;
         constexpr char black_threshold = 20;
         int max = black_threshold;
+
         for (int k = 0; k < 3; ++k) {
           // auto value = image[pixel.y  +
           //                    pixel.x + k];
           auto value = image[index + k];
+          // Help yellow (R+G) to be more visible
+          if (k == 0) value *= 0.5;
           if (value > max) {
             max = value;
+
+            /// Switch rgb into ryg
             switch (k) {
               case 0:
                 color = Red;
                 break;
               case 1:
-                color = Green;
+                color = Yellow;
                 break;
               case 2:
-                color = Yellow;
+                color = Green;
                 break;
             }
           }
@@ -83,6 +89,8 @@ void Draw::init() {
   full_image(rgb);
   delay(1000);
   full_image(lego);
+  delay(1000);
+  full_image(nerg);
 };
 
 void swirl() {

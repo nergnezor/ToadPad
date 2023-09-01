@@ -1,5 +1,5 @@
 {
-    "port": "COM3",
+    "port": "COM5",
     "configuration": "softdevice=s132v6,debug=l2,debug_output=serial",
     "board": "adafruit:nrf52:feather52832",
     "programmer": "nrfutil_boot",

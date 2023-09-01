@@ -50,7 +50,7 @@ static int nKeys;
 
 void setup() {
   Serial.begin(115200);
-  // Wire.setClock(400000);
+  // Wire.setClock(400000);úú
   for (size_t line = 0; line < 4; line++) {
     auto pins = i2c_pins[line];
     Wire.setPins(pins.sda, pins.scl);
