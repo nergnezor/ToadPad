@@ -460,6 +460,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
+name = "ht16k33-async"
+version = "0.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "07b9f803c8bb0efdb8f4cddf78ba782498cb71a2b7df9c3f399a11f7aeee0ed7"
+dependencies = [
+ "embedded-hal-async",
+]
+
+[[package]]
 name = "ident_case"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -762,12 +771,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "toadpad2"
+name = "toadpad"
 version = "0.1.0"
 dependencies = [
  "esp-backtrace",
  "esp-hal",
  "esp-println",
+ "ht16k33-async",
  "log",
 ]
 
