@@ -1,31 +1,23 @@
 #![no_std]
 #![no_main]
 
-use core::pin::Pin;
-
 use esp_backtrace as _;
 use esp_hal::{
     delay::Delay,
     gpio::{Io, Level, Output},
     i2c::I2c,
+    peripherals::{self, Peripherals},
     prelude::*,
 };
-use esp_println::{print, println};
+use fugit::Rate;
 use ht16k33_async::HT16K33;
+// use ht16k33::HT16K33;
 
-// bind_interrupts!(struct Irqs {
-//     I2C1_IRQ => i2c::InterruptHandler<I2C1>;
-// });
-
-#[entry]
-fn main() -> ! {
-    #[allow(unused)]
-    let peripherals = esp_hal::init(esp_hal::Config::default());
+fn blink_led(peripherals: Peripherals) -> ! {
+    // Set GPIO4 as an output, and set its state high initially.
+    let io = Io::new(peripherals.GPIO, peripherals.IO_MUX);
     let delay = Delay::new();
 
-    esp_println::logger::init_logger_from_env();
-    // Set GPIO0 as an output, and set its state high initially.
-    let io = Io::new(peripherals.GPIO, peripherals.IO_MUX);
     let mut led = Output::new(io.pins.gpio4, Level::High);
 
     loop {
@@ -34,27 +26,55 @@ fn main() -> ! {
 
         log::info!("Hello Erik!");
     }
+}
 
-    // let io = Io::new(peripherals.g, io_mux)
+#[entry]
+fn main() -> ! {
+    #[allow(unused)]
+    let peripherals = esp_hal::init(esp_hal::Config::default());
 
-    //     let i2c = I2c::new(peripherals.I2C0, io.pin(0), 1, 100_000.Hz());
-    //     let mut driver = HT16K33::new(&mut i2c, 0x70);
+    esp_println::logger::init_logger_from_env();
 
-    //     driver.setup().await.unwrap();
+    // blink_led(peripherals);
 
-    //     led.set_high();
+    init_led_matrix(peripherals);
 
-    //     let mut buffer = [0u8; 2 * 4];
+    loop {
+        log::info!("Hello Erik!");
+        Delay::new().delay_millis(1000);
+    }
+}
 
-    //     loop {
-    //         for c in 0..8 {
-    //             for l in 0..8 {
-    //                 buffer[c] ^= 1 << l;
+async fn init_led_matrix(peripherals: Peripherals) -> ! {
+    let io = Io::new(peripherals.GPIO, peripherals.IO_MUX);
+    let sda_pin = io.pins.gpio14;
+    let scl_pin = io.pins.gpio22;
+    let freq = Rate::<u32, 1, 1>::from_raw(100_000);
+    // let i2c = I2c::new(peripherals.I2C0, sda_pin, scl_pin, freq);
+    let i2c = I2c::new_async(peripherals.I2C0, sda_pin, scl_pin, freq);
 
-    //                 driver.write_whole_display(&buffer).await.unwrap();
+    let mut driver = HT16K33::new(i2c, 0x70);
+    driver.setup().await.unwrap();
 
-    //                 Timer::after_millis(50).await;
-    //             }
-    //         }
-    //     }
+    // led.set_high();
+
+    let mut buffer = [0u8; 2 * 4];
+
+    loop {
+        for c in 0..8 {
+            for l in 0..8 {
+                buffer[c] ^= 1 << l;
+
+                driver.write_whole_display(&buffer).await.unwrap();
+
+                Delay::new().delay_millis(100);
+            }
+        }
+    }
+
+    // let mut ht16k33 = HT16K33::new(i2c, 0x70);
+    // ht16k33.initialize();
+    // ht16k33.update_bicolor_led(4, 4, Color::Red);
+    // ht16k33.set_display(Display::ON);
+    // ht16k33.write_display_buffer();
 }
